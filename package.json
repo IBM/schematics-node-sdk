@@ -1,6 +1,6 @@
 {
   "name": "@ibm-cloud/ibm-schematics",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "IBM Cloud Schematics Node.js SDK",
   "repository": {
     "type": "git",
