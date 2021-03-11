@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/IBM/schematics-node-sdk.svg?branch=main)](https://travis-ci.org/IBM/schematics-node-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 <!--
-[![npm-version](https://img.shields.io/npm/v/IBM/schematics-node-sdk.svg)](https://www.npmjs.com/package/ibm-schematics)
+[![npm-version](https://img.shields.io/npm/v/IBM/schematics-node-sdk.svg)](https://www.npmjs.com/package/@ibm-cloud/ibm-schematics)
 [![codecov](https://codecov.io/gh/IBM/schematics-node-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/IBM/schematics-node-sdk)
 -->
 # IBM Cloud Schematics Node.js SDK
@@ -52,7 +52,7 @@ IBM Cloud services:
 
 Service Name | Import Path
 --- | ---
-[Schematics](https://cloud.ibm.com/apidocs/schematics) | ibm-schematics/schematics/v1
+[Schematics](https://cloud.ibm.com/apidocs/schematics) | @ibm-cloud/ibm-schematics/schematics/v1
 
 ## Prerequisites
 * You need an [IBM Cloud][ibm-cloud-onboarding] account.
@@ -63,7 +63,7 @@ Service Name | Import Path
 ## Installation
 
 ```sh
-npm install ibm-schematics
+npm install @ibm-cloud/ibm-schematics
 ```
 
 ## Authentication
