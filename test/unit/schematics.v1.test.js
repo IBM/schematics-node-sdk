@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2020.
+ * (C) Copyright IBM Corp. 2021.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -954,11 +954,7 @@ describe('SchematicsV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          options,
-          '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload',
-          'PUT'
-        );
+        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload', 'PUT');
         const expectedAccept = 'application/json';
         const expectedContentType = 'multipart/form-data';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1300,6 +1296,101 @@ describe('SchematicsV1', () => {
         expectToBePromise(deleteWorkspaceActivityPromise);
 
         deleteWorkspaceActivityPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('runWorkspaceCommands', () => {
+    describe('positive tests', () => {
+      // Request models needed by this operation.
+
+      // TerraformCommand
+      const terraformCommandModel = {
+        command: 'testString',
+        command_params: 'testString',
+        command_name: 'testString',
+        command_desc: 'testString',
+        command_onError: 'testString',
+        command_dependsOn: 'testString',
+        command_status: 'testString',
+      };
+
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation runWorkspaceCommands
+        const wId = 'testString';
+        const refreshToken = 'testString';
+        const commands = [terraformCommandModel];
+        const operationName = 'testString';
+        const description = 'testString';
+        const params = {
+          wId: wId,
+          refreshToken: refreshToken,
+          commands: commands,
+          operationName: operationName,
+          description: description,
+        };
+
+        const runWorkspaceCommandsResult = schematicsService.runWorkspaceCommands(params);
+
+        // all methods should return a Promise
+        expectToBePromise(runWorkspaceCommandsResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/commands', 'PUT');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'refresh_token', refreshToken);
+        expect(options.body['commands']).toEqual(commands);
+        expect(options.body['operation_name']).toEqual(operationName);
+        expect(options.body['description']).toEqual(description);
+        expect(options.path['w_id']).toEqual(wId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const wId = 'testString';
+        const refreshToken = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          wId,
+          refreshToken,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.runWorkspaceCommands(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.runWorkspaceCommands({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const runWorkspaceCommandsPromise = schematicsService.runWorkspaceCommands();
+        expectToBePromise(runWorkspaceCommandsPromise);
+
+        runWorkspaceCommandsPromise.catch(err => {
           expect(err.message).toMatch(/Missing required parameters/);
           done();
         });
@@ -1876,11 +1967,7 @@ describe('SchematicsV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          options,
-          '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata',
-          'GET'
-        );
+        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2466,11 +2553,7 @@ describe('SchematicsV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          options,
-          '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}',
-          'GET'
-        );
+        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2550,9 +2633,7 @@ describe('SchematicsV1', () => {
           destroyResources: destroyResources,
         };
 
-        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(
-          params
-        );
+        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(params);
 
         // all methods should return a Promise
         expectToBePromise(createWorkspaceDeletionJobResult);
@@ -2626,9 +2707,7 @@ describe('SchematicsV1', () => {
           wjId: wjId,
         };
 
-        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(
-          params
-        );
+        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(params);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceDeletionJobStatusResult);
@@ -2713,21 +2792,10 @@ describe('SchematicsV1', () => {
         git: externalSourceGitModel,
       };
 
-      // SystemLock
-      const systemLockModel = {
-        sys_locked: true,
-        sys_locked_by: 'testString',
-        sys_locked_at: '2019-01-01T12:00:00',
-      };
-
-      // TargetResourceset
-      const targetResourcesetModel = {
+      // BastionResourceDefinition
+      const bastionResourceDefinitionModel = {
         name: 'testString',
-        type: 'testString',
-        description: 'testString',
-        resource_query: 'testString',
-        credential: 'testString',
-        sys_lock: systemLockModel,
+        host: 'testString',
       };
 
       // VariableMetadata
@@ -2760,14 +2828,22 @@ describe('SchematicsV1', () => {
       // ActionState
       const actionStateModel = {
         status_code: 'normal',
+        status_job_id: 'testString',
         status_message: 'testString',
+      };
+
+      // SystemLock
+      const systemLockModel = {
+        sys_locked: true,
+        sys_locked_by: 'testString',
+        sys_locked_at: '2019-01-01T12:00:00',
       };
 
       test('should pass the right params to createRequest', () => {
         // Construct the params object for operation createAction
         const name = 'Stop Action';
-        const description = 'This Action can be used to Stop the targets';
-        const location = 'us_south';
+        const description = 'This Action can be used to Stop the VSIs';
+        const location = 'us-south';
         const resourceGroup = 'testString';
         const tags = ['testString'];
         const userState = userStateModel;
@@ -2775,12 +2851,13 @@ describe('SchematicsV1', () => {
         const source = externalSourceModel;
         const sourceType = 'local';
         const commandParameter = 'testString';
-        const bastion = targetResourcesetModel;
-        const targets = [targetResourcesetModel];
+        const bastion = bastionResourceDefinitionModel;
+        const inventory = 'testString';
+        const bastionCredential = variableDataModel;
+        const credentials = [variableDataModel];
         const inputs = [variableDataModel];
         const outputs = [variableDataModel];
         const settings = [variableDataModel];
-        const triggerRecordId = 'testString';
         const state = actionStateModel;
         const sysLock = systemLockModel;
         const xGithubToken = 'testString';
@@ -2796,11 +2873,12 @@ describe('SchematicsV1', () => {
           sourceType: sourceType,
           commandParameter: commandParameter,
           bastion: bastion,
-          targets: targets,
+          inventory: inventory,
+          bastionCredential: bastionCredential,
+          credentials: credentials,
           inputs: inputs,
           outputs: outputs,
           settings: settings,
-          triggerRecordId: triggerRecordId,
           state: state,
           sysLock: sysLock,
           xGithubToken: xGithubToken,
@@ -2832,11 +2910,12 @@ describe('SchematicsV1', () => {
         expect(options.body['source_type']).toEqual(sourceType);
         expect(options.body['command_parameter']).toEqual(commandParameter);
         expect(options.body['bastion']).toEqual(bastion);
-        expect(options.body['targets']).toEqual(targets);
+        expect(options.body['inventory']).toEqual(inventory);
+        expect(options.body['bastion_credential']).toEqual(bastionCredential);
+        expect(options.body['credentials']).toEqual(credentials);
         expect(options.body['inputs']).toEqual(inputs);
         expect(options.body['outputs']).toEqual(outputs);
         expect(options.body['settings']).toEqual(settings);
-        expect(options.body['trigger_record_id']).toEqual(triggerRecordId);
         expect(options.body['state']).toEqual(state);
         expect(options.body['sys_lock']).toEqual(sysLock);
       });
@@ -3091,21 +3170,10 @@ describe('SchematicsV1', () => {
         git: externalSourceGitModel,
       };
 
-      // SystemLock
-      const systemLockModel = {
-        sys_locked: true,
-        sys_locked_by: 'testString',
-        sys_locked_at: '2019-01-01T12:00:00',
-      };
-
-      // TargetResourceset
-      const targetResourcesetModel = {
+      // BastionResourceDefinition
+      const bastionResourceDefinitionModel = {
         name: 'testString',
-        type: 'testString',
-        description: 'testString',
-        resource_query: 'testString',
-        credential: 'testString',
-        sys_lock: systemLockModel,
+        host: 'testString',
       };
 
       // VariableMetadata
@@ -3138,15 +3206,23 @@ describe('SchematicsV1', () => {
       // ActionState
       const actionStateModel = {
         status_code: 'normal',
+        status_job_id: 'testString',
         status_message: 'testString',
+      };
+
+      // SystemLock
+      const systemLockModel = {
+        sys_locked: true,
+        sys_locked_by: 'testString',
+        sys_locked_at: '2019-01-01T12:00:00',
       };
 
       test('should pass the right params to createRequest', () => {
         // Construct the params object for operation updateAction
         const actionId = 'testString';
         const name = 'Stop Action';
-        const description = 'This Action can be used to Stop the targets';
-        const location = 'us_south';
+        const description = 'This Action can be used to Stop the VSIs';
+        const location = 'us-south';
         const resourceGroup = 'testString';
         const tags = ['testString'];
         const userState = userStateModel;
@@ -3154,12 +3230,13 @@ describe('SchematicsV1', () => {
         const source = externalSourceModel;
         const sourceType = 'local';
         const commandParameter = 'testString';
-        const bastion = targetResourcesetModel;
-        const targets = [targetResourcesetModel];
+        const bastion = bastionResourceDefinitionModel;
+        const inventory = 'testString';
+        const bastionCredential = variableDataModel;
+        const credentials = [variableDataModel];
         const inputs = [variableDataModel];
         const outputs = [variableDataModel];
         const settings = [variableDataModel];
-        const triggerRecordId = 'testString';
         const state = actionStateModel;
         const sysLock = systemLockModel;
         const xGithubToken = 'testString';
@@ -3176,11 +3253,12 @@ describe('SchematicsV1', () => {
           sourceType: sourceType,
           commandParameter: commandParameter,
           bastion: bastion,
-          targets: targets,
+          inventory: inventory,
+          bastionCredential: bastionCredential,
+          credentials: credentials,
           inputs: inputs,
           outputs: outputs,
           settings: settings,
-          triggerRecordId: triggerRecordId,
           state: state,
           sysLock: sysLock,
           xGithubToken: xGithubToken,
@@ -3212,11 +3290,12 @@ describe('SchematicsV1', () => {
         expect(options.body['source_type']).toEqual(sourceType);
         expect(options.body['command_parameter']).toEqual(commandParameter);
         expect(options.body['bastion']).toEqual(bastion);
-        expect(options.body['targets']).toEqual(targets);
+        expect(options.body['inventory']).toEqual(inventory);
+        expect(options.body['bastion_credential']).toEqual(bastionCredential);
+        expect(options.body['credentials']).toEqual(credentials);
         expect(options.body['inputs']).toEqual(inputs);
         expect(options.body['outputs']).toEqual(outputs);
         expect(options.body['settings']).toEqual(settings);
-        expect(options.body['trigger_record_id']).toEqual(triggerRecordId);
         expect(options.body['state']).toEqual(state);
         expect(options.body['sys_lock']).toEqual(sysLock);
         expect(options.path['action_id']).toEqual(actionId);
@@ -3264,6 +3343,80 @@ describe('SchematicsV1', () => {
       });
     });
   });
+  describe('uploadTemplateTarAction', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation uploadTemplateTarAction
+        const actionId = 'testString';
+        const file = Buffer.from('This is a mock file.');
+        const fileContentType = 'testString';
+        const params = {
+          actionId: actionId,
+          file: file,
+          fileContentType: fileContentType,
+        };
+
+        const uploadTemplateTarActionResult = schematicsService.uploadTemplateTarAction(params);
+
+        // all methods should return a Promise
+        expectToBePromise(uploadTemplateTarActionResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/actions/{action_id}/template_repo_upload', 'PUT');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'multipart/form-data';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.formData['file'].data).toEqual(file);
+        expect(options.formData['file'].contentType).toEqual(fileContentType);
+        expect(options.path['action_id']).toEqual(actionId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const actionId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          actionId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.uploadTemplateTarAction(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.uploadTemplateTarAction({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const uploadTemplateTarActionPromise = schematicsService.uploadTemplateTarAction();
+        expectToBePromise(uploadTemplateTarActionPromise);
+
+        uploadTemplateTarActionPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
   describe('createJob', () => {
     describe('positive tests', () => {
       // Request models needed by this operation.
@@ -3302,14 +3455,41 @@ describe('SchematicsV1', () => {
         status_message: 'testString',
         bastion_status_code: 'none',
         bastion_status_message: 'testString',
-        targets_status_code: 'none',
-        targets_status_message: 'testString',
+        inventory_status_code: 'none',
+        inventory_status_message: 'testString',
+        updated_at: '2019-01-01T12:00:00',
+      };
+
+      // JobStatusSchematicsResources
+      const jobStatusSchematicsResourcesModel = {
+        status_code: 'job_pending',
+        status_message: 'testString',
+        schematics_resource_id: 'testString',
+        updated_at: '2019-01-01T12:00:00',
+      };
+
+      // JobStatusSystem
+      const jobStatusSystemModel = {
+        system_status_message: 'testString',
+        system_status_code: 'job_pending',
+        schematics_resource_status: [jobStatusSchematicsResourcesModel],
         updated_at: '2019-01-01T12:00:00',
       };
 
       // JobStatus
       const jobStatusModel = {
         action_job_status: jobStatusActionModel,
+        system_job_status: jobStatusSystemModel,
+      };
+
+      // InventoryResourceRecord
+      const inventoryResourceRecordModel = {
+        name: 'testString',
+        description: 'testString',
+        location: 'us-south',
+        resource_group: 'testString',
+        inventories_ini: 'testString',
+        resource_queries: ['testString'],
       };
 
       // JobDataAction
@@ -3319,37 +3499,37 @@ describe('SchematicsV1', () => {
         outputs: [variableDataModel],
         settings: [variableDataModel],
         updated_at: '2019-01-01T12:00:00',
+        inventory_record: inventoryResourceRecordModel,
+        materialized_inventory: 'testString',
+      };
+
+      // JobDataSystem
+      const jobDataSystemModel = {
+        key_id: 'testString',
+        schematics_resource_id: ['testString'],
+        updated_at: '2019-01-01T12:00:00',
       };
 
       // JobData
       const jobDataModel = {
         job_type: 'repo_download_job',
         action_job_data: jobDataActionModel,
+        system_job_data: jobDataSystemModel,
       };
 
-      // SystemLock
-      const systemLockModel = {
-        sys_locked: true,
-        sys_locked_by: 'testString',
-        sys_locked_at: '2019-01-01T12:00:00',
-      };
-
-      // TargetResourceset
-      const targetResourcesetModel = {
+      // BastionResourceDefinition
+      const bastionResourceDefinitionModel = {
         name: 'testString',
-        type: 'testString',
-        description: 'testString',
-        resource_query: 'testString',
-        credential: 'testString',
-        sys_lock: systemLockModel,
+        host: 'testString',
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {};
+      const jobLogSummaryRepoDownloadJobModel = {
+      };
 
       // JobLogSummaryActionJobRecap
       const jobLogSummaryActionJobRecapModel = {
-        target: ['testString'],
+        hosts: ['testString'],
         ok: 72.5,
         changed: 72.5,
         failed: 72.5,
@@ -3362,11 +3542,18 @@ describe('SchematicsV1', () => {
         recap: jobLogSummaryActionJobRecapModel,
       };
 
+      // JobLogSummarySystemJob
+      const jobLogSummarySystemJobModel = {
+        success: 72.5,
+        failed: 72.5,
+      };
+
       // JobLogSummary
       const jobLogSummaryModel = {
         job_type: 'repo_download_job',
         repo_download_job: jobLogSummaryRepoDownloadJobModel,
         action_job: jobLogSummaryActionJobModel,
+        system_job: jobLogSummarySystemJobModel,
       };
 
       test('should pass the right params to createRequest', () => {
@@ -3374,16 +3561,16 @@ describe('SchematicsV1', () => {
         const refreshToken = 'testString';
         const commandObject = 'workspace';
         const commandObjectId = 'testString';
-        const commandName = 'workspace_init_flow';
+        const commandName = 'ansible_playbook_run';
         const commandParameter = 'testString';
         const commandOptions = ['testString'];
         const inputs = [variableDataModel];
         const settings = [variableDataModel];
         const tags = ['testString'];
-        const location = 'us_south';
+        const location = 'us-south';
         const status = jobStatusModel;
         const data = jobDataModel;
-        const bastion = targetResourcesetModel;
+        const bastion = bastionResourceDefinitionModel;
         const logSummary = jobLogSummaryModel;
         const params = {
           refreshToken: refreshToken,
@@ -3482,7 +3669,7 @@ describe('SchematicsV1', () => {
         const limit = 1;
         const sort = 'testString';
         const profile = 'ids';
-        const resource = 'workspaces';
+        const resource = 'workspace';
         const actionId = 'testString';
         const list = 'all';
         const params = {
@@ -3578,14 +3765,41 @@ describe('SchematicsV1', () => {
         status_message: 'testString',
         bastion_status_code: 'none',
         bastion_status_message: 'testString',
-        targets_status_code: 'none',
-        targets_status_message: 'testString',
+        inventory_status_code: 'none',
+        inventory_status_message: 'testString',
+        updated_at: '2019-01-01T12:00:00',
+      };
+
+      // JobStatusSchematicsResources
+      const jobStatusSchematicsResourcesModel = {
+        status_code: 'job_pending',
+        status_message: 'testString',
+        schematics_resource_id: 'testString',
+        updated_at: '2019-01-01T12:00:00',
+      };
+
+      // JobStatusSystem
+      const jobStatusSystemModel = {
+        system_status_message: 'testString',
+        system_status_code: 'job_pending',
+        schematics_resource_status: [jobStatusSchematicsResourcesModel],
         updated_at: '2019-01-01T12:00:00',
       };
 
       // JobStatus
       const jobStatusModel = {
         action_job_status: jobStatusActionModel,
+        system_job_status: jobStatusSystemModel,
+      };
+
+      // InventoryResourceRecord
+      const inventoryResourceRecordModel = {
+        name: 'testString',
+        description: 'testString',
+        location: 'us-south',
+        resource_group: 'testString',
+        inventories_ini: 'testString',
+        resource_queries: ['testString'],
       };
 
       // JobDataAction
@@ -3595,37 +3809,37 @@ describe('SchematicsV1', () => {
         outputs: [variableDataModel],
         settings: [variableDataModel],
         updated_at: '2019-01-01T12:00:00',
+        inventory_record: inventoryResourceRecordModel,
+        materialized_inventory: 'testString',
+      };
+
+      // JobDataSystem
+      const jobDataSystemModel = {
+        key_id: 'testString',
+        schematics_resource_id: ['testString'],
+        updated_at: '2019-01-01T12:00:00',
       };
 
       // JobData
       const jobDataModel = {
         job_type: 'repo_download_job',
         action_job_data: jobDataActionModel,
+        system_job_data: jobDataSystemModel,
       };
 
-      // SystemLock
-      const systemLockModel = {
-        sys_locked: true,
-        sys_locked_by: 'testString',
-        sys_locked_at: '2019-01-01T12:00:00',
-      };
-
-      // TargetResourceset
-      const targetResourcesetModel = {
+      // BastionResourceDefinition
+      const bastionResourceDefinitionModel = {
         name: 'testString',
-        type: 'testString',
-        description: 'testString',
-        resource_query: 'testString',
-        credential: 'testString',
-        sys_lock: systemLockModel,
+        host: 'testString',
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {};
+      const jobLogSummaryRepoDownloadJobModel = {
+      };
 
       // JobLogSummaryActionJobRecap
       const jobLogSummaryActionJobRecapModel = {
-        target: ['testString'],
+        hosts: ['testString'],
         ok: 72.5,
         changed: 72.5,
         failed: 72.5,
@@ -3638,11 +3852,18 @@ describe('SchematicsV1', () => {
         recap: jobLogSummaryActionJobRecapModel,
       };
 
+      // JobLogSummarySystemJob
+      const jobLogSummarySystemJobModel = {
+        success: 72.5,
+        failed: 72.5,
+      };
+
       // JobLogSummary
       const jobLogSummaryModel = {
         job_type: 'repo_download_job',
         repo_download_job: jobLogSummaryRepoDownloadJobModel,
         action_job: jobLogSummaryActionJobModel,
+        system_job: jobLogSummarySystemJobModel,
       };
 
       test('should pass the right params to createRequest', () => {
@@ -3651,16 +3872,16 @@ describe('SchematicsV1', () => {
         const refreshToken = 'testString';
         const commandObject = 'workspace';
         const commandObjectId = 'testString';
-        const commandName = 'workspace_init_flow';
+        const commandName = 'ansible_playbook_run';
         const commandParameter = 'testString';
         const commandOptions = ['testString'];
         const inputs = [variableDataModel];
         const settings = [variableDataModel];
         const tags = ['testString'];
-        const location = 'us_south';
+        const location = 'us-south';
         const status = jobStatusModel;
         const data = jobDataModel;
-        const bastion = targetResourcesetModel;
+        const bastion = bastionResourceDefinitionModel;
         const logSummary = jobLogSummaryModel;
         const params = {
           jobId: jobId,
@@ -3967,74 +4188,6 @@ describe('SchematicsV1', () => {
         expectToBePromise(listJobLogsPromise);
 
         listJobLogsPromise.catch(err => {
-          expect(err.message).toMatch(/Missing required parameters/);
-          done();
-        });
-      });
-    });
-  });
-  describe('listJobStates', () => {
-    describe('positive tests', () => {
-      test('should pass the right params to createRequest', () => {
-        // Construct the params object for operation listJobStates
-        const jobId = 'testString';
-        const params = {
-          jobId: jobId,
-        };
-
-        const listJobStatesResult = schematicsService.listJobStates(params);
-
-        // all methods should return a Promise
-        expectToBePromise(listJobStatesResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const options = getOptions(createRequestMock);
-
-        checkUrlAndMethod(options, '/v2/jobs/{job_id}/states', 'GET');
-        const expectedAccept = 'application/json';
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(options.path['job_id']).toEqual(jobId);
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const jobId = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const params = {
-          jobId,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.listJobStates(params);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async done => {
-        let err;
-        try {
-          await schematicsService.listJobStates({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-        done();
-      });
-
-      test('should reject promise when required params are not given', done => {
-        const listJobStatesPromise = schematicsService.listJobStates();
-        expectToBePromise(listJobStatesPromise);
-
-        listJobStatesPromise.catch(err => {
           expect(err.message).toMatch(/Missing required parameters/);
           done();
         });
@@ -4658,6 +4811,1011 @@ describe('SchematicsV1', () => {
         expectToBePromise(getDiscoveredKmsInstancesPromise);
 
         getDiscoveredKmsInstancesPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('createInventory', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation createInventory
+        const name = 'testString';
+        const description = 'testString';
+        const location = 'us-south';
+        const resourceGroup = 'testString';
+        const inventoriesIni = 'testString';
+        const resourceQueries = ['testString'];
+        const params = {
+          name: name,
+          description: description,
+          location: location,
+          resourceGroup: resourceGroup,
+          inventoriesIni: inventoriesIni,
+          resourceQueries: resourceQueries,
+        };
+
+        const createInventoryResult = schematicsService.createInventory(params);
+
+        // all methods should return a Promise
+        expectToBePromise(createInventoryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories', 'POST');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.body['name']).toEqual(name);
+        expect(options.body['description']).toEqual(description);
+        expect(options.body['location']).toEqual(location);
+        expect(options.body['resource_group']).toEqual(resourceGroup);
+        expect(options.body['inventories_ini']).toEqual(inventoriesIni);
+        expect(options.body['resource_queries']).toEqual(resourceQueries);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.createInventory(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.createInventory({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+  describe('listInventories', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation listInventories
+        const offset = 0;
+        const limit = 1;
+        const sort = 'testString';
+        const profile = 'ids';
+        const params = {
+          offset: offset,
+          limit: limit,
+          sort: sort,
+          profile: profile,
+        };
+
+        const listInventoriesResult = schematicsService.listInventories(params);
+
+        // all methods should return a Promise
+        expectToBePromise(listInventoriesResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.qs['offset']).toEqual(offset);
+        expect(options.qs['limit']).toEqual(limit);
+        expect(options.qs['sort']).toEqual(sort);
+        expect(options.qs['profile']).toEqual(profile);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.listInventories(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.listInventories({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+  describe('replaceInventory', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation replaceInventory
+        const inventoryId = 'testString';
+        const name = 'testString';
+        const description = 'testString';
+        const location = 'us-south';
+        const resourceGroup = 'testString';
+        const inventoriesIni = 'testString';
+        const resourceQueries = ['testString'];
+        const params = {
+          inventoryId: inventoryId,
+          name: name,
+          description: description,
+          location: location,
+          resourceGroup: resourceGroup,
+          inventoriesIni: inventoriesIni,
+          resourceQueries: resourceQueries,
+        };
+
+        const replaceInventoryResult = schematicsService.replaceInventory(params);
+
+        // all methods should return a Promise
+        expectToBePromise(replaceInventoryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories/{inventory_id}', 'PUT');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.body['name']).toEqual(name);
+        expect(options.body['description']).toEqual(description);
+        expect(options.body['location']).toEqual(location);
+        expect(options.body['resource_group']).toEqual(resourceGroup);
+        expect(options.body['inventories_ini']).toEqual(inventoriesIni);
+        expect(options.body['resource_queries']).toEqual(resourceQueries);
+        expect(options.path['inventory_id']).toEqual(inventoryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const inventoryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          inventoryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.replaceInventory(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.replaceInventory({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const replaceInventoryPromise = schematicsService.replaceInventory();
+        expectToBePromise(replaceInventoryPromise);
+
+        replaceInventoryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('updateInventory', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation updateInventory
+        const inventoryId = 'testString';
+        const name = 'testString';
+        const description = 'testString';
+        const location = 'us-south';
+        const resourceGroup = 'testString';
+        const inventoriesIni = 'testString';
+        const resourceQueries = ['testString'];
+        const params = {
+          inventoryId: inventoryId,
+          name: name,
+          description: description,
+          location: location,
+          resourceGroup: resourceGroup,
+          inventoriesIni: inventoriesIni,
+          resourceQueries: resourceQueries,
+        };
+
+        const updateInventoryResult = schematicsService.updateInventory(params);
+
+        // all methods should return a Promise
+        expectToBePromise(updateInventoryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories/{inventory_id}', 'PATCH');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.body['name']).toEqual(name);
+        expect(options.body['description']).toEqual(description);
+        expect(options.body['location']).toEqual(location);
+        expect(options.body['resource_group']).toEqual(resourceGroup);
+        expect(options.body['inventories_ini']).toEqual(inventoriesIni);
+        expect(options.body['resource_queries']).toEqual(resourceQueries);
+        expect(options.path['inventory_id']).toEqual(inventoryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const inventoryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          inventoryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.updateInventory(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.updateInventory({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const updateInventoryPromise = schematicsService.updateInventory();
+        expectToBePromise(updateInventoryPromise);
+
+        updateInventoryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('deleteInventory', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation deleteInventory
+        const inventoryId = 'testString';
+        const force = true;
+        const propagate = true;
+        const params = {
+          inventoryId: inventoryId,
+          force: force,
+          propagate: propagate,
+        };
+
+        const deleteInventoryResult = schematicsService.deleteInventory(params);
+
+        // all methods should return a Promise
+        expectToBePromise(deleteInventoryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories/{inventory_id}', 'DELETE');
+        const expectedAccept = undefined;
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'force', force);
+        checkUserHeader(createRequestMock, 'propagate', propagate);
+        expect(options.path['inventory_id']).toEqual(inventoryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const inventoryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          inventoryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.deleteInventory(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.deleteInventory({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const deleteInventoryPromise = schematicsService.deleteInventory();
+        expectToBePromise(deleteInventoryPromise);
+
+        deleteInventoryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('getInventory', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation getInventory
+        const inventoryId = 'testString';
+        const params = {
+          inventoryId: inventoryId,
+        };
+
+        const getInventoryResult = schematicsService.getInventory(params);
+
+        // all methods should return a Promise
+        expectToBePromise(getInventoryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories/{inventory_id}', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.path['inventory_id']).toEqual(inventoryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const inventoryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          inventoryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.getInventory(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.getInventory({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const getInventoryPromise = schematicsService.getInventory();
+        expectToBePromise(getInventoryPromise);
+
+        getInventoryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('listInventoryValues', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation listInventoryValues
+        const inventoryId = 'testString';
+        const params = {
+          inventoryId: inventoryId,
+        };
+
+        const listInventoryValuesResult = schematicsService.listInventoryValues(params);
+
+        // all methods should return a Promise
+        expectToBePromise(listInventoryValuesResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories/{inventory_id}/variables', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.path['inventory_id']).toEqual(inventoryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const inventoryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          inventoryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.listInventoryValues(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.listInventoryValues({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const listInventoryValuesPromise = schematicsService.listInventoryValues();
+        expectToBePromise(listInventoryValuesPromise);
+
+        listInventoryValuesPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('getInventoryValue', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation getInventoryValue
+        const inventoryId = 'testString';
+        const varName = 'testString';
+        const params = {
+          inventoryId: inventoryId,
+          varName: varName,
+        };
+
+        const getInventoryValueResult = schematicsService.getInventoryValue(params);
+
+        // all methods should return a Promise
+        expectToBePromise(getInventoryValueResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/inventories/{inventory_id}/variables/{var_name}', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.path['inventory_id']).toEqual(inventoryId);
+        expect(options.path['var_name']).toEqual(varName);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const inventoryId = 'testString';
+        const varName = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          inventoryId,
+          varName,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.getInventoryValue(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.getInventoryValue({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const getInventoryValuePromise = schematicsService.getInventoryValue();
+        expectToBePromise(getInventoryValuePromise);
+
+        getInventoryValuePromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('createResourceQuery', () => {
+    describe('positive tests', () => {
+      // Request models needed by this operation.
+
+      // ResourceQueryParam
+      const resourceQueryParamModel = {
+        name: 'testString',
+        value: 'testString',
+        description: 'testString',
+      };
+
+      // ResourceQuery
+      const resourceQueryModel = {
+        query_type: 'workspaces',
+        query_condition: [resourceQueryParamModel],
+        query_select: ['testString'],
+      };
+
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation createResourceQuery
+        const type = 'vsi';
+        const name = 'testString';
+        const queries = [resourceQueryModel];
+        const params = {
+          type: type,
+          name: name,
+          queries: queries,
+        };
+
+        const createResourceQueryResult = schematicsService.createResourceQuery(params);
+
+        // all methods should return a Promise
+        expectToBePromise(createResourceQueryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/resources_query', 'POST');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.body['type']).toEqual(type);
+        expect(options.body['name']).toEqual(name);
+        expect(options.body['queries']).toEqual(queries);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.createResourceQuery(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.createResourceQuery({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+  describe('listResourceQuery', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation listResourceQuery
+        const offset = 0;
+        const limit = 1;
+        const sort = 'testString';
+        const profile = 'ids';
+        const params = {
+          offset: offset,
+          limit: limit,
+          sort: sort,
+          profile: profile,
+        };
+
+        const listResourceQueryResult = schematicsService.listResourceQuery(params);
+
+        // all methods should return a Promise
+        expectToBePromise(listResourceQueryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/resources_query', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.qs['offset']).toEqual(offset);
+        expect(options.qs['limit']).toEqual(limit);
+        expect(options.qs['sort']).toEqual(sort);
+        expect(options.qs['profile']).toEqual(profile);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.listResourceQuery(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.listResourceQuery({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+  describe('executeResourceQuery', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation executeResourceQuery
+        const queryId = 'testString';
+        const params = {
+          queryId: queryId,
+        };
+
+        const executeResourceQueryResult = schematicsService.executeResourceQuery(params);
+
+        // all methods should return a Promise
+        expectToBePromise(executeResourceQueryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/resources_query/{query_id}', 'POST');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.path['query_id']).toEqual(queryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const queryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          queryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.executeResourceQuery(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.executeResourceQuery({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const executeResourceQueryPromise = schematicsService.executeResourceQuery();
+        expectToBePromise(executeResourceQueryPromise);
+
+        executeResourceQueryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('replaceResourcesQuery', () => {
+    describe('positive tests', () => {
+      // Request models needed by this operation.
+
+      // ResourceQueryParam
+      const resourceQueryParamModel = {
+        name: 'testString',
+        value: 'testString',
+        description: 'testString',
+      };
+
+      // ResourceQuery
+      const resourceQueryModel = {
+        query_type: 'workspaces',
+        query_condition: [resourceQueryParamModel],
+        query_select: ['testString'],
+      };
+
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation replaceResourcesQuery
+        const queryId = 'testString';
+        const type = 'vsi';
+        const name = 'testString';
+        const queries = [resourceQueryModel];
+        const params = {
+          queryId: queryId,
+          type: type,
+          name: name,
+          queries: queries,
+        };
+
+        const replaceResourcesQueryResult = schematicsService.replaceResourcesQuery(params);
+
+        // all methods should return a Promise
+        expectToBePromise(replaceResourcesQueryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/resources_query/{query_id}', 'PUT');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.body['type']).toEqual(type);
+        expect(options.body['name']).toEqual(name);
+        expect(options.body['queries']).toEqual(queries);
+        expect(options.path['query_id']).toEqual(queryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const queryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          queryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.replaceResourcesQuery(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.replaceResourcesQuery({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const replaceResourcesQueryPromise = schematicsService.replaceResourcesQuery();
+        expectToBePromise(replaceResourcesQueryPromise);
+
+        replaceResourcesQueryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('deleteResourcesQuery', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation deleteResourcesQuery
+        const queryId = 'testString';
+        const force = true;
+        const propagate = true;
+        const params = {
+          queryId: queryId,
+          force: force,
+          propagate: propagate,
+        };
+
+        const deleteResourcesQueryResult = schematicsService.deleteResourcesQuery(params);
+
+        // all methods should return a Promise
+        expectToBePromise(deleteResourcesQueryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/resources_query/{query_id}', 'DELETE');
+        const expectedAccept = undefined;
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'force', force);
+        checkUserHeader(createRequestMock, 'propagate', propagate);
+        expect(options.path['query_id']).toEqual(queryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const queryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          queryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.deleteResourcesQuery(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.deleteResourcesQuery({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const deleteResourcesQueryPromise = schematicsService.deleteResourcesQuery();
+        expectToBePromise(deleteResourcesQueryPromise);
+
+        deleteResourcesQueryPromise.catch(err => {
+          expect(err.message).toMatch(/Missing required parameters/);
+          done();
+        });
+      });
+    });
+  });
+  describe('getResourcesQuery', () => {
+    describe('positive tests', () => {
+      test('should pass the right params to createRequest', () => {
+        // Construct the params object for operation getResourcesQuery
+        const queryId = 'testString';
+        const params = {
+          queryId: queryId,
+        };
+
+        const getResourcesQueryResult = schematicsService.getResourcesQuery(params);
+
+        // all methods should return a Promise
+        expectToBePromise(getResourcesQueryResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const options = getOptions(createRequestMock);
+
+        checkUrlAndMethod(options, '/v2/resources_query/{query_id}', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(options.path['query_id']).toEqual(queryId);
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const queryId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const params = {
+          queryId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.getResourcesQuery(params);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async done => {
+        let err;
+        try {
+          await schematicsService.getResourcesQuery({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+        done();
+      });
+
+      test('should reject promise when required params are not given', done => {
+        const getResourcesQueryPromise = schematicsService.getResourcesQuery();
+        expectToBePromise(getResourcesQueryPromise);
+
+        getResourcesQueryPromise.catch(err => {
           expect(err.message).toMatch(/Missing required parameters/);
           done();
         });
