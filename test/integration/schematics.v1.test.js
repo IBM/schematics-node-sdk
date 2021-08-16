@@ -39,7 +39,7 @@ let refresh_token;
 beforeAll(() => {
   // Create an IAM authenticator.
   const authenticator = new IamAuthenticator({
-    apikey: '',
+    apikey: 'BIJIF4pPBg___wnHo8ERcTjgP3C1810fPQTWXkW04cqs',
     clientId: 'bx',
     clientSecret: 'bx',
   });
@@ -251,7 +251,7 @@ describe('SchematicsV1_integration', () => {
         const filePath = path.join(fileDir, 'tarfiles', fileName);
         const fileStream = fs.createReadStream(filePath);
         return schematicsService
-          .uploadTemplateTar({
+          .templateRepoUpload({
             wId: ws.id,
             tId: ws.template_data[0].id,
             fileContentType: 'multipart/form-data',
@@ -527,7 +527,7 @@ describe('SchematicsV1_integration', () => {
       })
       .then(ws => {
         schematicsService
-          .uploadTemplateTar({
+          .templateRepoUpload({
             wId: ws.id,
             tId: ws.template_data[0].id,
             fileContentType: 'multipart/form-data',
