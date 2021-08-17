@@ -322,11 +322,11 @@ describe('SchematicsV1', () => {
         const sourceType = 'local';
         const xGithubToken = 'testString';
         const params = {
-          templateType: templateType,
-          source: source,
-          region: region,
-          sourceType: sourceType,
-          xGithubToken: xGithubToken,
+          templateType,
+          source,
+          region,
+          sourceType,
+          xGithubToken,
         };
 
         const processTemplateMetaDataResult = schematicsService.processTemplateMetaData(params);
@@ -401,8 +401,8 @@ describe('SchematicsV1', () => {
         const offset = 0;
         const limit = 1;
         const params = {
-          offset: offset,
-          limit: limit,
+          offset,
+          limit,
         };
 
         const listWorkspacesResult = schematicsService.listWorkspaces(params);
@@ -535,20 +535,20 @@ describe('SchematicsV1', () => {
         const workspaceStatus = workspaceStatusRequestModel;
         const xGithubToken = 'testString';
         const params = {
-          appliedShareddataIds: appliedShareddataIds,
-          catalogRef: catalogRef,
-          description: description,
-          location: location,
-          name: name,
-          resourceGroup: resourceGroup,
-          sharedData: sharedData,
-          tags: tags,
-          templateData: templateData,
-          templateRef: templateRef,
-          templateRepo: templateRepo,
-          type: type,
-          workspaceStatus: workspaceStatus,
-          xGithubToken: xGithubToken,
+          appliedShareddataIds,
+          catalogRef,
+          description,
+          location,
+          name,
+          resourceGroup,
+          sharedData,
+          tags,
+          templateData,
+          templateRef,
+          templateRepo,
+          type,
+          workspaceStatus,
+          xGithubToken,
         };
 
         const createWorkspaceResult = schematicsService.createWorkspace(params);
@@ -609,7 +609,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getWorkspace
         const wId = 'testString';
         const params = {
-          wId: wId,
+          wId,
         };
 
         const getWorkspaceResult = schematicsService.getWorkspace(params);
@@ -764,17 +764,17 @@ describe('SchematicsV1', () => {
         const workspaceStatus = workspaceStatusUpdateRequestModel;
         const workspaceStatusMsg = workspaceStatusMessageModel;
         const params = {
-          wId: wId,
-          catalogRef: catalogRef,
-          description: description,
-          name: name,
-          sharedData: sharedData,
-          tags: tags,
-          templateData: templateData,
-          templateRepo: templateRepo,
-          type: type,
-          workspaceStatus: workspaceStatus,
-          workspaceStatusMsg: workspaceStatusMsg,
+          wId,
+          catalogRef,
+          description,
+          name,
+          sharedData,
+          tags,
+          templateData,
+          templateRepo,
+          type,
+          workspaceStatus,
+          workspaceStatusMsg,
         };
 
         const replaceWorkspaceResult = schematicsService.replaceWorkspace(params);
@@ -854,9 +854,9 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const destroyResources = 'testString';
         const params = {
-          refreshToken: refreshToken,
-          wId: wId,
-          destroyResources: destroyResources,
+          refreshToken,
+          wId,
+          destroyResources,
         };
 
         const deleteWorkspaceResult = schematicsService.deleteWorkspace(params);
@@ -1015,17 +1015,17 @@ describe('SchematicsV1', () => {
         const workspaceStatus = workspaceStatusUpdateRequestModel;
         const workspaceStatusMsg = workspaceStatusMessageModel;
         const params = {
-          wId: wId,
-          catalogRef: catalogRef,
-          description: description,
-          name: name,
-          sharedData: sharedData,
-          tags: tags,
-          templateData: templateData,
-          templateRepo: templateRepo,
-          type: type,
-          workspaceStatus: workspaceStatus,
-          workspaceStatusMsg: workspaceStatusMsg,
+          wId,
+          catalogRef,
+          description,
+          name,
+          sharedData,
+          tags,
+          templateData,
+          templateRepo,
+          type,
+          workspaceStatus,
+          workspaceStatusMsg,
         };
 
         const updateWorkspaceResult = schematicsService.updateWorkspace(params);
@@ -1105,9 +1105,9 @@ describe('SchematicsV1', () => {
         const ref = 'testString';
         const formatted = 'markdown';
         const params = {
-          wId: wId,
-          ref: ref,
-          formatted: formatted,
+          wId,
+          ref,
+          formatted,
         };
 
         const getWorkspaceReadmeResult = schematicsService.getWorkspaceReadme(params);
@@ -1180,10 +1180,10 @@ describe('SchematicsV1', () => {
         const file = Buffer.from('This is a mock file.');
         const fileContentType = 'testString';
         const params = {
-          wId: wId,
-          tId: tId,
-          file: file,
-          fileContentType: fileContentType,
+          wId,
+          tId,
+          file,
+          fileContentType,
         };
 
         const templateRepoUploadResult = schematicsService.templateRepoUpload(params);
@@ -1196,7 +1196,11 @@ describe('SchematicsV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload', 'PUT');
+        checkUrlAndMethod(
+          options,
+          '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload',
+          'PUT'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = 'multipart/form-data';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1257,8 +1261,8 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const tId = 'testString';
         const params = {
-          wId: wId,
-          tId: tId,
+          wId,
+          tId,
         };
 
         const getWorkspaceInputsResult = schematicsService.getWorkspaceInputs(params);
@@ -1345,11 +1349,11 @@ describe('SchematicsV1', () => {
         const values = 'testString';
         const variablestore = [workspaceVariableRequestModel];
         const params = {
-          wId: wId,
-          tId: tId,
-          envValues: envValues,
-          values: values,
-          variablestore: variablestore,
+          wId,
+          tId,
+          envValues,
+          values,
+          variablestore,
         };
 
         const replaceWorkspaceInputsResult = schematicsService.replaceWorkspaceInputs(params);
@@ -1423,7 +1427,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getAllWorkspaceInputs
         const wId = 'testString';
         const params = {
-          wId: wId,
+          wId,
         };
 
         const getAllWorkspaceInputsResult = schematicsService.getAllWorkspaceInputs(params);
@@ -1492,8 +1496,8 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const tId = 'testString';
         const params = {
-          wId: wId,
-          tId: tId,
+          wId,
+          tId,
         };
 
         const getWorkspaceInputMetadataResult = schematicsService.getWorkspaceInputMetadata(params);
@@ -1506,7 +1510,11 @@ describe('SchematicsV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1564,7 +1572,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getWorkspaceOutputs
         const wId = 'testString';
         const params = {
-          wId: wId,
+          wId,
         };
 
         const getWorkspaceOutputsResult = schematicsService.getWorkspaceOutputs(params);
@@ -1632,7 +1640,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getWorkspaceResources
         const wId = 'testString';
         const params = {
-          wId: wId,
+          wId,
         };
 
         const getWorkspaceResourcesResult = schematicsService.getWorkspaceResources(params);
@@ -1700,7 +1708,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getWorkspaceState
         const wId = 'testString';
         const params = {
-          wId: wId,
+          wId,
         };
 
         const getWorkspaceStateResult = schematicsService.getWorkspaceState(params);
@@ -1769,8 +1777,8 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const tId = 'testString';
         const params = {
-          wId: wId,
-          tId: tId,
+          wId,
+          tId,
         };
 
         const getWorkspaceTemplateStateResult = schematicsService.getWorkspaceTemplateState(params);
@@ -1842,8 +1850,8 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const activityId = 'testString';
         const params = {
-          wId: wId,
-          activityId: activityId,
+          wId,
+          activityId,
         };
 
         const getWorkspaceActivityLogsResult = schematicsService.getWorkspaceActivityLogs(params);
@@ -1914,7 +1922,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getWorkspaceLogUrls
         const wId = 'testString';
         const params = {
-          wId: wId,
+          wId,
         };
 
         const getWorkspaceLogUrlsResult = schematicsService.getWorkspaceLogUrls(params);
@@ -1987,12 +1995,12 @@ describe('SchematicsV1', () => {
         const logTfNullResource = true;
         const logTfAnsible = true;
         const params = {
-          wId: wId,
-          tId: tId,
-          logTfCmd: logTfCmd,
-          logTfPrefix: logTfPrefix,
-          logTfNullResource: logTfNullResource,
-          logTfAnsible: logTfAnsible,
+          wId,
+          tId,
+          logTfCmd,
+          logTfPrefix,
+          logTfNullResource,
+          logTfAnsible,
         };
 
         const getTemplateLogsResult = schematicsService.getTemplateLogs(params);
@@ -2073,13 +2081,13 @@ describe('SchematicsV1', () => {
         const logTfNullResource = true;
         const logTfAnsible = true;
         const params = {
-          wId: wId,
-          tId: tId,
-          activityId: activityId,
-          logTfCmd: logTfCmd,
-          logTfPrefix: logTfPrefix,
-          logTfNullResource: logTfNullResource,
-          logTfAnsible: logTfAnsible,
+          wId,
+          tId,
+          activityId,
+          logTfCmd,
+          logTfPrefix,
+          logTfNullResource,
+          logTfAnsible,
         };
 
         const getTemplateActivityLogResult = schematicsService.getTemplateActivityLog(params);
@@ -2092,7 +2100,11 @@ describe('SchematicsV1', () => {
 
         const options = getOptions(createRequestMock);
 
-        checkUrlAndMethod(options, '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}', 'GET');
+        checkUrlAndMethod(
+          options,
+          '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2160,10 +2172,10 @@ describe('SchematicsV1', () => {
         const sort = 'testString';
         const profile = 'ids';
         const params = {
-          offset: offset,
-          limit: limit,
-          sort: sort,
-          profile: profile,
+          offset,
+          limit,
+          sort,
+          profile,
         };
 
         const listActionsResult = schematicsService.listActions(params);
@@ -2303,7 +2315,8 @@ describe('SchematicsV1', () => {
       test('should pass the right params to createRequest', () => {
         // Construct the params object for operation createAction
         const name = 'Stop Action';
-        const description = 'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
+        const description =
+          'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
         const location = 'us-south';
         const resourceGroup = 'testString';
         const tags = ['testString'];
@@ -2324,27 +2337,27 @@ describe('SchematicsV1', () => {
         const sysLock = systemLockModel;
         const xGithubToken = 'testString';
         const params = {
-          name: name,
-          description: description,
-          location: location,
-          resourceGroup: resourceGroup,
-          tags: tags,
-          userState: userState,
-          sourceReadmeUrl: sourceReadmeUrl,
-          source: source,
-          sourceType: sourceType,
-          commandParameter: commandParameter,
-          inventory: inventory,
-          credentials: credentials,
-          bastion: bastion,
-          bastionCredential: bastionCredential,
-          targetsIni: targetsIni,
-          inputs: inputs,
-          outputs: outputs,
-          settings: settings,
-          state: state,
-          sysLock: sysLock,
-          xGithubToken: xGithubToken,
+          name,
+          description,
+          location,
+          resourceGroup,
+          tags,
+          userState,
+          sourceReadmeUrl,
+          source,
+          sourceType,
+          commandParameter,
+          inventory,
+          credentials,
+          bastion,
+          bastionCredential,
+          targetsIni,
+          inputs,
+          outputs,
+          settings,
+          state,
+          sysLock,
+          xGithubToken,
         };
 
         const createActionResult = schematicsService.createAction(params);
@@ -2413,8 +2426,8 @@ describe('SchematicsV1', () => {
         const actionId = 'testString';
         const profile = 'summary';
         const params = {
-          actionId: actionId,
-          profile: profile,
+          actionId,
+          profile,
         };
 
         const getActionResult = schematicsService.getAction(params);
@@ -2485,9 +2498,9 @@ describe('SchematicsV1', () => {
         const force = true;
         const propagate = true;
         const params = {
-          actionId: actionId,
-          force: force,
-          propagate: propagate,
+          actionId,
+          force,
+          propagate,
         };
 
         const deleteActionResult = schematicsService.deleteAction(params);
@@ -2647,7 +2660,8 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation updateAction
         const actionId = 'testString';
         const name = 'Stop Action';
-        const description = 'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
+        const description =
+          'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
         const location = 'us-south';
         const resourceGroup = 'testString';
         const tags = ['testString'];
@@ -2668,28 +2682,28 @@ describe('SchematicsV1', () => {
         const sysLock = systemLockModel;
         const xGithubToken = 'testString';
         const params = {
-          actionId: actionId,
-          name: name,
-          description: description,
-          location: location,
-          resourceGroup: resourceGroup,
-          tags: tags,
-          userState: userState,
-          sourceReadmeUrl: sourceReadmeUrl,
-          source: source,
-          sourceType: sourceType,
-          commandParameter: commandParameter,
-          inventory: inventory,
-          credentials: credentials,
-          bastion: bastion,
-          bastionCredential: bastionCredential,
-          targetsIni: targetsIni,
-          inputs: inputs,
-          outputs: outputs,
-          settings: settings,
-          state: state,
-          sysLock: sysLock,
-          xGithubToken: xGithubToken,
+          actionId,
+          name,
+          description,
+          location,
+          resourceGroup,
+          tags,
+          userState,
+          sourceReadmeUrl,
+          source,
+          sourceType,
+          commandParameter,
+          inventory,
+          credentials,
+          bastion,
+          bastionCredential,
+          targetsIni,
+          inputs,
+          outputs,
+          settings,
+          state,
+          sysLock,
+          xGithubToken,
         };
 
         const updateActionResult = schematicsService.updateAction(params);
@@ -2780,9 +2794,9 @@ describe('SchematicsV1', () => {
         const file = Buffer.from('This is a mock file.');
         const fileContentType = 'testString';
         const params = {
-          actionId: actionId,
-          file: file,
-          fileContentType: fileContentType,
+          actionId,
+          file,
+          fileContentType,
         };
 
         const uploadTemplateTarActionResult = schematicsService.uploadTemplateTarAction(params);
@@ -2854,9 +2868,9 @@ describe('SchematicsV1', () => {
         const offset = 0;
         const limit = 1;
         const params = {
-          wId: wId,
-          offset: offset,
-          limit: limit,
+          wId,
+          offset,
+          limit,
         };
 
         const listWorkspaceActivitiesResult = schematicsService.listWorkspaceActivities(params);
@@ -2927,8 +2941,8 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const activityId = 'testString';
         const params = {
-          wId: wId,
-          activityId: activityId,
+          wId,
+          activityId,
         };
 
         const getWorkspaceActivityResult = schematicsService.getWorkspaceActivity(params);
@@ -3000,8 +3014,8 @@ describe('SchematicsV1', () => {
         const wId = 'testString';
         const activityId = 'testString';
         const params = {
-          wId: wId,
-          activityId: activityId,
+          wId,
+          activityId,
         };
 
         const deleteWorkspaceActivityResult = schematicsService.deleteWorkspaceActivity(params);
@@ -3089,11 +3103,11 @@ describe('SchematicsV1', () => {
         const operationName = 'testString';
         const description = 'testString';
         const params = {
-          wId: wId,
-          refreshToken: refreshToken,
-          commands: commands,
-          operationName: operationName,
-          description: description,
+          wId,
+          refreshToken,
+          commands,
+          operationName,
+          description,
         };
 
         const runWorkspaceCommandsResult = schematicsService.runWorkspaceCommands(params);
@@ -3178,10 +3192,10 @@ describe('SchematicsV1', () => {
         const actionOptions = workspaceActivityOptionsTemplateModel;
         const delegatedToken = 'testString';
         const params = {
-          wId: wId,
-          refreshToken: refreshToken,
-          actionOptions: actionOptions,
-          delegatedToken: delegatedToken,
+          wId,
+          refreshToken,
+          actionOptions,
+          delegatedToken,
         };
 
         const applyWorkspaceCommandResult = schematicsService.applyWorkspaceCommand(params);
@@ -3265,10 +3279,10 @@ describe('SchematicsV1', () => {
         const actionOptions = workspaceActivityOptionsTemplateModel;
         const delegatedToken = 'testString';
         const params = {
-          wId: wId,
-          refreshToken: refreshToken,
-          actionOptions: actionOptions,
-          delegatedToken: delegatedToken,
+          wId,
+          refreshToken,
+          actionOptions,
+          delegatedToken,
         };
 
         const destroyWorkspaceCommandResult = schematicsService.destroyWorkspaceCommand(params);
@@ -3343,9 +3357,9 @@ describe('SchematicsV1', () => {
         const refreshToken = 'testString';
         const delegatedToken = 'testString';
         const params = {
-          wId: wId,
-          refreshToken: refreshToken,
-          delegatedToken: delegatedToken,
+          wId,
+          refreshToken,
+          delegatedToken,
         };
 
         const planWorkspaceCommandResult = schematicsService.planWorkspaceCommand(params);
@@ -3419,9 +3433,9 @@ describe('SchematicsV1', () => {
         const refreshToken = 'testString';
         const delegatedToken = 'testString';
         const params = {
-          wId: wId,
-          refreshToken: refreshToken,
-          delegatedToken: delegatedToken,
+          wId,
+          refreshToken,
+          delegatedToken,
         };
 
         const refreshWorkspaceCommandResult = schematicsService.refreshWorkspaceCommand(params);
@@ -3500,14 +3514,14 @@ describe('SchematicsV1', () => {
         const actionId = 'testString';
         const list = 'all';
         const params = {
-          offset: offset,
-          limit: limit,
-          sort: sort,
-          profile: profile,
-          resource: resource,
-          resourceId: resourceId,
-          actionId: actionId,
-          list: list,
+          offset,
+          limit,
+          sort,
+          profile,
+          resource,
+          resourceId,
+          actionId,
+          list,
         };
 
         const listJobsResult = schematicsService.listJobs(params);
@@ -3796,12 +3810,10 @@ describe('SchematicsV1', () => {
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {
-      };
+      const jobLogSummaryRepoDownloadJobModel = {};
 
       // JobLogSummaryWorkspaceJob
-      const jobLogSummaryWorkspaceJobModel = {
-      };
+      const jobLogSummaryWorkspaceJobModel = {};
 
       // JobLogSummaryWorkitems
       const jobLogSummaryWorkitemsModel = {
@@ -3863,20 +3875,20 @@ describe('SchematicsV1', () => {
         const bastion = bastionResourceDefinitionModel;
         const logSummary = jobLogSummaryModel;
         const params = {
-          refreshToken: refreshToken,
-          commandObject: commandObject,
-          commandObjectId: commandObjectId,
-          commandName: commandName,
-          commandParameter: commandParameter,
-          commandOptions: commandOptions,
-          inputs: inputs,
-          settings: settings,
-          tags: tags,
-          location: location,
-          status: status,
-          data: data,
-          bastion: bastion,
-          logSummary: logSummary,
+          refreshToken,
+          commandObject,
+          commandObjectId,
+          commandName,
+          commandParameter,
+          commandOptions,
+          inputs,
+          settings,
+          tags,
+          location,
+          status,
+          data,
+          bastion,
+          logSummary,
         };
 
         const createJobResult = schematicsService.createJob(params);
@@ -3958,8 +3970,8 @@ describe('SchematicsV1', () => {
         const jobId = 'testString';
         const profile = 'summary';
         const params = {
-          jobId: jobId,
-          profile: profile,
+          jobId,
+          profile,
         };
 
         const getJobResult = schematicsService.getJob(params);
@@ -4262,12 +4274,10 @@ describe('SchematicsV1', () => {
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {
-      };
+      const jobLogSummaryRepoDownloadJobModel = {};
 
       // JobLogSummaryWorkspaceJob
-      const jobLogSummaryWorkspaceJobModel = {
-      };
+      const jobLogSummaryWorkspaceJobModel = {};
 
       // JobLogSummaryWorkitems
       const jobLogSummaryWorkitemsModel = {
@@ -4330,21 +4340,21 @@ describe('SchematicsV1', () => {
         const bastion = bastionResourceDefinitionModel;
         const logSummary = jobLogSummaryModel;
         const params = {
-          jobId: jobId,
-          refreshToken: refreshToken,
-          commandObject: commandObject,
-          commandObjectId: commandObjectId,
-          commandName: commandName,
-          commandParameter: commandParameter,
-          commandOptions: commandOptions,
-          inputs: inputs,
-          settings: settings,
-          tags: tags,
-          location: location,
-          status: status,
-          data: data,
-          bastion: bastion,
-          logSummary: logSummary,
+          jobId,
+          refreshToken,
+          commandObject,
+          commandObjectId,
+          commandName,
+          commandParameter,
+          commandOptions,
+          inputs,
+          settings,
+          tags,
+          location,
+          status,
+          data,
+          bastion,
+          logSummary,
         };
 
         const updateJobResult = schematicsService.updateJob(params);
@@ -4431,10 +4441,10 @@ describe('SchematicsV1', () => {
         const force = true;
         const propagate = true;
         const params = {
-          jobId: jobId,
-          refreshToken: refreshToken,
-          force: force,
-          propagate: propagate,
+          jobId,
+          refreshToken,
+          force,
+          propagate,
         };
 
         const deleteJobResult = schematicsService.deleteJob(params);
@@ -4507,7 +4517,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation listJobLogs
         const jobId = 'testString';
         const params = {
-          jobId: jobId,
+          jobId,
         };
 
         const listJobLogsResult = schematicsService.listJobLogs(params);
@@ -4581,16 +4591,17 @@ describe('SchematicsV1', () => {
         const newWorkspaces = ['testString'];
         const destroyResources = 'testString';
         const params = {
-          refreshToken: refreshToken,
-          newDeleteWorkspaces: newDeleteWorkspaces,
-          newDestroyResources: newDestroyResources,
-          newJob: newJob,
-          newVersion: newVersion,
-          newWorkspaces: newWorkspaces,
-          destroyResources: destroyResources,
+          refreshToken,
+          newDeleteWorkspaces,
+          newDestroyResources,
+          newJob,
+          newVersion,
+          newWorkspaces,
+          destroyResources,
         };
 
-        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(params);
+        const createWorkspaceDeletionJobResult =
+          schematicsService.createWorkspaceDeletionJob(params);
 
         // all methods should return a Promise
         expectToBePromise(createWorkspaceDeletionJobResult);
@@ -4661,10 +4672,11 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getWorkspaceDeletionJobStatus
         const wjId = 'testString';
         const params = {
-          wjId: wjId,
+          wjId,
         };
 
-        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(params);
+        const getWorkspaceDeletionJobStatusResult =
+          schematicsService.getWorkspaceDeletionJobStatus(params);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceDeletionJobStatusResult);
@@ -4713,7 +4725,8 @@ describe('SchematicsV1', () => {
       });
 
       test('should reject promise when required params are not given', (done) => {
-        const getWorkspaceDeletionJobStatusPromise = schematicsService.getWorkspaceDeletionJobStatus();
+        const getWorkspaceDeletionJobStatusPromise =
+          schematicsService.getWorkspaceDeletionJobStatus();
         expectToBePromise(getWorkspaceDeletionJobStatusPromise);
 
         getWorkspaceDeletionJobStatusPromise.catch((err) => {
@@ -4732,10 +4745,10 @@ describe('SchematicsV1', () => {
         const sort = 'testString';
         const profile = 'ids';
         const params = {
-          offset: offset,
-          limit: limit,
-          sort: sort,
-          profile: profile,
+          offset,
+          limit,
+          sort,
+          profile,
         };
 
         const listInventoriesResult = schematicsService.listInventories(params);
@@ -4791,12 +4804,12 @@ describe('SchematicsV1', () => {
         const inventoriesIni = 'testString';
         const resourceQueries = ['testString'];
         const params = {
-          name: name,
-          description: description,
-          location: location,
-          resourceGroup: resourceGroup,
-          inventoriesIni: inventoriesIni,
-          resourceQueries: resourceQueries,
+          name,
+          description,
+          location,
+          resourceGroup,
+          inventoriesIni,
+          resourceQueries,
         };
 
         const createInventoryResult = schematicsService.createInventory(params);
@@ -4849,7 +4862,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getInventory
         const inventoryId = 'testString';
         const params = {
-          inventoryId: inventoryId,
+          inventoryId,
         };
 
         const getInventoryResult = schematicsService.getInventory(params);
@@ -4923,13 +4936,13 @@ describe('SchematicsV1', () => {
         const inventoriesIni = 'testString';
         const resourceQueries = ['testString'];
         const params = {
-          inventoryId: inventoryId,
-          name: name,
-          description: description,
-          location: location,
-          resourceGroup: resourceGroup,
-          inventoriesIni: inventoriesIni,
-          resourceQueries: resourceQueries,
+          inventoryId,
+          name,
+          description,
+          location,
+          resourceGroup,
+          inventoriesIni,
+          resourceQueries,
         };
 
         const replaceInventoryResult = schematicsService.replaceInventory(params);
@@ -5005,9 +5018,9 @@ describe('SchematicsV1', () => {
         const force = true;
         const propagate = true;
         const params = {
-          inventoryId: inventoryId,
-          force: force,
-          propagate: propagate,
+          inventoryId,
+          force,
+          propagate,
         };
 
         const deleteInventoryResult = schematicsService.deleteInventory(params);
@@ -5083,13 +5096,13 @@ describe('SchematicsV1', () => {
         const inventoriesIni = 'testString';
         const resourceQueries = ['testString'];
         const params = {
-          inventoryId: inventoryId,
-          name: name,
-          description: description,
-          location: location,
-          resourceGroup: resourceGroup,
-          inventoriesIni: inventoriesIni,
-          resourceQueries: resourceQueries,
+          inventoryId,
+          name,
+          description,
+          location,
+          resourceGroup,
+          inventoriesIni,
+          resourceQueries,
         };
 
         const updateInventoryResult = schematicsService.updateInventory(params);
@@ -5166,10 +5179,10 @@ describe('SchematicsV1', () => {
         const sort = 'testString';
         const profile = 'ids';
         const params = {
-          offset: offset,
-          limit: limit,
-          sort: sort,
-          profile: profile,
+          offset,
+          limit,
+          sort,
+          profile,
         };
 
         const listResourceQueryResult = schematicsService.listResourceQuery(params);
@@ -5238,9 +5251,9 @@ describe('SchematicsV1', () => {
         const name = 'testString';
         const queries = [resourceQueryModel];
         const params = {
-          type: type,
-          name: name,
-          queries: queries,
+          type,
+          name,
+          queries,
         };
 
         const createResourceQueryResult = schematicsService.createResourceQuery(params);
@@ -5290,7 +5303,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getResourcesQuery
         const queryId = 'testString';
         const params = {
-          queryId: queryId,
+          queryId,
         };
 
         const getResourcesQueryResult = schematicsService.getResourcesQuery(params);
@@ -5377,10 +5390,10 @@ describe('SchematicsV1', () => {
         const name = 'testString';
         const queries = [resourceQueryModel];
         const params = {
-          queryId: queryId,
-          type: type,
-          name: name,
-          queries: queries,
+          queryId,
+          type,
+          name,
+          queries,
         };
 
         const replaceResourcesQueryResult = schematicsService.replaceResourcesQuery(params);
@@ -5451,7 +5464,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation executeResourceQuery
         const queryId = 'testString';
         const params = {
-          queryId: queryId,
+          queryId,
         };
 
         const executeResourceQueryResult = schematicsService.executeResourceQuery(params);
@@ -5521,9 +5534,9 @@ describe('SchematicsV1', () => {
         const force = true;
         const propagate = true;
         const params = {
-          queryId: queryId,
-          force: force,
-          propagate: propagate,
+          queryId,
+          force,
+          propagate,
         };
 
         const deleteResourcesQueryResult = schematicsService.deleteResourcesQuery(params);
@@ -5593,7 +5606,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getKmsSettings
         const location = 'testString';
         const params = {
-          location: location,
+          location,
         };
 
         const getKmsSettingsResult = schematicsService.getKmsSettings(params);
@@ -5681,11 +5694,11 @@ describe('SchematicsV1', () => {
         const primaryCrk = kmsSettingsPrimaryCrkModel;
         const secondaryCrk = kmsSettingsSecondaryCrkModel;
         const params = {
-          location: location,
-          encryptionScheme: encryptionScheme,
-          resourceGroup: resourceGroup,
-          primaryCrk: primaryCrk,
-          secondaryCrk: secondaryCrk,
+          location,
+          encryptionScheme,
+          resourceGroup,
+          primaryCrk,
+          secondaryCrk,
         };
 
         const updateKmsSettingsResult = schematicsService.updateKmsSettings(params);
@@ -5741,11 +5754,11 @@ describe('SchematicsV1', () => {
         const limit = 1;
         const sort = 'testString';
         const params = {
-          encryptionScheme: encryptionScheme,
-          location: location,
-          resourceGroup: resourceGroup,
-          limit: limit,
-          sort: sort,
+          encryptionScheme,
+          location,
+          resourceGroup,
+          limit,
+          sort,
         };
 
         const listKmsResult = schematicsService.listKms(params);
