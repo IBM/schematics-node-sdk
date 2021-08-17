@@ -15,10 +15,15 @@
  * limitations under the License.
  */
 
-'use strict';
-const SchematicsV1 = require('../../dist/schematics/v1');
 const { readExternalSources } = require('ibm-cloud-sdk-core');
+const { IamAuthenticator } = require('ibm-cloud-sdk-core/auth');
+
+const fs = require('fs');
+const process = require('process');
+const path = require('path');
 const authHelper = require('../resources/auth-helper.js');
+
+const SchematicsV1 = require('../../dist/schematics/v1');
 
 // testcase timeout value (200s).
 const timeout = 200000;
@@ -27,12 +32,6 @@ const timeout = 200000;
 const configFile = 'schematics_v1.env';
 
 const describe = authHelper.prepareTests(configFile);
-
-const { IamAuthenticator } = require('ibm-cloud-sdk-core/auth');
-
-const fs = require('fs');
-const process = require('process');
-const path = require('path');
 
 let refresh_token;
 
@@ -44,7 +43,7 @@ beforeAll(() => {
     clientSecret: 'bx',
   });
 
-  return authenticator.tokenManager.requestToken().then(function(resp) {
+  return authenticator.tokenManager.requestToken().then((resp) => {
     refresh_token = resp.result.refresh_token;
   });
 });
@@ -60,12 +59,6 @@ describe('SchematicsV1_integration', () => {
   jest.setTimeout(timeout);
 
   let delete_wid;
-
-  afterEach(() => {
-    if (delete_wid) {
-      return deleteWorkspaceWait(delete_wid);
-    }
-  });
 
   function createWorkspace() {
     // TemplateSourceDataRequest
@@ -106,10 +99,8 @@ describe('SchematicsV1_integration', () => {
 
     return schematicsService
       .createWorkspace(params)
-      .then(res => {
-        return res.result;
-      })
-      .catch(err => {
+      .then((res) => res.result)
+      .catch((err) => {
         console.warn(err);
       });
   }
@@ -152,10 +143,8 @@ describe('SchematicsV1_integration', () => {
 
     return schematicsService
       .createWorkspace(params)
-      .then(res => {
-        return res.result;
-      })
-      .catch(err => {
+      .then((res) => res.result)
+      .catch((err) => {
         console.warn(err);
       });
   }
@@ -165,10 +154,8 @@ describe('SchematicsV1_integration', () => {
       .getWorkspace({
         wId: id,
       })
-      .then(ws => {
-        return ws.result;
-      })
-      .catch(err => {
+      .then((ws) => ws.result)
+      .catch((err) => {
         console.warn(err);
       });
   }
@@ -179,50 +166,32 @@ describe('SchematicsV1_integration', () => {
         wId: wid,
         activityId: activityid,
       })
-      .then(ws => {
-        return ws.result;
-      });
+      .then((ws) => ws.result);
   }
 
   function waitForActivityStatus(wid, activityid, status) {
-    return getWorkspaceActivityId(wid, activityid).then(ws => {
+    return getWorkspaceActivityId(wid, activityid).then((ws) => {
       if (ws.status === status) {
         return [wid, activityid];
-      } else {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(waitForActivityStatus(wid, activityid, status));
-          }, 2000);
-        });
       }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(waitForActivityStatus(wid, activityid, status));
+        }, 2000);
+      });
     });
   }
 
   function waitForWorkspaceStatus(wid, status) {
-    return getWorkspaceById(wid).then(ws => {
+    return getWorkspaceById(wid).then((ws) => {
       if (ws.status === status) {
         return ws;
-      } else {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(waitForWorkspaceStatus(wid, status));
-          }, 2000);
-        });
       }
-    });
-  }
-
-  function deleteWorkspaceWait(wid) {
-    return deleteWorkspace(wid).then(ws => {
-      if (ws.status != 409) {
-        return wid;
-      } else {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(deleteWorkspaceWait(wid));
-          }, 2000);
-        });
-      }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(waitForWorkspaceStatus(wid, status));
+        }, 2000);
+      });
     });
   }
 
@@ -232,20 +201,27 @@ describe('SchematicsV1_integration', () => {
         wId: id,
         refreshToken: refresh_token,
       })
-      .then(ws => {
-        return ws.result;
-      })
-      .catch(err => {
-        return err;
+      .then((ws) => ws.result)
+      .catch((err) => err);
+  }
+
+  function deleteWorkspaceWait(wid) {
+    return deleteWorkspace(wid).then((ws) => {
+      if (ws.status !== 409) {
+        return wid;
+      }
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(deleteWorkspaceWait(wid));
+        }, 2000);
       });
+    });
   }
 
   function uploadTarFile() {
     return createWorkspaceWithEmptyRepoURL()
-      .then(ws => {
-        return waitForWorkspaceStatus(ws.id, 'DRAFT');
-      })
-      .then(ws => {
+      .then((ws) => waitForWorkspaceStatus(ws.id, 'DRAFT'))
+      .then((ws) => {
         const fileDir = process.cwd();
         const fileName = 'tf_cloudless_sleepy_git_archive.tar';
         const filePath = path.join(fileDir, 'tarfiles', fileName);
@@ -257,10 +233,8 @@ describe('SchematicsV1_integration', () => {
             fileContentType: 'multipart/form-data',
             file: fileStream,
           })
-          .then(res => {
-            return ws;
-          })
-          .catch(err => {
+          .then((res) => ws)
+          .catch((err) => {
             console.warn(err);
           });
       });
@@ -268,42 +242,30 @@ describe('SchematicsV1_integration', () => {
 
   function planWorkspaceAction() {
     return uploadTarFile()
-      .then(ws => {
-        return waitForWorkspaceStatus(ws.id, 'INACTIVE');
-      })
-      .then(ws => {
-        return schematicsService
+      .then((ws) => waitForWorkspaceStatus(ws.id, 'INACTIVE'))
+      .then((ws) =>
+        schematicsService
           .planWorkspaceCommand({
             wId: ws.id,
             refreshToken: refresh_token,
           })
-          .then(res => {
-            return [ws.id, res.result.activityid];
-          });
-      })
-      .then(act => {
-        return waitForActivityStatus(act[0], act[1], 'COMPLETED');
-      });
+          .then((res) => [ws.id, res.result.activityid])
+      )
+      .then((act) => waitForActivityStatus(act[0], act[1], 'COMPLETED'));
   }
 
   function applyWorkspaceAction() {
     return uploadTarFile()
-      .then(ws => {
-        return waitForWorkspaceStatus(ws.id, 'INACTIVE');
-      })
-      .then(ws => {
-        return schematicsService
+      .then((ws) => waitForWorkspaceStatus(ws.id, 'INACTIVE'))
+      .then((ws) =>
+        schematicsService
           .applyWorkspaceCommand({
             wId: ws.id,
             refreshToken: refresh_token,
           })
-          .then(res => {
-            return [ws.id, res.result.activityid];
-          });
-      })
-      .then(act => {
-        return waitForActivityStatus(act[0], act[1], 'COMPLETED');
-      });
+          .then((res) => [ws.id, res.result.activityid])
+      )
+      .then((act) => waitForActivityStatus(act[0], act[1], 'COMPLETED'));
   }
 
   function applyWorkspaceActionByID(id) {
@@ -312,12 +274,8 @@ describe('SchematicsV1_integration', () => {
         wId: id,
         refreshToken: refresh_token,
       })
-      .then(res => {
-        return [id, res.result.activityid];
-      })
-      .then(act => {
-        return waitForActivityStatus(act[0], act[1], 'COMPLETED');
-      });
+      .then((res) => [id, res.result.activityid])
+      .then((act) => waitForActivityStatus(act[0], act[1], 'COMPLETED'));
   }
 
   function destroyWorkspaceActionById(id) {
@@ -326,12 +284,8 @@ describe('SchematicsV1_integration', () => {
         wId: id,
         refreshToken: refresh_token,
       })
-      .then(res => {
-        return [id, res.result.activityid];
-      })
-      .then(act => {
-        return waitForActivityStatus(act[0], act[1], 'COMPLETED');
-      });
+      .then((res) => [id, res.result.activityid])
+      .then((act) => waitForActivityStatus(act[0], act[1], 'COMPLETED'));
   }
 
   function refreshWorkspaceActionById(id) {
@@ -340,48 +294,51 @@ describe('SchematicsV1_integration', () => {
         wId: id,
         refreshToken: refresh_token,
       })
-      .then(res => {
-        return [id, res.result.activityid];
-      })
-      .then(act => {
-        return waitForActivityStatus(act[0], act[1], 'COMPLETED');
-      });
+      .then((res) => [id, res.result.activityid])
+      .then((act) => waitForActivityStatus(act[0], act[1], 'COMPLETED'));
   }
 
-  test('listSchematicsLocation()', done => {
+  afterEach(() => {
+    if (delete_wid) {
+      return deleteWorkspaceWait(delete_wid);
+    }
+    return null;
+  });
+
+  test('listSchematicsLocation()', (done) => {
     schematicsService
       .listSchematicsLocation({})
-      .then(res => {
+      .then((res) => {
         done();
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
         done(err);
       });
   });
-  test('listResourceGroup()', done => {
+  test('listResourceGroup()', (done) => {
     schematicsService
       .listResourceGroup({})
-      .then(res => {
+      .then((res) => {
         done();
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
         done(err);
       });
   });
-  test('getSchematicsVersion()', done => {
+  test('getSchematicsVersion()', (done) => {
     schematicsService
       .getSchematicsVersion({})
-      .then(res => {
+      .then((res) => {
         done();
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
         done(err);
       });
   });
-  test('listWorkspaces()', done => {
+  test('listWorkspaces()', (done) => {
     const params = {
       offset: 0,
       limit: 1,
@@ -389,15 +346,15 @@ describe('SchematicsV1_integration', () => {
 
     schematicsService
       .listWorkspaces(params)
-      .then(res => {
+      .then((res) => {
         done();
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
         done(err);
       });
   });
-  test('createWorkspace()', done => {
+  test('createWorkspace()', (done) => {
     // Request models needed by this operation.
 
     // TemplateSourceDataRequest
@@ -438,17 +395,17 @@ describe('SchematicsV1_integration', () => {
 
     schematicsService
       .createWorkspace(params)
-      .then(res => {
+      .then((res) => {
         delete_wid = res.result.id;
         done();
       })
-      .catch(err => {
+      .catch((err) => {
         console.warn(err);
         done(err);
       });
   });
-  test('getWorkspace()', done => {
-    createWorkspace().then(ws => {
+  test('getWorkspace()', (done) => {
+    createWorkspace().then((ws) => {
       delete_wid = ws.id;
 
       const params = {
@@ -457,22 +414,22 @@ describe('SchematicsV1_integration', () => {
 
       schematicsService
         .getWorkspace(params)
-        .then(res => {
+        .then((res) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
-  test('replaceWorkspace()', done => {
+  test('replaceWorkspace()', (done) => {
     createWorkspace()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(res => {
+      .then((res) => {
         schematicsService
           .replaceWorkspace({
             wId: res.id,
@@ -481,22 +438,22 @@ describe('SchematicsV1_integration', () => {
             tags: ['testString'],
             type: ['terraform_v0.12.20'],
           })
-          .then(res => {
+          .then((resp) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('updateWorkspace()', done => {
+  test('updateWorkspace()', (done) => {
     createWorkspace()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(res => {
+      .then((res) => {
         schematicsService
           .updateWorkspace({
             wId: res.id,
@@ -505,27 +462,27 @@ describe('SchematicsV1_integration', () => {
             tags: ['testString'],
             type: ['terraform_v0.12.20'],
           })
-          .then(res => {
+          .then((resp) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('uploadTemplateTar()', done => {
+  test('uploadTemplateTar()', (done) => {
     const fileDir = process.cwd();
     const fileName = 'tf_cloudless_sleepy_git_archive.tar';
     const filePath = path.join(fileDir, 'tarfiles', fileName);
     const fileStream = fs.createReadStream(filePath);
 
     return createWorkspaceWithEmptyRepoURL()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'DRAFT');
       })
-      .then(ws => {
+      .then((ws) => {
         schematicsService
           .templateRepoUpload({
             wId: ws.id,
@@ -533,196 +490,189 @@ describe('SchematicsV1_integration', () => {
             fileContentType: 'multipart/form-data',
             file: fileStream,
           })
-          .then(res => {
+          .then((res) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('getWorkspaceReadme()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceReadme()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspaceReadme({
           wId: res[0],
         })
-        .then(res => {
+        .then((resp) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
-  test('listWorkspaceActivities()', done => {
+  test('listWorkspaceActivities()', (done) => {
     uploadTarFile()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(ws => {
-        return refreshWorkspaceActionById(ws.id);
-      })
-      .then(wid => {
-        return destroyWorkspaceActionById(wid[0]);
-      })
-      .then(ws => {
+      .then((ws) => refreshWorkspaceActionById(ws.id))
+      .then((wid) => destroyWorkspaceActionById(wid[0]))
+      .then((ws) => {
         schematicsService
           .listWorkspaceActivities({
             wId: ws[0],
           })
-          .then(res => {
+          .then((res) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('getWorkspaceActivity()', done => {
+  test('getWorkspaceActivity()', (done) => {
     uploadTarFile()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(ws => {
-        return refreshWorkspaceActionById(ws.id);
-      })
-      .then(res => {
+      .then((ws) => refreshWorkspaceActionById(ws.id))
+      .then((res) => {
         schematicsService
           .getWorkspaceActivity({
             wId: res[0],
             activityId: res[1],
           })
-          .then(res => {
+          .then((resp) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('applyWorkspaceCommand()', done => {
+  test('applyWorkspaceCommand()', (done) => {
     uploadTarFile()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(ws => {
+      .then((ws) => {
         schematicsService
           .applyWorkspaceCommand({
             wId: ws.id,
             refreshToken: refresh_token,
           })
-          .then(res => {
+          .then((res) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('destroyWorkspaceCommand()', done => {
+  test('destroyWorkspaceCommand()', (done) => {
     uploadTarFile()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(ws => {
+      .then((ws) => {
         schematicsService
           .destroyWorkspaceCommand({
             wId: ws.id,
             refreshToken: refresh_token,
           })
-          .then(res => {
+          .then((res) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('planWorkspaceCommand()', done => {
-    return uploadTarFile()
-      .then(ws => {
+  test('planWorkspaceCommand()', (done) =>
+    uploadTarFile()
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(ws => {
+      .then((ws) => {
         schematicsService
           .planWorkspaceCommand({
             wId: ws.id,
             refreshToken: refresh_token,
           })
-          .then(res => {
+          .then((res) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
-      });
-  });
-  test('refreshWorkspaceCommand()', done => {
+      }));
+  test('refreshWorkspaceCommand()', (done) => {
     uploadTarFile()
-      .then(ws => {
+      .then((ws) => {
         delete_wid = ws.id;
         return waitForWorkspaceStatus(ws.id, 'INACTIVE');
       })
-      .then(ws => {
+      .then((ws) => {
         schematicsService
           .refreshWorkspaceCommand({
             wId: ws.id,
             refreshToken: refresh_token,
           })
-          .then(res => {
+          .then((res) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('getWorkspaceInputs()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceInputs()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspace({
           wId: res[0],
         })
-        .then(ws => {
+        .then((ws) => {
           schematicsService
             .getWorkspaceInputs({
               wId: res[0],
               tId: ws.result.template_data[0].id,
             })
-            .then(res => {
+            .then((resp) => {
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               console.warn(err);
               done(err);
             });
         });
     });
   });
-  test('replaceWorkspaceInputs()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('replaceWorkspaceInputs()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspace({
           wId: res[0],
         })
-        .then(ws => {
+        .then((ws) => {
           schematicsService
             .replaceWorkspaceInputs({
               wId: res[0],
@@ -734,205 +684,205 @@ describe('SchematicsV1_integration', () => {
                 },
               ],
             })
-            .then(res => {
+            .then((resp) => {
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               console.warn(err);
               done(err);
             });
         });
     });
   });
-  test('getAllWorkspaceInputs()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getAllWorkspaceInputs()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getAllWorkspaceInputs({
           wId: res[0],
         })
-        .then(res => {
+        .then((resp) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
-  test('getWorkspaceInputMetadata()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceInputMetadata()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspace({
           wId: res[0],
         })
-        .then(ws => {
+        .then((ws) => {
           schematicsService
             .getWorkspaceInputMetadata({
               wId: res[0],
               tId: ws.result.template_data[0].id,
             })
-            .then(res => {
+            .then((resp) => {
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               console.warn(err);
               done(err);
             });
         });
     });
   });
-  test('getWorkspaceOutputs()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceOutputs()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspaceOutputs({
           wId: res[0],
         })
-        .then(res => {
+        .then((resp) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
 
-  test('getWorkspaceResources()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceResources()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspaceResources({
           wId: res[0],
         })
-        .then(res => {
+        .then((resp) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
-  test('getWorkspaceState()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceState()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspaceState({
           wId: res[0],
         })
-        .then(res => {
+        .then((resp) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
-  test('getWorkspaceTemplateState()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceTemplateState()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspace({
           wId: res[0],
         })
-        .then(ws => {
+        .then((ws) => {
           schematicsService
             .getWorkspaceTemplateState({
               wId: res[0],
               tId: ws.result.template_data[0].id,
             })
-            .then(res => {
+            .then((resp) => {
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               console.warn(err);
               done(err);
             });
         });
     });
   });
-  test('getWorkspaceActivityLogs()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getWorkspaceActivityLogs()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspaceActivityLogs({
           wId: res[0],
           activityId: res[1],
         })
-        .then(res => {
+        .then((resp) => {
           done();
         })
-        .catch(err => {
+        .catch((err) => {
           console.warn(err);
           done(err);
         });
     });
   });
-  test('getWorkspaceLogUrls()', done => {
+  test('getWorkspaceLogUrls()', (done) => {
     planWorkspaceAction()
-      .then(res => {
-        delete_wid = res[0];
+      .then((res) => {
+        [delete_wid] = res;
         return applyWorkspaceActionByID(res[0]);
       })
-      .then(res => {
+      .then((res) => {
         schematicsService
           .getWorkspaceLogUrls({
             wId: res[0],
           })
-          .then(res => {
+          .then((resp) => {
             done();
           })
-          .catch(err => {
+          .catch((err) => {
             console.warn(err);
             done(err);
           });
       });
   });
-  test('getTemplateLogs()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getTemplateLogs()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspace({
           wId: res[0],
         })
-        .then(ws => {
+        .then((ws) => {
           schematicsService
             .getTemplateLogs({
               wId: res[0],
               tId: ws.result.template_data[0].id,
             })
-            .then(res => {
+            .then((resp) => {
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               console.warn(err);
               done(err);
             });
         });
     });
   });
-  test('getTemplateActivityLog()', done => {
-    applyWorkspaceAction().then(res => {
-      delete_wid = res[0];
+  test('getTemplateActivityLog()', (done) => {
+    applyWorkspaceAction().then((res) => {
+      [delete_wid] = res;
       schematicsService
         .getWorkspace({
           wId: res[0],
         })
-        .then(ws => {
+        .then((ws) => {
           schematicsService
             .getTemplateActivityLog({
               wId: res[0],
               tId: ws.result.template_data[0].id,
               activityId: res[1],
             })
-            .then(res => {
+            .then((resp) => {
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               console.warn(err);
               done(err);
             });
