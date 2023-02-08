@@ -54,9 +54,6 @@ Service Name | Import Path
 --- | ---
 [Schematics](https://cloud.ibm.com/apidocs/schematics) | @ibm-cloud/ibm-schematics/schematics/v1
 
-Service Name | Import Path
---- | ---
-[Schematics](https://cloud.ibm.com/apidocs/schematics) | @ibm-cloud/ibm-schematics/schematics/v2
 ## Prerequisites
 * You need an [IBM Cloud][ibm-cloud-onboarding] account.
 * **Node.js >=10**: This SDK is tested with Node.js versions 10 and up. It may work on previous versions but this is not officially supported.
