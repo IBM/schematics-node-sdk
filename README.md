@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/IBM/schematics-node-sdk.svg?branch=main)](https://travis-ci.org/IBM/schematics-node-sdk)
+[![Build Status](https://travis-ci.com/IBM/schematics-node-sdk.svg?branch=main)](https://travis-ci.com/IBM/schematics-node-sdk)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 <!--
 [![npm-version](https://img.shields.io/npm/v/IBM/schematics-node-sdk.svg)](https://www.npmjs.com/package/@ibm-cloud/ibm-schematics)
@@ -54,9 +54,6 @@ Service Name | Import Path
 --- | ---
 [Schematics](https://cloud.ibm.com/apidocs/schematics) | @ibm-cloud/ibm-schematics/schematics/v1
 
-Service Name | Import Path
---- | ---
-[Schematics](https://cloud.ibm.com/apidocs/schematics) | @ibm-cloud/ibm-schematics/schematics/v2
 ## Prerequisites
 * You need an [IBM Cloud][ibm-cloud-onboarding] account.
 * **Node.js >=10**: This SDK is tested with Node.js versions 10 and up. It may work on previous versions but this is not officially supported.
@@ -100,6 +97,9 @@ A quick example to get you up and running with Schematics Node.js SDK service
 
 ```
 
+const { IamAuthenticator } = require('@ibm-cloud/ibm-schematics/auth');
+const SchematicsV1 = require('@ibm-cloud/ibm-schematics/schematics/v1');
+
 // Create an IAM authenticator.
 const authenticator = new IamAuthenticator({
   apikey: '<apiKey>',
@@ -111,16 +111,15 @@ const schematicsService = new SchematicsV1({
   serviceUrl: 'https://schematics.cloud.ibm.com', // optional
 });
 
-
+// List all schematics workspaces
 schematicsService
-  .getSchematicsVersion({})
-  .then(schematicsVersion => {
-    console.log(schematicsVersion.result)
+  .listWorkspaces()
+  .then(response => {
+    console.log(response.result);
   })
   .catch(err => {
     console.warn(err);
   });
-
 
 ```
 

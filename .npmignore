@@ -9,3 +9,11 @@ tslint.json
 .github
 *.ts
 !*.d.ts
+tarfiles/
+examples/
+.gitattributes                              
+.prettierrc.js                              
+.releaserc
+tsconfig.json                                  
+CODE_OF_CONDUCT.md                          
+CONTRIBUTING.md
