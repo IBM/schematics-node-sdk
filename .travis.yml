@@ -10,6 +10,8 @@ node_js:
 - 18
 
 before_install:
+#- echo -e "machine github.ibm.com\n  login $GITHUB_ACCESS_TOKEN" > ~/.netrc
+- wget -qO - https://package.perforce.com/perforce.pubkey | sudo apt-key add -
 - npm i -g npm@8
 - npm --version
 

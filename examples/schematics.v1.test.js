@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 /**
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1292,143 +1292,6 @@ describe('SchematicsV1', () => {
     // end-get_workspace_deletion_job_status
   });
 
-  test('listBlueprint request example', async () => {
-    consoleLogMock.mockImplementation((output) => {
-      originalLog(output);
-    });
-    consoleWarnMock.mockImplementation((output) => {
-      // if an error occurs, display the message and then fail the test
-      originalWarn(output);
-      expect(true).toBeFalsy();
-    });
-
-    originalLog('listBlueprint() result:');
-    // begin-list_blueprint
-
-    let res;
-    try {
-      res = await schematicsService.listBlueprint({});
-      console.log(JSON.stringify(res.result, null, 2));
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // end-list_blueprint
-  });
-
-  test('createBlueprint request example', async () => {
-    consoleLogMock.mockImplementation((output) => {
-      originalLog(output);
-    });
-    consoleWarnMock.mockImplementation((output) => {
-      // if an error occurs, display the message and then fail the test
-      originalWarn(output);
-      expect(true).toBeFalsy();
-    });
-
-    originalLog('createBlueprint() result:');
-    // begin-create_blueprint
-
-    const params = {
-      name: 'Toronto Dev Environtment',
-    };
-
-    let res;
-    try {
-      res = await schematicsService.createBlueprint(params);
-      console.log(JSON.stringify(res.result, null, 2));
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // end-create_blueprint
-  });
-
-  test('getBlueprint request example', async () => {
-    consoleLogMock.mockImplementation((output) => {
-      originalLog(output);
-    });
-    consoleWarnMock.mockImplementation((output) => {
-      // if an error occurs, display the message and then fail the test
-      originalWarn(output);
-      expect(true).toBeFalsy();
-    });
-
-    originalLog('getBlueprint() result:');
-    // begin-get_blueprint
-
-    const params = {
-      blueprintId: 'testString',
-    };
-
-    let res;
-    try {
-      res = await schematicsService.getBlueprint(params);
-      console.log(JSON.stringify(res.result, null, 2));
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // end-get_blueprint
-  });
-
-  test('replaceBlueprint request example', async () => {
-    consoleLogMock.mockImplementation((output) => {
-      originalLog(output);
-    });
-    consoleWarnMock.mockImplementation((output) => {
-      // if an error occurs, display the message and then fail the test
-      originalWarn(output);
-      expect(true).toBeFalsy();
-    });
-
-    originalLog('replaceBlueprint() result:');
-    // begin-replace_blueprint
-
-    const params = {
-      blueprintId: 'testString',
-      name: 'Toronto Dev Environtment',
-    };
-
-    let res;
-    try {
-      res = await schematicsService.replaceBlueprint(params);
-      console.log(JSON.stringify(res.result, null, 2));
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // end-replace_blueprint
-  });
-
-  test('uploadTemplateTarBlueprint request example', async () => {
-    consoleLogMock.mockImplementation((output) => {
-      originalLog(output);
-    });
-    consoleWarnMock.mockImplementation((output) => {
-      // if an error occurs, display the message and then fail the test
-      originalWarn(output);
-      expect(true).toBeFalsy();
-    });
-
-    originalLog('uploadTemplateTarBlueprint() result:');
-    // begin-upload_template_tar_blueprint
-
-    const params = {
-      blueprintId: 'testString',
-    };
-
-    let res;
-    try {
-      res = await schematicsService.uploadTemplateTarBlueprint(params);
-      console.log(JSON.stringify(res.result, null, 2));
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // end-upload_template_tar_blueprint
-  });
-
   test('listInventories request example', async () => {
     consoleLogMock.mockImplementation((output) => {
       originalLog(output);
@@ -1917,6 +1780,30 @@ describe('SchematicsV1', () => {
     // end-update_agent_data
   });
 
+  test('getAgentVersions request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    originalLog('getAgentVersions() result:');
+    // begin-get_agent_versions
+
+    let res;
+    try {
+      res = await schematicsService.getAgentVersions({});
+      console.log(JSON.stringify(res.result, null, 2));
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-get_agent_versions
+  });
+
   test('getPrsAgentJob request example', async () => {
     consoleLogMock.mockImplementation((output) => {
       originalLog(output);
@@ -2169,6 +2056,113 @@ describe('SchematicsV1', () => {
     // end-list_kms
   });
 
+  test('listPolicy request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    originalLog('listPolicy() result:');
+    // begin-list_policy
+
+    let res;
+    try {
+      res = await schematicsService.listPolicy({});
+      console.log(JSON.stringify(res.result, null, 2));
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-list_policy
+  });
+
+  test('createPolicy request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    originalLog('createPolicy() result:');
+    // begin-create_policy
+
+    const params = {
+    };
+
+    let res;
+    try {
+      res = await schematicsService.createPolicy(params);
+      console.log(JSON.stringify(res.result, null, 2));
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-create_policy
+  });
+
+  test('getPolicy request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    originalLog('getPolicy() result:');
+    // begin-get_policy
+
+    const params = {
+      policyId: 'testString',
+    };
+
+    let res;
+    try {
+      res = await schematicsService.getPolicy(params);
+      console.log(JSON.stringify(res.result, null, 2));
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-get_policy
+  });
+
+  test('updatePolicy request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    originalLog('updatePolicy() result:');
+    // begin-update_policy
+
+    const params = {
+      policyId: 'testString',
+    };
+
+    let res;
+    try {
+      res = await schematicsService.updatePolicy(params);
+      console.log(JSON.stringify(res.result, null, 2));
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-update_policy
+  });
+
   test('deleteWorkspace request example', async () => {
     consoleLogMock.mockImplementation((output) => {
       originalLog(output);
@@ -2278,31 +2272,6 @@ describe('SchematicsV1', () => {
     // end-delete_job
   });
 
-  test('deleteBlueprint request example', async () => {
-    consoleLogMock.mockImplementation((output) => {
-      originalLog(output);
-    });
-    consoleWarnMock.mockImplementation((output) => {
-      // if an error occurs, display the message and then fail the test
-      originalWarn(output);
-      expect(true).toBeFalsy();
-    });
-
-    // begin-delete_blueprint
-
-    const params = {
-      blueprintId: 'testString',
-    };
-
-    try {
-      await schematicsService.deleteBlueprint(params);
-    } catch (err) {
-      console.warn(err);
-    }
-
-    // end-delete_blueprint
-  });
-
   test('deleteInventory request example', async () => {
     consoleLogMock.mockImplementation((output) => {
       originalLog(output);
@@ -2401,5 +2370,56 @@ describe('SchematicsV1', () => {
     }
 
     // end-delete_agent_data
+  });
+
+  test('deleteAgentResources request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    // begin-delete_agent_resources
+
+    const params = {
+      agentId: 'testString',
+      refreshToken: 'testString',
+    };
+
+    try {
+      await schematicsService.deleteAgentResources(params);
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-delete_agent_resources
+  });
+
+  test('deletePolicy request example', async () => {
+    consoleLogMock.mockImplementation((output) => {
+      originalLog(output);
+    });
+    consoleWarnMock.mockImplementation((output) => {
+      // if an error occurs, display the message and then fail the test
+      originalWarn(output);
+      expect(true).toBeFalsy();
+    });
+
+    // begin-delete_policy
+
+    const params = {
+      policyId: 'testString',
+    };
+
+    try {
+      await schematicsService.deletePolicy(params);
+    } catch (err) {
+      console.warn(err);
+    }
+
+    // end-delete_policy
   });
 });
