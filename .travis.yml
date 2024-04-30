@@ -1,21 +1,22 @@
+dist: jammy
+
 language: node_js
-
-dist: focal
-
-group: focal
 
 node_js:
 - 14
 - 16
 - 18
 
+cache:
+  npm: false
+
 before_install:
-- npm i -g npm@8
-- npm --version
+  - npm i -g npm@8
+  - npm --version
 
 script:
 - npm run build
-- npm run test-travis || travis_terminate 1
+- npm run test-unit-travis || travis_terminate 1
 - npm run lint
 - npm run check-packages
 
@@ -24,5 +25,5 @@ deploy:
   skip_cleanup: true
   script: npx semantic-release
   on:
-    node: 14
+    node: 18
     branch: main
