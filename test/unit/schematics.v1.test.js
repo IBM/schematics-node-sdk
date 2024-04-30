@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corp. 2023.
+ * (C) Copyright IBM Corp. 2024.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
 const sdkCorePackage = require('ibm-cloud-sdk-core');
 
 const { NoAuthAuthenticator, unitTestUtils } = sdkCorePackage;
-
 const SchematicsV1 = require('../../dist/schematics/v1');
 
 const {
@@ -118,9 +117,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation listSchematicsLocation
         const listSchematicsLocationParams = {};
 
-        const listSchematicsLocationResult = schematicsService.listSchematicsLocation(
-          listSchematicsLocationParams
-        );
+        const listSchematicsLocationResult = schematicsService.listSchematicsLocation(listSchematicsLocationParams);
 
         // all methods should return a Promise
         expectToBePromise(listSchematicsLocationResult);
@@ -240,8 +237,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation listResourceGroup
         const listResourceGroupParams = {};
 
-        const listResourceGroupResult =
-          schematicsService.listResourceGroup(listResourceGroupParams);
+        const listResourceGroupResult = schematicsService.listResourceGroup(listResourceGroupParams);
 
         // all methods should return a Promise
         expectToBePromise(listResourceGroupResult);
@@ -301,9 +297,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getSchematicsVersion
         const getSchematicsVersionParams = {};
 
-        const getSchematicsVersionResult = schematicsService.getSchematicsVersion(
-          getSchematicsVersionParams
-        );
+        const getSchematicsVersionResult = schematicsService.getSchematicsVersion(getSchematicsVersionParams);
 
         // all methods should return a Promise
         expectToBePromise(getSchematicsVersionResult);
@@ -416,9 +410,7 @@ describe('SchematicsV1', () => {
           xGithubToken,
         };
 
-        const processTemplateMetaDataResult = schematicsService.processTemplateMetaData(
-          processTemplateMetaDataParams
-        );
+        const processTemplateMetaDataResult = schematicsService.processTemplateMetaData(processTemplateMetaDataParams);
 
         // all methods should return a Promise
         expectToBePromise(processTemplateMetaDataResult);
@@ -506,10 +498,12 @@ describe('SchematicsV1', () => {
         const offset = 0;
         const limit = 100;
         const profile = 'ids';
+        const resourceGroup = 'testString';
         const listWorkspacesParams = {
           offset,
           limit,
           profile,
+          resourceGroup,
         };
 
         const listWorkspacesResult = schematicsService.listWorkspaces(listWorkspacesParams);
@@ -529,6 +523,7 @@ describe('SchematicsV1', () => {
         expect(mockRequestOptions.qs.offset).toEqual(offset);
         expect(mockRequestOptions.qs.limit).toEqual(limit);
         expect(mockRequestOptions.qs.profile).toEqual(profile);
+        expect(mockRequestOptions.qs.resource_group).toEqual(resourceGroup);
       }
 
       test('should pass the right params to createRequest with enable and disable retries', () => {
@@ -576,7 +571,7 @@ describe('SchematicsV1', () => {
       // ServiceExtensions
       const serviceExtensionsModel = {
         name: 'flavor',
-        value: 'standard',
+        value: 'testString',
         type: 'string',
       };
 
@@ -606,7 +601,7 @@ describe('SchematicsV1', () => {
         cluster_id: 'testString',
         cluster_name: 'testString',
         cluster_type: 'testString',
-        entitlement_keys: [{ foo: 'bar' }],
+        entitlement_keys: [{ anyKey: 'anyValue' }],
         namespace: 'testString',
         region: 'testString',
         resource_group_id: 'testString',
@@ -649,7 +644,7 @@ describe('SchematicsV1', () => {
 
       // TemplateSourceDataRequest
       const templateSourceDataRequestModel = {
-        env_values: [{ foo: 'bar' }],
+        env_values: [{ anyKey: 'anyValue' }],
         env_values_metadata: [environmentValuesMetadataModel],
         folder: 'testString',
         compact: true,
@@ -658,7 +653,7 @@ describe('SchematicsV1', () => {
         type: 'testString',
         uninstall_script_name: 'testString',
         values: 'testString',
-        values_metadata: [{ foo: 'bar' }],
+        values_metadata: [{ anyKey: 'anyValue' }],
         variablestore: [workspaceVariableRequestModel],
       };
 
@@ -879,7 +874,7 @@ describe('SchematicsV1', () => {
       // ServiceExtensions
       const serviceExtensionsModel = {
         name: 'flavor',
-        value: 'standard',
+        value: 'testString',
         type: 'string',
       };
 
@@ -909,7 +904,7 @@ describe('SchematicsV1', () => {
         cluster_id: 'testString',
         cluster_name: 'testString',
         cluster_type: 'testString',
-        entitlement_keys: [{ foo: 'bar' }],
+        entitlement_keys: [{ anyKey: 'anyValue' }],
         namespace: 'testString',
         region: 'testString',
         resource_group_id: 'testString',
@@ -952,7 +947,7 @@ describe('SchematicsV1', () => {
 
       // TemplateSourceDataRequest
       const templateSourceDataRequestModel = {
-        env_values: [{ foo: 'bar' }],
+        env_values: [{ anyKey: 'anyValue' }],
         env_values_metadata: [environmentValuesMetadataModel],
         folder: 'testString',
         compact: true,
@@ -961,7 +956,7 @@ describe('SchematicsV1', () => {
         type: 'testString',
         uninstall_script_name: 'testString',
         values: 'testString',
-        values_metadata: [{ foo: 'bar' }],
+        values_metadata: [{ anyKey: 'anyValue' }],
         variablestore: [workspaceVariableRequestModel],
       };
 
@@ -1210,7 +1205,7 @@ describe('SchematicsV1', () => {
       // ServiceExtensions
       const serviceExtensionsModel = {
         name: 'flavor',
-        value: 'standard',
+        value: 'testString',
         type: 'string',
       };
 
@@ -1240,7 +1235,7 @@ describe('SchematicsV1', () => {
         cluster_id: 'testString',
         cluster_name: 'testString',
         cluster_type: 'testString',
-        entitlement_keys: [{ foo: 'bar' }],
+        entitlement_keys: [{ anyKey: 'anyValue' }],
         namespace: 'testString',
         region: 'testString',
         resource_group_id: 'testString',
@@ -1283,7 +1278,7 @@ describe('SchematicsV1', () => {
 
       // TemplateSourceDataRequest
       const templateSourceDataRequestModel = {
-        env_values: [{ foo: 'bar' }],
+        env_values: [{ anyKey: 'anyValue' }],
         env_values_metadata: [environmentValuesMetadataModel],
         folder: 'testString',
         compact: true,
@@ -1292,7 +1287,7 @@ describe('SchematicsV1', () => {
         type: 'testString',
         uninstall_script_name: 'testString',
         values: 'testString',
-        values_metadata: [{ foo: 'bar' }],
+        values_metadata: [{ anyKey: 'anyValue' }],
         variablestore: [workspaceVariableRequestModel],
       };
 
@@ -1452,8 +1447,7 @@ describe('SchematicsV1', () => {
           formatted,
         };
 
-        const getWorkspaceReadmeResult =
-          schematicsService.getWorkspaceReadme(getWorkspaceReadmeParams);
+        const getWorkspaceReadmeResult = schematicsService.getWorkspaceReadme(getWorkspaceReadmeParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceReadmeResult);
@@ -1545,8 +1539,7 @@ describe('SchematicsV1', () => {
           fileContentType,
         };
 
-        const templateRepoUploadResult =
-          schematicsService.templateRepoUpload(templateRepoUploadParams);
+        const templateRepoUploadResult = schematicsService.templateRepoUpload(templateRepoUploadParams);
 
         // all methods should return a Promise
         expectToBePromise(templateRepoUploadResult);
@@ -1556,11 +1549,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload',
-          'PUT'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload', 'PUT');
         const expectedAccept = 'application/json';
         const expectedContentType = 'multipart/form-data';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1641,8 +1630,7 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceInputsResult =
-          schematicsService.getWorkspaceInputs(getWorkspaceInputsParams);
+        const getWorkspaceInputsResult = schematicsService.getWorkspaceInputs(getWorkspaceInputsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceInputsResult);
@@ -1652,11 +1640,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/template_data/{t_id}/values',
-          'GET'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/values', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1742,7 +1726,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation replaceWorkspaceInputs
         const wId = 'testString';
         const tId = 'testString';
-        const envValues = [{ foo: 'bar' }];
+        const envValues = [{ anyKey: 'anyValue' }];
         const values = 'testString';
         const variablestore = [workspaceVariableRequestModel];
         const replaceWorkspaceInputsParams = {
@@ -1753,9 +1737,7 @@ describe('SchematicsV1', () => {
           variablestore,
         };
 
-        const replaceWorkspaceInputsResult = schematicsService.replaceWorkspaceInputs(
-          replaceWorkspaceInputsParams
-        );
+        const replaceWorkspaceInputsResult = schematicsService.replaceWorkspaceInputs(replaceWorkspaceInputsParams);
 
         // all methods should return a Promise
         expectToBePromise(replaceWorkspaceInputsResult);
@@ -1765,11 +1747,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/template_data/{t_id}/values',
-          'PUT'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/values', 'PUT');
         const expectedAccept = 'application/json';
         const expectedContentType = 'application/json';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1849,9 +1827,7 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getAllWorkspaceInputsResult = schematicsService.getAllWorkspaceInputs(
-          getAllWorkspaceInputsParams
-        );
+        const getAllWorkspaceInputsResult = schematicsService.getAllWorkspaceInputs(getAllWorkspaceInputsParams);
 
         // all methods should return a Promise
         expectToBePromise(getAllWorkspaceInputsResult);
@@ -1937,9 +1913,7 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceInputMetadataResult = schematicsService.getWorkspaceInputMetadata(
-          getWorkspaceInputMetadataParams
-        );
+        const getWorkspaceInputMetadataResult = schematicsService.getWorkspaceInputMetadata(getWorkspaceInputMetadataParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceInputMetadataResult);
@@ -1949,11 +1923,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata',
-          'GET'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2030,8 +2000,7 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceOutputsResult =
-          schematicsService.getWorkspaceOutputs(getWorkspaceOutputsParams);
+        const getWorkspaceOutputsResult = schematicsService.getWorkspaceOutputs(getWorkspaceOutputsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceOutputsResult);
@@ -2115,9 +2084,7 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceResourcesResult = schematicsService.getWorkspaceResources(
-          getWorkspaceResourcesParams
-        );
+        const getWorkspaceResourcesResult = schematicsService.getWorkspaceResources(getWorkspaceResourcesParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceResourcesResult);
@@ -2201,8 +2168,7 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceStateResult =
-          schematicsService.getWorkspaceState(getWorkspaceStateParams);
+        const getWorkspaceStateResult = schematicsService.getWorkspaceState(getWorkspaceStateParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceStateResult);
@@ -2288,9 +2254,7 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceTemplateStateResult = schematicsService.getWorkspaceTemplateState(
-          getWorkspaceTemplateStateParams
-        );
+        const getWorkspaceTemplateStateResult = schematicsService.getWorkspaceTemplateState(getWorkspaceTemplateStateParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceTemplateStateResult);
@@ -2300,11 +2264,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/runtime_data/{t_id}/state_store',
-          'GET'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/runtime_data/{t_id}/state_store', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2383,9 +2343,7 @@ describe('SchematicsV1', () => {
           activityId,
         };
 
-        const getWorkspaceActivityLogsResult = schematicsService.getWorkspaceActivityLogs(
-          getWorkspaceActivityLogsParams
-        );
+        const getWorkspaceActivityLogsResult = schematicsService.getWorkspaceActivityLogs(getWorkspaceActivityLogsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceActivityLogsResult);
@@ -2395,11 +2353,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/actions/{activity_id}/logs',
-          'GET'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/actions/{activity_id}/logs', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2476,8 +2430,7 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceLogUrlsResult =
-          schematicsService.getWorkspaceLogUrls(getWorkspaceLogUrlsParams);
+        const getWorkspaceLogUrlsResult = schematicsService.getWorkspaceLogUrls(getWorkspaceLogUrlsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceLogUrlsResult);
@@ -2581,11 +2534,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store',
-          'GET'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2678,9 +2627,7 @@ describe('SchematicsV1', () => {
           logTfAnsible,
         };
 
-        const getTemplateActivityLogResult = schematicsService.getTemplateActivityLog(
-          getTemplateActivityLogParams
-        );
+        const getTemplateActivityLogResult = schematicsService.getTemplateActivityLog(getTemplateActivityLogParams);
 
         // all methods should return a Promise
         expectToBePromise(getTemplateActivityLogResult);
@@ -2690,11 +2637,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}',
-          'GET'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}', 'GET');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2957,8 +2900,7 @@ describe('SchematicsV1', () => {
       function __createActionTest() {
         // Construct the params object for operation createAction
         const name = 'Stop Action';
-        const description =
-          'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
+        const description = 'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
         const location = 'us-south';
         const resourceGroup = 'testString';
         const bastionConnectionType = 'ssh';
@@ -3370,8 +3312,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation updateAction
         const actionId = 'testString';
         const name = 'Stop Action';
-        const description =
-          'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
+        const description = 'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
         const location = 'us-south';
         const resourceGroup = 'testString';
         const bastionConnectionType = 'ssh';
@@ -3525,9 +3466,7 @@ describe('SchematicsV1', () => {
           fileContentType,
         };
 
-        const uploadTemplateTarActionResult = schematicsService.uploadTemplateTarAction(
-          uploadTemplateTarActionParams
-        );
+        const uploadTemplateTarActionResult = schematicsService.uploadTemplateTarAction(uploadTemplateTarActionParams);
 
         // all methods should return a Promise
         expectToBePromise(uploadTemplateTarActionResult);
@@ -3537,11 +3476,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v2/actions/{action_id}/template_repo_upload',
-          'PUT'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v2/actions/{action_id}/template_repo_upload', 'PUT');
         const expectedAccept = 'application/json';
         const expectedContentType = 'multipart/form-data';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -3621,9 +3556,7 @@ describe('SchematicsV1', () => {
           limit,
         };
 
-        const listWorkspaceActivitiesResult = schematicsService.listWorkspaceActivities(
-          listWorkspaceActivitiesParams
-        );
+        const listWorkspaceActivitiesResult = schematicsService.listWorkspaceActivities(listWorkspaceActivitiesParams);
 
         // all methods should return a Promise
         expectToBePromise(listWorkspaceActivitiesResult);
@@ -3711,9 +3644,7 @@ describe('SchematicsV1', () => {
           activityId,
         };
 
-        const getWorkspaceActivityResult = schematicsService.getWorkspaceActivity(
-          getWorkspaceActivityParams
-        );
+        const getWorkspaceActivityResult = schematicsService.getWorkspaceActivity(getWorkspaceActivityParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceActivityResult);
@@ -3802,9 +3733,7 @@ describe('SchematicsV1', () => {
           activityId,
         };
 
-        const deleteWorkspaceActivityResult = schematicsService.deleteWorkspaceActivity(
-          deleteWorkspaceActivityParams
-        );
+        const deleteWorkspaceActivityResult = schematicsService.deleteWorkspaceActivity(deleteWorkspaceActivityParams);
 
         // all methods should return a Promise
         expectToBePromise(deleteWorkspaceActivityResult);
@@ -3814,11 +3743,7 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v1/workspaces/{w_id}/actions/{activity_id}',
-          'DELETE'
-        );
+        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/actions/{activity_id}', 'DELETE');
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -3916,9 +3841,7 @@ describe('SchematicsV1', () => {
           description,
         };
 
-        const runWorkspaceCommandsResult = schematicsService.runWorkspaceCommands(
-          runWorkspaceCommandsParams
-        );
+        const runWorkspaceCommandsResult = schematicsService.runWorkspaceCommands(runWorkspaceCommandsParams);
 
         // all methods should return a Promise
         expectToBePromise(runWorkspaceCommandsResult);
@@ -4022,9 +3945,7 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const applyWorkspaceCommandResult = schematicsService.applyWorkspaceCommand(
-          applyWorkspaceCommandParams
-        );
+        const applyWorkspaceCommandResult = schematicsService.applyWorkspaceCommand(applyWorkspaceCommandParams);
 
         // all methods should return a Promise
         expectToBePromise(applyWorkspaceCommandResult);
@@ -4127,9 +4048,7 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const destroyWorkspaceCommandResult = schematicsService.destroyWorkspaceCommand(
-          destroyWorkspaceCommandParams
-        );
+        const destroyWorkspaceCommandResult = schematicsService.destroyWorkspaceCommand(destroyWorkspaceCommandParams);
 
         // all methods should return a Promise
         expectToBePromise(destroyWorkspaceCommandResult);
@@ -4232,9 +4151,7 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const planWorkspaceCommandResult = schematicsService.planWorkspaceCommand(
-          planWorkspaceCommandParams
-        );
+        const planWorkspaceCommandResult = schematicsService.planWorkspaceCommand(planWorkspaceCommandParams);
 
         // all methods should return a Promise
         expectToBePromise(planWorkspaceCommandResult);
@@ -4327,9 +4244,7 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const refreshWorkspaceCommandResult = schematicsService.refreshWorkspaceCommand(
-          refreshWorkspaceCommandParams
-        );
+        const refreshWorkspaceCommandResult = schematicsService.refreshWorkspaceCommand(refreshWorkspaceCommandParams);
 
         // all methods should return a Promise
         expectToBePromise(refreshWorkspaceCommandResult);
@@ -4756,10 +4671,12 @@ describe('SchematicsV1', () => {
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {};
+      const jobLogSummaryRepoDownloadJobModel = {
+      };
 
       // JobLogSummaryWorkspaceJob
-      const jobLogSummaryWorkspaceJobModel = {};
+      const jobLogSummaryWorkspaceJobModel = {
+      };
 
       // JobLogSummaryWorkitems
       const jobLogSummaryWorkitemsModel = {
@@ -5285,10 +5202,12 @@ describe('SchematicsV1', () => {
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {};
+      const jobLogSummaryRepoDownloadJobModel = {
+      };
 
       // JobLogSummaryWorkspaceJob
-      const jobLogSummaryWorkspaceJobModel = {};
+      const jobLogSummaryWorkspaceJobModel = {
+      };
 
       // JobLogSummaryWorkitems
       const jobLogSummaryWorkitemsModel = {
@@ -5755,9 +5674,7 @@ describe('SchematicsV1', () => {
           workspaces,
         };
 
-        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(
-          createWorkspaceDeletionJobParams
-        );
+        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(createWorkspaceDeletionJobParams);
 
         // all methods should return a Promise
         expectToBePromise(createWorkspaceDeletionJobResult);
@@ -5844,9 +5761,7 @@ describe('SchematicsV1', () => {
           wjId,
         };
 
-        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(
-          getWorkspaceDeletionJobStatusParams
-        );
+        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(getWorkspaceDeletionJobStatusParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceDeletionJobStatusResult);
@@ -5912,770 +5827,6 @@ describe('SchematicsV1', () => {
         let err;
         try {
           await schematicsService.getWorkspaceDeletionJobStatus();
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-    });
-  });
-
-  describe('listBlueprint', () => {
-    describe('positive tests', () => {
-      function __listBlueprintTest() {
-        // Construct the params object for operation listBlueprint
-        const offset = 0;
-        const limit = 100;
-        const listBlueprintParams = {
-          offset,
-          limit,
-        };
-
-        const listBlueprintResult = schematicsService.listBlueprint(listBlueprintParams);
-
-        // all methods should return a Promise
-        expectToBePromise(listBlueprintResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const mockRequestOptions = getOptions(createRequestMock);
-
-        checkUrlAndMethod(mockRequestOptions, '/v2/blueprints', 'GET');
-        const expectedAccept = 'application/json';
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(mockRequestOptions.qs.offset).toEqual(offset);
-        expect(mockRequestOptions.qs.limit).toEqual(limit);
-      }
-
-      test('should pass the right params to createRequest with enable and disable retries', () => {
-        // baseline test
-        __listBlueprintTest();
-
-        // enable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.enableRetries();
-        __listBlueprintTest();
-
-        // disable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.disableRetries();
-        __listBlueprintTest();
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const listBlueprintParams = {
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.listBlueprint(listBlueprintParams);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-
-      test('should not have any problems when no parameters are passed in', () => {
-        // invoke the method with no parameters
-        schematicsService.listBlueprint({});
-        checkForSuccessfulExecution(createRequestMock);
-      });
-    });
-  });
-
-  describe('createBlueprint', () => {
-    describe('positive tests', () => {
-      // Request models needed by this operation.
-
-      // GitSource
-      const gitSourceModel = {
-        computed_git_repo_url: 'testString',
-        git_repo_url: 'testString',
-        git_token: 'testString',
-        git_repo_folder: 'testString',
-        git_release: 'testString',
-        git_branch: 'testString',
-      };
-
-      // CatalogSource
-      const catalogSourceModel = {
-        catalog_name: 'testString',
-        catalog_id: 'testString',
-        offering_name: 'testString',
-        offering_version: 'testString',
-        offering_kind: 'testString',
-        offering_target_kind: 'testString',
-        offering_id: 'testString',
-        offering_version_id: 'testString',
-        offering_version_flavour_name: 'testString',
-        offering_repo_url: 'testString',
-        offering_provisioner_working_directory: 'testString',
-        dry_run: true,
-        owning_account: 'testString',
-        item_icon_url: 'testString',
-        item_id: 'testString',
-        item_name: 'testString',
-        item_readme_url: 'testString',
-        item_url: 'testString',
-        launch_url: 'testString',
-      };
-
-      // ExternalSource
-      const externalSourceModel = {
-        source_type: 'local',
-        git: gitSourceModel,
-        catalog: catalogSourceModel,
-      };
-
-      // VariableMetadata
-      const variableMetadataModel = {
-        type: 'boolean',
-        aliases: ['testString'],
-        description: 'testString',
-        cloud_data_type: 'testString',
-        default_value: 'testString',
-        link_status: 'normal',
-        secure: true,
-        immutable: true,
-        hidden: true,
-        required: true,
-        options: ['testString'],
-        min_value: 38,
-        max_value: 38,
-        min_length: 38,
-        max_length: 38,
-        matches: 'testString',
-        position: 38,
-        group_by: 'testString',
-        source: 'testString',
-      };
-
-      // VariableData
-      const variableDataModel = {
-        name: 'testString',
-        value: 'testString',
-        use_default: true,
-        metadata: variableMetadataModel,
-      };
-
-      // BlueprintConfigItem
-      const blueprintConfigItemModel = {
-        name: 'testString',
-        description: 'testString',
-        source: externalSourceModel,
-        inputs: [variableDataModel],
-      };
-
-      // BlueprintFlow
-      const blueprintFlowModel = {};
-
-      // UserState
-      const userStateModel = {
-        state: 'draft',
-        set_by: 'testString',
-        set_at: '2019-01-01T12:00:00.000Z',
-      };
-
-      function __createBlueprintTest() {
-        // Construct the params object for operation createBlueprint
-        const name = 'Toronto Dev Environtment';
-        const schemaVersion = '1.0';
-        const source = externalSourceModel;
-        const config = [blueprintConfigItemModel];
-        const description = 'Deploys dev environtment instance in Toronto Region';
-        const resourceGroup = 'Default';
-        const tags = ['blueprint:Tor-Dev'];
-        const location = 'us-south';
-        const inputs = [variableDataModel];
-        const settings = [variableDataModel];
-        const flow = blueprintFlowModel;
-        const userState = userStateModel;
-        const createBlueprintParams = {
-          name,
-          schemaVersion,
-          source,
-          config,
-          description,
-          resourceGroup,
-          tags,
-          location,
-          inputs,
-          settings,
-          flow,
-          userState,
-        };
-
-        const createBlueprintResult = schematicsService.createBlueprint(createBlueprintParams);
-
-        // all methods should return a Promise
-        expectToBePromise(createBlueprintResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const mockRequestOptions = getOptions(createRequestMock);
-
-        checkUrlAndMethod(mockRequestOptions, '/v2/blueprints', 'POST');
-        const expectedAccept = 'application/json';
-        const expectedContentType = 'application/json';
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(mockRequestOptions.body.name).toEqual(name);
-        expect(mockRequestOptions.body.schema_version).toEqual(schemaVersion);
-        expect(mockRequestOptions.body.source).toEqual(source);
-        expect(mockRequestOptions.body.config).toEqual(config);
-        expect(mockRequestOptions.body.description).toEqual(description);
-        expect(mockRequestOptions.body.resource_group).toEqual(resourceGroup);
-        expect(mockRequestOptions.body.tags).toEqual(tags);
-        expect(mockRequestOptions.body.location).toEqual(location);
-        expect(mockRequestOptions.body.inputs).toEqual(inputs);
-        expect(mockRequestOptions.body.settings).toEqual(settings);
-        expect(mockRequestOptions.body.flow).toEqual(flow);
-        expect(mockRequestOptions.body.user_state).toEqual(userState);
-      }
-
-      test('should pass the right params to createRequest with enable and disable retries', () => {
-        // baseline test
-        __createBlueprintTest();
-
-        // enable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.enableRetries();
-        __createBlueprintTest();
-
-        // disable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.disableRetries();
-        __createBlueprintTest();
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const name = 'Toronto Dev Environtment';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const createBlueprintParams = {
-          name,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.createBlueprint(createBlueprintParams);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async () => {
-        let err;
-        try {
-          await schematicsService.createBlueprint({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-
-      test('should reject promise when required params are not given', async () => {
-        let err;
-        try {
-          await schematicsService.createBlueprint();
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-    });
-  });
-
-  describe('getBlueprint', () => {
-    describe('positive tests', () => {
-      function __getBlueprintTest() {
-        // Construct the params object for operation getBlueprint
-        const blueprintId = 'testString';
-        const profile = 'ids';
-        const getBlueprintParams = {
-          blueprintId,
-          profile,
-        };
-
-        const getBlueprintResult = schematicsService.getBlueprint(getBlueprintParams);
-
-        // all methods should return a Promise
-        expectToBePromise(getBlueprintResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const mockRequestOptions = getOptions(createRequestMock);
-
-        checkUrlAndMethod(mockRequestOptions, '/v2/blueprints/{blueprint_id}', 'GET');
-        const expectedAccept = 'application/json';
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(mockRequestOptions.qs.profile).toEqual(profile);
-        expect(mockRequestOptions.path.blueprint_id).toEqual(blueprintId);
-      }
-
-      test('should pass the right params to createRequest with enable and disable retries', () => {
-        // baseline test
-        __getBlueprintTest();
-
-        // enable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.enableRetries();
-        __getBlueprintTest();
-
-        // disable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.disableRetries();
-        __getBlueprintTest();
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const blueprintId = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const getBlueprintParams = {
-          blueprintId,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.getBlueprint(getBlueprintParams);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async () => {
-        let err;
-        try {
-          await schematicsService.getBlueprint({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-
-      test('should reject promise when required params are not given', async () => {
-        let err;
-        try {
-          await schematicsService.getBlueprint();
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-    });
-  });
-
-  describe('replaceBlueprint', () => {
-    describe('positive tests', () => {
-      // Request models needed by this operation.
-
-      // GitSource
-      const gitSourceModel = {
-        computed_git_repo_url: 'testString',
-        git_repo_url: 'testString',
-        git_token: 'testString',
-        git_repo_folder: 'testString',
-        git_release: 'testString',
-        git_branch: 'testString',
-      };
-
-      // CatalogSource
-      const catalogSourceModel = {
-        catalog_name: 'testString',
-        catalog_id: 'testString',
-        offering_name: 'testString',
-        offering_version: 'testString',
-        offering_kind: 'testString',
-        offering_target_kind: 'testString',
-        offering_id: 'testString',
-        offering_version_id: 'testString',
-        offering_version_flavour_name: 'testString',
-        offering_repo_url: 'testString',
-        offering_provisioner_working_directory: 'testString',
-        dry_run: true,
-        owning_account: 'testString',
-        item_icon_url: 'testString',
-        item_id: 'testString',
-        item_name: 'testString',
-        item_readme_url: 'testString',
-        item_url: 'testString',
-        launch_url: 'testString',
-      };
-
-      // ExternalSource
-      const externalSourceModel = {
-        source_type: 'local',
-        git: gitSourceModel,
-        catalog: catalogSourceModel,
-      };
-
-      // VariableMetadata
-      const variableMetadataModel = {
-        type: 'boolean',
-        aliases: ['testString'],
-        description: 'testString',
-        cloud_data_type: 'testString',
-        default_value: 'testString',
-        link_status: 'normal',
-        secure: true,
-        immutable: true,
-        hidden: true,
-        required: true,
-        options: ['testString'],
-        min_value: 38,
-        max_value: 38,
-        min_length: 38,
-        max_length: 38,
-        matches: 'testString',
-        position: 38,
-        group_by: 'testString',
-        source: 'testString',
-      };
-
-      // VariableData
-      const variableDataModel = {
-        name: 'testString',
-        value: 'testString',
-        use_default: true,
-        metadata: variableMetadataModel,
-      };
-
-      // BlueprintConfigItem
-      const blueprintConfigItemModel = {
-        name: 'testString',
-        description: 'testString',
-        source: externalSourceModel,
-        inputs: [variableDataModel],
-      };
-
-      // BlueprintFlow
-      const blueprintFlowModel = {};
-
-      // UserState
-      const userStateModel = {
-        state: 'draft',
-        set_by: 'testString',
-        set_at: '2019-01-01T12:00:00.000Z',
-      };
-
-      function __replaceBlueprintTest() {
-        // Construct the params object for operation replaceBlueprint
-        const blueprintId = 'testString';
-        const name = 'Toronto Dev Environtment';
-        const schemaVersion = '1.0';
-        const source = externalSourceModel;
-        const config = [blueprintConfigItemModel];
-        const description = 'Deploys dev environtment instance in Toronto Region';
-        const resourceGroup = 'Default';
-        const tags = ['blueprint:Tor-Dev'];
-        const location = 'us-south';
-        const inputs = [variableDataModel];
-        const settings = [variableDataModel];
-        const flow = blueprintFlowModel;
-        const userState = userStateModel;
-        const profile = 'ids';
-        const replaceBlueprintParams = {
-          blueprintId,
-          name,
-          schemaVersion,
-          source,
-          config,
-          description,
-          resourceGroup,
-          tags,
-          location,
-          inputs,
-          settings,
-          flow,
-          userState,
-          profile,
-        };
-
-        const replaceBlueprintResult = schematicsService.replaceBlueprint(replaceBlueprintParams);
-
-        // all methods should return a Promise
-        expectToBePromise(replaceBlueprintResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const mockRequestOptions = getOptions(createRequestMock);
-
-        checkUrlAndMethod(mockRequestOptions, '/v2/blueprints/{blueprint_id}', 'PUT');
-        const expectedAccept = 'application/json';
-        const expectedContentType = 'application/json';
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(mockRequestOptions.body.name).toEqual(name);
-        expect(mockRequestOptions.body.schema_version).toEqual(schemaVersion);
-        expect(mockRequestOptions.body.source).toEqual(source);
-        expect(mockRequestOptions.body.config).toEqual(config);
-        expect(mockRequestOptions.body.description).toEqual(description);
-        expect(mockRequestOptions.body.resource_group).toEqual(resourceGroup);
-        expect(mockRequestOptions.body.tags).toEqual(tags);
-        expect(mockRequestOptions.body.location).toEqual(location);
-        expect(mockRequestOptions.body.inputs).toEqual(inputs);
-        expect(mockRequestOptions.body.settings).toEqual(settings);
-        expect(mockRequestOptions.body.flow).toEqual(flow);
-        expect(mockRequestOptions.body.user_state).toEqual(userState);
-        expect(mockRequestOptions.qs.profile).toEqual(profile);
-        expect(mockRequestOptions.path.blueprint_id).toEqual(blueprintId);
-      }
-
-      test('should pass the right params to createRequest with enable and disable retries', () => {
-        // baseline test
-        __replaceBlueprintTest();
-
-        // enable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.enableRetries();
-        __replaceBlueprintTest();
-
-        // disable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.disableRetries();
-        __replaceBlueprintTest();
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const blueprintId = 'testString';
-        const name = 'Toronto Dev Environtment';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const replaceBlueprintParams = {
-          blueprintId,
-          name,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.replaceBlueprint(replaceBlueprintParams);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async () => {
-        let err;
-        try {
-          await schematicsService.replaceBlueprint({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-
-      test('should reject promise when required params are not given', async () => {
-        let err;
-        try {
-          await schematicsService.replaceBlueprint();
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-    });
-  });
-
-  describe('deleteBlueprint', () => {
-    describe('positive tests', () => {
-      function __deleteBlueprintTest() {
-        // Construct the params object for operation deleteBlueprint
-        const blueprintId = 'testString';
-        const profile = 'ids';
-        const destroy = 0;
-        const deleteBlueprintParams = {
-          blueprintId,
-          profile,
-          destroy,
-        };
-
-        const deleteBlueprintResult = schematicsService.deleteBlueprint(deleteBlueprintParams);
-
-        // all methods should return a Promise
-        expectToBePromise(deleteBlueprintResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const mockRequestOptions = getOptions(createRequestMock);
-
-        checkUrlAndMethod(mockRequestOptions, '/v2/blueprints/{blueprint_id}', 'DELETE');
-        const expectedAccept = 'application/json';
-        const expectedContentType = undefined;
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(mockRequestOptions.qs.profile).toEqual(profile);
-        expect(mockRequestOptions.qs.destroy).toEqual(destroy);
-        expect(mockRequestOptions.path.blueprint_id).toEqual(blueprintId);
-      }
-
-      test('should pass the right params to createRequest with enable and disable retries', () => {
-        // baseline test
-        __deleteBlueprintTest();
-
-        // enable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.enableRetries();
-        __deleteBlueprintTest();
-
-        // disable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.disableRetries();
-        __deleteBlueprintTest();
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const blueprintId = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const deleteBlueprintParams = {
-          blueprintId,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.deleteBlueprint(deleteBlueprintParams);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async () => {
-        let err;
-        try {
-          await schematicsService.deleteBlueprint({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-
-      test('should reject promise when required params are not given', async () => {
-        let err;
-        try {
-          await schematicsService.deleteBlueprint();
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-    });
-  });
-
-  describe('uploadTemplateTarBlueprint', () => {
-    describe('positive tests', () => {
-      function __uploadTemplateTarBlueprintTest() {
-        // Construct the params object for operation uploadTemplateTarBlueprint
-        const blueprintId = 'testString';
-        const file = Buffer.from('This is a mock file.');
-        const fileContentType = 'testString';
-        const uploadTemplateTarBlueprintParams = {
-          blueprintId,
-          file,
-          fileContentType,
-        };
-
-        const uploadTemplateTarBlueprintResult = schematicsService.uploadTemplateTarBlueprint(
-          uploadTemplateTarBlueprintParams
-        );
-
-        // all methods should return a Promise
-        expectToBePromise(uploadTemplateTarBlueprintResult);
-
-        // assert that create request was called
-        expect(createRequestMock).toHaveBeenCalledTimes(1);
-
-        const mockRequestOptions = getOptions(createRequestMock);
-
-        checkUrlAndMethod(
-          mockRequestOptions,
-          '/v2/blueprints/{blueprint_id}/template_repo_upload',
-          'PUT'
-        );
-        const expectedAccept = 'application/json';
-        const expectedContentType = 'multipart/form-data';
-        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
-        expect(mockRequestOptions.formData.file.data).toEqual(file);
-        expect(mockRequestOptions.formData.file.contentType).toEqual(fileContentType);
-        expect(mockRequestOptions.path.blueprint_id).toEqual(blueprintId);
-      }
-
-      test('should pass the right params to createRequest with enable and disable retries', () => {
-        // baseline test
-        __uploadTemplateTarBlueprintTest();
-
-        // enable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.enableRetries();
-        __uploadTemplateTarBlueprintTest();
-
-        // disable retries and test again
-        createRequestMock.mockClear();
-        schematicsService.disableRetries();
-        __uploadTemplateTarBlueprintTest();
-      });
-
-      test('should prioritize user-given headers', () => {
-        // parameters
-        const blueprintId = 'testString';
-        const userAccept = 'fake/accept';
-        const userContentType = 'fake/contentType';
-        const uploadTemplateTarBlueprintParams = {
-          blueprintId,
-          headers: {
-            Accept: userAccept,
-            'Content-Type': userContentType,
-          },
-        };
-
-        schematicsService.uploadTemplateTarBlueprint(uploadTemplateTarBlueprintParams);
-        checkMediaHeaders(createRequestMock, userAccept, userContentType);
-      });
-    });
-
-    describe('negative tests', () => {
-      test('should enforce required parameters', async () => {
-        let err;
-        try {
-          await schematicsService.uploadTemplateTarBlueprint({});
-        } catch (e) {
-          err = e;
-        }
-
-        expect(err.message).toMatch(/Missing required parameters/);
-      });
-
-      test('should reject promise when required params are not given', async () => {
-        let err;
-        try {
-          await schematicsService.uploadTemplateTarBlueprint();
         } catch (e) {
           err = e;
         }
@@ -7131,8 +6282,7 @@ describe('SchematicsV1', () => {
           profile,
         };
 
-        const listResourceQueryResult =
-          schematicsService.listResourceQuery(listResourceQueryParams);
+        const listResourceQueryResult = schematicsService.listResourceQuery(listResourceQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(listResourceQueryResult);
@@ -7219,8 +6369,7 @@ describe('SchematicsV1', () => {
           queries,
         };
 
-        const createResourceQueryResult =
-          schematicsService.createResourceQuery(createResourceQueryParams);
+        const createResourceQueryResult = schematicsService.createResourceQuery(createResourceQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(createResourceQueryResult);
@@ -7286,8 +6435,7 @@ describe('SchematicsV1', () => {
           queryId,
         };
 
-        const getResourcesQueryResult =
-          schematicsService.getResourcesQuery(getResourcesQueryParams);
+        const getResourcesQueryResult = schematicsService.getResourcesQuery(getResourcesQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(getResourcesQueryResult);
@@ -7393,9 +6541,7 @@ describe('SchematicsV1', () => {
           queries,
         };
 
-        const replaceResourcesQueryResult = schematicsService.replaceResourcesQuery(
-          replaceResourcesQueryParams
-        );
+        const replaceResourcesQueryResult = schematicsService.replaceResourcesQuery(replaceResourcesQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(replaceResourcesQueryResult);
@@ -7482,9 +6628,7 @@ describe('SchematicsV1', () => {
           queryId,
         };
 
-        const executeResourceQueryResult = schematicsService.executeResourceQuery(
-          executeResourceQueryParams
-        );
+        const executeResourceQueryResult = schematicsService.executeResourceQuery(executeResourceQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(executeResourceQueryResult);
@@ -7572,9 +6716,7 @@ describe('SchematicsV1', () => {
           propagate,
         };
 
-        const deleteResourcesQueryResult = schematicsService.deleteResourcesQuery(
-          deleteResourcesQueryParams
-        );
+        const deleteResourcesQueryResult = schematicsService.deleteResourcesQuery(deleteResourcesQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(deleteResourcesQueryResult);
@@ -8045,9 +7187,7 @@ describe('SchematicsV1', () => {
           userState,
         };
 
-        const updateAgentRegistrationResult = schematicsService.updateAgentRegistration(
-          updateAgentRegistrationParams
-        );
+        const updateAgentRegistrationResult = schematicsService.updateAgentRegistration(updateAgentRegistrationParams);
 
         // all methods should return a Promise
         expectToBePromise(updateAgentRegistrationResult);
@@ -8225,6 +7365,12 @@ describe('SchematicsV1', () => {
         cos_bucket_region: 'testString',
       };
 
+      // AgentMetadataInfo
+      const agentMetadataInfoModel = {
+        name: 'purpose',
+        value: ['git', 'terraform', 'ansible'],
+      };
+
       // VariableMetadata
       const variableMetadataModel = {
         type: 'boolean',
@@ -8280,6 +7426,7 @@ describe('SchematicsV1', () => {
         const agentInfrastructure = agentInfrastructureModel;
         const description = 'Create Agent';
         const tags = ['testString'];
+        const agentMetadata = [agentMetadataInfoModel];
         const agentInputs = [variableDataModel];
         const userState = agentUserStateModel;
         const agentKpi = agentKpiDataModel;
@@ -8292,6 +7439,7 @@ describe('SchematicsV1', () => {
           agentInfrastructure,
           description,
           tags,
+          agentMetadata,
           agentInputs,
           userState,
           agentKpi,
@@ -8319,6 +7467,7 @@ describe('SchematicsV1', () => {
         expect(mockRequestOptions.body.agent_infrastructure).toEqual(agentInfrastructure);
         expect(mockRequestOptions.body.description).toEqual(description);
         expect(mockRequestOptions.body.tags).toEqual(tags);
+        expect(mockRequestOptions.body.agent_metadata).toEqual(agentMetadata);
         expect(mockRequestOptions.body.agent_inputs).toEqual(agentInputs);
         expect(mockRequestOptions.body.user_state).toEqual(userState);
         expect(mockRequestOptions.body.agent_kpi).toEqual(agentKpi);
@@ -8493,6 +7642,12 @@ describe('SchematicsV1', () => {
         cos_bucket_region: 'testString',
       };
 
+      // AgentMetadataInfo
+      const agentMetadataInfoModel = {
+        name: 'purpose',
+        value: ['git', 'terraform', 'ansible'],
+      };
+
       // VariableMetadata
       const variableMetadataModel = {
         type: 'boolean',
@@ -8549,9 +7704,11 @@ describe('SchematicsV1', () => {
         const agentInfrastructure = agentInfrastructureModel;
         const description = 'Create Agent';
         const tags = ['testString'];
+        const agentMetadata = [agentMetadataInfoModel];
         const agentInputs = [variableDataModel];
         const userState = agentUserStateModel;
         const agentKpi = agentKpiDataModel;
+        const refreshToken = 'testString';
         const updateAgentDataParams = {
           agentId,
           name,
@@ -8562,9 +7719,11 @@ describe('SchematicsV1', () => {
           agentInfrastructure,
           description,
           tags,
+          agentMetadata,
           agentInputs,
           userState,
           agentKpi,
+          refreshToken,
         };
 
         const updateAgentDataResult = schematicsService.updateAgentData(updateAgentDataParams);
@@ -8581,6 +7740,7 @@ describe('SchematicsV1', () => {
         const expectedAccept = 'application/json';
         const expectedContentType = 'application/json';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'refresh_token', refreshToken);
         expect(mockRequestOptions.body.name).toEqual(name);
         expect(mockRequestOptions.body.resource_group).toEqual(resourceGroup);
         expect(mockRequestOptions.body.version).toEqual(version);
@@ -8589,6 +7749,7 @@ describe('SchematicsV1', () => {
         expect(mockRequestOptions.body.agent_infrastructure).toEqual(agentInfrastructure);
         expect(mockRequestOptions.body.description).toEqual(description);
         expect(mockRequestOptions.body.tags).toEqual(tags);
+        expect(mockRequestOptions.body.agent_metadata).toEqual(agentMetadata);
         expect(mockRequestOptions.body.agent_inputs).toEqual(agentInputs);
         expect(mockRequestOptions.body.user_state).toEqual(userState);
         expect(mockRequestOptions.body.agent_kpi).toEqual(agentKpi);
@@ -8745,6 +7906,66 @@ describe('SchematicsV1', () => {
         }
 
         expect(err.message).toMatch(/Missing required parameters/);
+      });
+    });
+  });
+
+  describe('getAgentVersions', () => {
+    describe('positive tests', () => {
+      function __getAgentVersionsTest() {
+        // Construct the params object for operation getAgentVersions
+        const getAgentVersionsParams = {};
+
+        const getAgentVersionsResult = schematicsService.getAgentVersions(getAgentVersionsParams);
+
+        // all methods should return a Promise
+        expectToBePromise(getAgentVersionsResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/agents/versions', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __getAgentVersionsTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __getAgentVersionsTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __getAgentVersionsTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const getAgentVersionsParams = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.getAgentVersions(getAgentVersionsParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.getAgentVersions({});
+        checkForSuccessfulExecution(createRequestMock);
       });
     });
   });
@@ -8929,9 +8150,7 @@ describe('SchematicsV1', () => {
           agentId,
         };
 
-        const getHealthCheckAgentJobResult = schematicsService.getHealthCheckAgentJob(
-          getHealthCheckAgentJobParams
-        );
+        const getHealthCheckAgentJobResult = schematicsService.getHealthCheckAgentJob(getHealthCheckAgentJobParams);
 
         // all methods should return a Promise
         expectToBePromise(getHealthCheckAgentJobResult);
@@ -9017,8 +8236,7 @@ describe('SchematicsV1', () => {
           force,
         };
 
-        const healthCheckAgentJobResult =
-          schematicsService.healthCheckAgentJob(healthCheckAgentJobParams);
+        const healthCheckAgentJobResult = schematicsService.healthCheckAgentJob(healthCheckAgentJobParams);
 
         // all methods should return a Promise
         expectToBePromise(healthCheckAgentJobResult);
@@ -9103,8 +8321,7 @@ describe('SchematicsV1', () => {
           agentId,
         };
 
-        const getDeployAgentJobResult =
-          schematicsService.getDeployAgentJob(getDeployAgentJobParams);
+        const getDeployAgentJobResult = schematicsService.getDeployAgentJob(getDeployAgentJobParams);
 
         // all methods should return a Promise
         expectToBePromise(getDeployAgentJobResult);
@@ -9266,6 +8483,95 @@ describe('SchematicsV1', () => {
     });
   });
 
+  describe('deleteAgentResources', () => {
+    describe('positive tests', () => {
+      function __deleteAgentResourcesTest() {
+        // Construct the params object for operation deleteAgentResources
+        const agentId = 'testString';
+        const refreshToken = 'testString';
+        const deleteAgentResourcesParams = {
+          agentId,
+          refreshToken,
+        };
+
+        const deleteAgentResourcesResult = schematicsService.deleteAgentResources(deleteAgentResourcesParams);
+
+        // all methods should return a Promise
+        expectToBePromise(deleteAgentResourcesResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/agents/{agent_id}/resources', 'DELETE');
+        const expectedAccept = undefined;
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        checkUserHeader(createRequestMock, 'refresh_token', refreshToken);
+        expect(mockRequestOptions.path.agent_id).toEqual(agentId);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __deleteAgentResourcesTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __deleteAgentResourcesTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __deleteAgentResourcesTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const agentId = 'testString';
+        const refreshToken = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const deleteAgentResourcesParams = {
+          agentId,
+          refreshToken,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.deleteAgentResources(deleteAgentResourcesParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async () => {
+        let err;
+        try {
+          await schematicsService.deleteAgentResources({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+
+      test('should reject promise when required params are not given', async () => {
+        let err;
+        try {
+          await schematicsService.deleteAgentResources();
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+    });
+  });
+
   describe('getKmsSettings', () => {
     describe('positive tests', () => {
       function __getKmsSettingsTest() {
@@ -9383,8 +8689,7 @@ describe('SchematicsV1', () => {
           secondaryCrk,
         };
 
-        const updateKmsSettingsResult =
-          schematicsService.updateKmsSettings(updateKmsSettingsParams);
+        const updateKmsSettingsResult = schematicsService.updateKmsSettings(updateKmsSettingsParams);
 
         // all methods should return a Promise
         expectToBePromise(updateKmsSettingsResult);
@@ -9532,6 +8837,536 @@ describe('SchematicsV1', () => {
         let err;
         try {
           await schematicsService.listKms();
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+    });
+  });
+
+  describe('listPolicy', () => {
+    describe('positive tests', () => {
+      function __listPolicyTest() {
+        // Construct the params object for operation listPolicy
+        const offset = 0;
+        const limit = 100;
+        const profile = 'summary';
+        const listPolicyParams = {
+          offset,
+          limit,
+          profile,
+        };
+
+        const listPolicyResult = schematicsService.listPolicy(listPolicyParams);
+
+        // all methods should return a Promise
+        expectToBePromise(listPolicyResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/settings/policies', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(mockRequestOptions.qs.offset).toEqual(offset);
+        expect(mockRequestOptions.qs.limit).toEqual(limit);
+        expect(mockRequestOptions.qs.profile).toEqual(profile);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __listPolicyTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __listPolicyTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __listPolicyTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const listPolicyParams = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.listPolicy(listPolicyParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.listPolicy({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+
+  describe('createPolicy', () => {
+    describe('positive tests', () => {
+      // Request models needed by this operation.
+
+      // UserState
+      const userStateModel = {
+        state: 'draft',
+        set_by: 'testString',
+        set_at: '2019-01-01T12:00:00.000Z',
+      };
+
+      // PolicyObjectSelector
+      const policyObjectSelectorModel = {
+        kind: 'workspace',
+        tags: ['testString'],
+        resource_groups: ['testString'],
+        locations: ['us-south'],
+      };
+
+      // PolicyObjects
+      const policyObjectsModel = {
+        selector_kind: 'ids',
+        selector_ids: ['testString'],
+        selector_scope: [policyObjectSelectorModel],
+      };
+
+      // AgentAssignmentPolicyParameter
+      const agentAssignmentPolicyParameterModel = {
+        selector_kind: 'ids',
+        selector_ids: ['testString'],
+        selector_scope: [policyObjectSelectorModel],
+      };
+
+      // PolicyParameter
+      const policyParameterModel = {
+        agent_assignment_policy_parameter: agentAssignmentPolicyParameterModel,
+      };
+
+      // ScopedResource
+      const scopedResourceModel = {
+        kind: 'workspace',
+        id: 'testString',
+      };
+
+      function __createPolicyTest() {
+        // Construct the params object for operation createPolicy
+        const name = 'Agent1-DevWS';
+        const description = 'Policy for job execution of secured workspaces on agent1';
+        const resourceGroup = 'Default';
+        const tags = ['policy:secured-job'];
+        const location = 'us-south';
+        const state = userStateModel;
+        const kind = 'agent_assignment_policy';
+        const target = policyObjectsModel;
+        const parameter = policyParameterModel;
+        const scopedResources = [scopedResourceModel];
+        const createPolicyParams = {
+          name,
+          description,
+          resourceGroup,
+          tags,
+          location,
+          state,
+          kind,
+          target,
+          parameter,
+          scopedResources,
+        };
+
+        const createPolicyResult = schematicsService.createPolicy(createPolicyParams);
+
+        // all methods should return a Promise
+        expectToBePromise(createPolicyResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/settings/policies', 'POST');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(mockRequestOptions.body.name).toEqual(name);
+        expect(mockRequestOptions.body.description).toEqual(description);
+        expect(mockRequestOptions.body.resource_group).toEqual(resourceGroup);
+        expect(mockRequestOptions.body.tags).toEqual(tags);
+        expect(mockRequestOptions.body.location).toEqual(location);
+        expect(mockRequestOptions.body.state).toEqual(state);
+        expect(mockRequestOptions.body.kind).toEqual(kind);
+        expect(mockRequestOptions.body.target).toEqual(target);
+        expect(mockRequestOptions.body.parameter).toEqual(parameter);
+        expect(mockRequestOptions.body.scoped_resources).toEqual(scopedResources);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __createPolicyTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __createPolicyTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __createPolicyTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const createPolicyParams = {
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.createPolicy(createPolicyParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+
+      test('should not have any problems when no parameters are passed in', () => {
+        // invoke the method with no parameters
+        schematicsService.createPolicy({});
+        checkForSuccessfulExecution(createRequestMock);
+      });
+    });
+  });
+
+  describe('getPolicy', () => {
+    describe('positive tests', () => {
+      function __getPolicyTest() {
+        // Construct the params object for operation getPolicy
+        const policyId = 'testString';
+        const profile = 'summary';
+        const getPolicyParams = {
+          policyId,
+          profile,
+        };
+
+        const getPolicyResult = schematicsService.getPolicy(getPolicyParams);
+
+        // all methods should return a Promise
+        expectToBePromise(getPolicyResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/settings/policies/{policy_id}', 'GET');
+        const expectedAccept = 'application/json';
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(mockRequestOptions.qs.profile).toEqual(profile);
+        expect(mockRequestOptions.path.policy_id).toEqual(policyId);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __getPolicyTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __getPolicyTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __getPolicyTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const policyId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const getPolicyParams = {
+          policyId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.getPolicy(getPolicyParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async () => {
+        let err;
+        try {
+          await schematicsService.getPolicy({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+
+      test('should reject promise when required params are not given', async () => {
+        let err;
+        try {
+          await schematicsService.getPolicy();
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+    });
+  });
+
+  describe('deletePolicy', () => {
+    describe('positive tests', () => {
+      function __deletePolicyTest() {
+        // Construct the params object for operation deletePolicy
+        const policyId = 'testString';
+        const deletePolicyParams = {
+          policyId,
+        };
+
+        const deletePolicyResult = schematicsService.deletePolicy(deletePolicyParams);
+
+        // all methods should return a Promise
+        expectToBePromise(deletePolicyResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/settings/policies/{policy_id}', 'DELETE');
+        const expectedAccept = undefined;
+        const expectedContentType = undefined;
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(mockRequestOptions.path.policy_id).toEqual(policyId);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __deletePolicyTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __deletePolicyTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __deletePolicyTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const policyId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const deletePolicyParams = {
+          policyId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.deletePolicy(deletePolicyParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async () => {
+        let err;
+        try {
+          await schematicsService.deletePolicy({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+
+      test('should reject promise when required params are not given', async () => {
+        let err;
+        try {
+          await schematicsService.deletePolicy();
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+    });
+  });
+
+  describe('updatePolicy', () => {
+    describe('positive tests', () => {
+      // Request models needed by this operation.
+
+      // UserState
+      const userStateModel = {
+        state: 'draft',
+        set_by: 'testString',
+        set_at: '2019-01-01T12:00:00.000Z',
+      };
+
+      // PolicyObjectSelector
+      const policyObjectSelectorModel = {
+        kind: 'workspace',
+        tags: ['testString'],
+        resource_groups: ['testString'],
+        locations: ['us-south'],
+      };
+
+      // PolicyObjects
+      const policyObjectsModel = {
+        selector_kind: 'ids',
+        selector_ids: ['testString'],
+        selector_scope: [policyObjectSelectorModel],
+      };
+
+      // AgentAssignmentPolicyParameter
+      const agentAssignmentPolicyParameterModel = {
+        selector_kind: 'ids',
+        selector_ids: ['testString'],
+        selector_scope: [policyObjectSelectorModel],
+      };
+
+      // PolicyParameter
+      const policyParameterModel = {
+        agent_assignment_policy_parameter: agentAssignmentPolicyParameterModel,
+      };
+
+      // ScopedResource
+      const scopedResourceModel = {
+        kind: 'workspace',
+        id: 'testString',
+      };
+
+      function __updatePolicyTest() {
+        // Construct the params object for operation updatePolicy
+        const policyId = 'testString';
+        const name = 'Agent1-DevWS';
+        const description = 'Policy for job execution of secured workspaces on agent1';
+        const resourceGroup = 'Default';
+        const tags = ['policy:secured-job'];
+        const location = 'us-south';
+        const state = userStateModel;
+        const kind = 'agent_assignment_policy';
+        const target = policyObjectsModel;
+        const parameter = policyParameterModel;
+        const scopedResources = [scopedResourceModel];
+        const updatePolicyParams = {
+          policyId,
+          name,
+          description,
+          resourceGroup,
+          tags,
+          location,
+          state,
+          kind,
+          target,
+          parameter,
+          scopedResources,
+        };
+
+        const updatePolicyResult = schematicsService.updatePolicy(updatePolicyParams);
+
+        // all methods should return a Promise
+        expectToBePromise(updatePolicyResult);
+
+        // assert that create request was called
+        expect(createRequestMock).toHaveBeenCalledTimes(1);
+
+        const mockRequestOptions = getOptions(createRequestMock);
+
+        checkUrlAndMethod(mockRequestOptions, '/v2/settings/policies/{policy_id}', 'PATCH');
+        const expectedAccept = 'application/json';
+        const expectedContentType = 'application/json';
+        checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(mockRequestOptions.body.name).toEqual(name);
+        expect(mockRequestOptions.body.description).toEqual(description);
+        expect(mockRequestOptions.body.resource_group).toEqual(resourceGroup);
+        expect(mockRequestOptions.body.tags).toEqual(tags);
+        expect(mockRequestOptions.body.location).toEqual(location);
+        expect(mockRequestOptions.body.state).toEqual(state);
+        expect(mockRequestOptions.body.kind).toEqual(kind);
+        expect(mockRequestOptions.body.target).toEqual(target);
+        expect(mockRequestOptions.body.parameter).toEqual(parameter);
+        expect(mockRequestOptions.body.scoped_resources).toEqual(scopedResources);
+        expect(mockRequestOptions.path.policy_id).toEqual(policyId);
+      }
+
+      test('should pass the right params to createRequest with enable and disable retries', () => {
+        // baseline test
+        __updatePolicyTest();
+
+        // enable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.enableRetries();
+        __updatePolicyTest();
+
+        // disable retries and test again
+        createRequestMock.mockClear();
+        schematicsService.disableRetries();
+        __updatePolicyTest();
+      });
+
+      test('should prioritize user-given headers', () => {
+        // parameters
+        const policyId = 'testString';
+        const userAccept = 'fake/accept';
+        const userContentType = 'fake/contentType';
+        const updatePolicyParams = {
+          policyId,
+          headers: {
+            Accept: userAccept,
+            'Content-Type': userContentType,
+          },
+        };
+
+        schematicsService.updatePolicy(updatePolicyParams);
+        checkMediaHeaders(createRequestMock, userAccept, userContentType);
+      });
+    });
+
+    describe('negative tests', () => {
+      test('should enforce required parameters', async () => {
+        let err;
+        try {
+          await schematicsService.updatePolicy({});
+        } catch (e) {
+          err = e;
+        }
+
+        expect(err.message).toMatch(/Missing required parameters/);
+      });
+
+      test('should reject promise when required params are not given', async () => {
+        let err;
+        try {
+          await schematicsService.updatePolicy();
         } catch (e) {
           err = e;
         }
