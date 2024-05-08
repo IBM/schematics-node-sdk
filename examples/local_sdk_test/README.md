@@ -8,6 +8,8 @@
 
 ## How to test the SDK 
 
+0) Uncomment the code in index.js file
+
 1) Provide the API key in index.js file 
 ```
 apikey: '<api_key>' 

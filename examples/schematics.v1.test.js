@@ -234,8 +234,7 @@ describe('SchematicsV1', () => {
     originalLog('createWorkspace() result:');
     // begin-create_workspace
 
-    const params = {
-    };
+    const params = {};
 
     let res;
     try {
@@ -770,8 +769,7 @@ describe('SchematicsV1', () => {
     originalLog('createAction() result:');
     // begin-create_action
 
-    const params = {
-    };
+    const params = {};
 
     let res;
     try {
@@ -1329,8 +1327,7 @@ describe('SchematicsV1', () => {
     originalLog('createInventory() result:');
     // begin-create_inventory
 
-    const params = {
-    };
+    const params = {};
 
     let res;
     try {
@@ -1436,8 +1433,7 @@ describe('SchematicsV1', () => {
     originalLog('createResourceQuery() result:');
     // begin-create_resource_query
 
-    const params = {
-    };
+    const params = {};
 
     let res;
     try {
@@ -1689,8 +1685,7 @@ describe('SchematicsV1', () => {
     // Request models needed by this operation.
 
     // AgentInfrastructure
-    const agentInfrastructureModel = {
-    };
+    const agentInfrastructureModel = {};
 
     const params = {
       name: 'MyDevAgent',
@@ -1756,8 +1751,7 @@ describe('SchematicsV1', () => {
     // Request models needed by this operation.
 
     // AgentInfrastructure
-    const agentInfrastructureModel = {
-    };
+    const agentInfrastructureModel = {};
 
     const params = {
       agentId: 'testString',
@@ -2013,8 +2007,7 @@ describe('SchematicsV1', () => {
     originalLog('updateKmsSettings() result:');
     // begin-update_kms_settings
 
-    const params = {
-    };
+    const params = {};
 
     let res;
     try {
@@ -2093,8 +2086,7 @@ describe('SchematicsV1', () => {
     originalLog('createPolicy() result:');
     // begin-create_policy
 
-    const params = {
-    };
+    const params = {};
 
     let res;
     try {
