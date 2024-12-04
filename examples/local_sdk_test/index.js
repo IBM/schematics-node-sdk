@@ -8,16 +8,16 @@
 
 // // Construct the service client.
 // const schematicsService = new SchematicsV1({
-//   authenticator,                                  // required
+//   authenticator, // required
 //   serviceUrl: 'https://schematics.cloud.ibm.com', // optional
 // });
 
-// // List all schematics workspaces
+// List all schematics workspaces
 // schematicsService
 //   .listWorkspaces()
-//   .then(response => {
+//   .then((response) => {
 //     console.log(response.result);
 //   })
-//   .catch(err => {
+//   .catch((err) => {
 //     console.warn(err);
 //   });
