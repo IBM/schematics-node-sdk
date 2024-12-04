@@ -15,7 +15,7 @@
  */
 
 /**
- * IBM OpenAPI SDK Code Generator Version: 3.86.1-c3d7bcef-20240308-215042
+ * IBM OpenAPI SDK Code Generator Version: 3.96.1-5136e54a-20241108-203028
  */
 
 import * as extend from 'extend';
@@ -521,6 +521,8 @@ class SchematicsV1 extends BaseService {
    * @param {string[]} [params.type] - List of Workspace type.
    * @param {WorkspaceStatusRequest} [params.workspaceStatus] - WorkspaceStatusRequest -.
    * @param {string} [params.agentId] - agent id which is binded to with the workspace.
+   * @param {VariableData[]} [params.settings] - Input settings to be applied to the workspace, for example,
+   * `job_timeout_override`.
    * @param {string} [params.xGithubToken] - The personal access token to authenticate with your private GitHub or
    * GitLab repository and access your Terraform template.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
@@ -547,6 +549,7 @@ class SchematicsV1 extends BaseService {
       'type',
       'workspaceStatus',
       'agentId',
+      'settings',
       'xGithubToken',
       'headers',
     ];
@@ -571,6 +574,7 @@ class SchematicsV1 extends BaseService {
       'type': _params.type,
       'workspace_status': _params.workspaceStatus,
       'agent_id': _params.agentId,
+      'settings': _params.settings,
     };
 
     const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'createWorkspace');
@@ -686,6 +690,8 @@ class SchematicsV1 extends BaseService {
    * @param {WorkspaceStatusMessage} [params.workspaceStatusMsg] - Information about the last job that ran against the
    * workspace. -.
    * @param {string} [params.agentId] - agent id that process workspace jobs.
+   * @param {VariableData[]} [params.settings] - Input settings to be applied to the workspace, for example,
+   * `job_timeout_override`.
    * @param {string} [params.xGithubToken] - The personal access token to authenticate with your private GitHub or
    * GitLab repository and access your Terraform template.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
@@ -710,6 +716,7 @@ class SchematicsV1 extends BaseService {
       'workspaceStatus',
       'workspaceStatusMsg',
       'agentId',
+      'settings',
       'xGithubToken',
       'headers',
     ];
@@ -731,6 +738,7 @@ class SchematicsV1 extends BaseService {
       'workspace_status': _params.workspaceStatus,
       'workspace_status_msg': _params.workspaceStatusMsg,
       'agent_id': _params.agentId,
+      'settings': _params.settings,
     };
 
     const path = {
@@ -891,6 +899,8 @@ class SchematicsV1 extends BaseService {
    * @param {WorkspaceStatusMessage} [params.workspaceStatusMsg] - Information about the last job that ran against the
    * workspace. -.
    * @param {string} [params.agentId] - agent id that process workspace jobs.
+   * @param {VariableData[]} [params.settings] - Input settings to be applied to the workspace, for example,
+   * `job_timeout_override`.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<SchematicsV1.Response<SchematicsV1.WorkspaceResponse>>}
    */
@@ -913,6 +923,7 @@ class SchematicsV1 extends BaseService {
       'workspaceStatus',
       'workspaceStatusMsg',
       'agentId',
+      'settings',
       'headers',
     ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
@@ -933,6 +944,7 @@ class SchematicsV1 extends BaseService {
       'workspace_status': _params.workspaceStatus,
       'workspace_status_msg': _params.workspaceStatusMsg,
       'agent_id': _params.agentId,
+      'settings': _params.settings,
     };
 
     const path = {
@@ -3627,7 +3639,7 @@ class SchematicsV1 extends BaseService {
    * Get output files from the Job record.
    *
    * Get output files from the Job record. For more information, about the Schematics job status, download job logs, and
-   * download the output files, see [Download Schematics
+   * download the output files, see Download Schematics
    * Job](https://cloud.ibm.com/docs/schematics?topic=schematics-job-download).
    *
    * @param {Object} params - The parameters to send to the service.
@@ -4988,8 +5000,7 @@ class SchematicsV1 extends BaseService {
    * @param {number} [params.limit] - The maximum number of items that you want to list. The number must be a positive
    * integer between 1 and 2000. If no value is provided, 100 is used by default.
    * @param {string} [params.profile] - Level of details returned by the get method.
-   * @param {string} [params.filter] - Use `new` to get all unregistered agents; use `saved` to get all registered
-   * agents.
+   * @param {string} [params.filter] - Use `new` to get all unregistered agents; use `saved` to get all registered agents.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<SchematicsV1.Response<SchematicsV1.AgentDataList>>}
    */
@@ -5041,8 +5052,8 @@ class SchematicsV1 extends BaseService {
    * used to deploy your agent to its target location.
    * **Getting API endpoint**:-
    * * The Schematics API endpoint that you use to create the agent determines where your Schematics agent run and your
-   * data is stored. For more information about supported API endpoints, see [API
-   * endpoints](https://cloud.ibm.com/apidocs/schematics/schematics#api-endpoints). * If you use the API endpoint for a
+   * data is stored.
+   * If you use the API endpoint for a
    * geography and not a specific location, such as North America, you can specify the location in your API request
    * body. * If you do not specify the location in the request body, Schematics determines your agent location based on
    * availability. * If you use an API endpoint for a specific location, such as Frankfurt, the location that you enter
@@ -5361,6 +5372,7 @@ class SchematicsV1 extends BaseService {
    *
    * @param {Object} params - The parameters to send to the service.
    * @param {string} params.agentId - Agent ID to get the details of agent.
+   * @param {boolean} [params.force] - Equivalent to -force options in the command line, default is false.
    * @param {OutgoingHttpHeaders} [params.headers] - Custom request headers
    * @returns {Promise<SchematicsV1.Response<SchematicsV1.EmptyObject>>}
    */
@@ -5369,11 +5381,15 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.EmptyObject>> {
     const _params = { ...params };
     const _requiredParams = ['agentId'];
-    const _validParams = ['agentId', 'headers'];
+    const _validParams = ['agentId', 'force', 'headers'];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
     }
+
+    const query = {
+      'force': _params.force,
+    };
 
     const path = {
       'agent_id': _params.agentId,
@@ -5385,6 +5401,7 @@ class SchematicsV1 extends BaseService {
       options: {
         url: '/v2/agents/{agent_id}',
         method: 'DELETE',
+        qs: query,
         path,
       },
       defaultOptions: extend(true, {}, this.baseOptions, {
@@ -6596,6 +6613,8 @@ namespace SchematicsV1 {
     workspaceStatus?: WorkspaceStatusRequest;
     /** agent id which is binded to with the workspace. */
     agentId?: string;
+    /** Input settings to be applied to the workspace, for example, `job_timeout_override`. */
+    settings?: VariableData[];
     /** The personal access token to authenticate with your private GitHub or GitLab repository and access your
      *  Terraform template.
      */
@@ -6642,6 +6661,8 @@ namespace SchematicsV1 {
     workspaceStatusMsg?: WorkspaceStatusMessage;
     /** agent id that process workspace jobs. */
     agentId?: string;
+    /** Input settings to be applied to the workspace, for example, `job_timeout_override`. */
+    settings?: VariableData[];
     /** The personal access token to authenticate with your private GitHub or GitLab repository and access your
      *  Terraform template.
      */
@@ -6711,6 +6732,8 @@ namespace SchematicsV1 {
     workspaceStatusMsg?: WorkspaceStatusMessage;
     /** agent id that process workspace jobs. */
     agentId?: string;
+    /** Input settings to be applied to the workspace, for example, `job_timeout_override`. */
+    settings?: VariableData[];
     headers?: OutgoingHttpHeaders;
   }
 
@@ -8282,6 +8305,8 @@ namespace SchematicsV1 {
   export interface DeleteAgentDataParams {
     /** Agent ID to get the details of agent. */
     agentId: string;
+    /** Equivalent to -force options in the command line, default is false. */
+    force?: boolean;
     headers?: OutgoingHttpHeaders;
   }
 
@@ -8553,7 +8578,9 @@ namespace SchematicsV1 {
    * model interfaces
    ************************/
 
-  /** Complete Action details with user inputs and system generated data. */
+  /**
+   * Complete Action details with user inputs and system generated data.
+   */
   export interface Action {
     /** The unique name of your action. The name can be up to 128 characters long and can include alphanumeric
      *  characters, spaces, dashes, and underscores. **Example** you can use the name to stop action.
@@ -8638,6 +8665,10 @@ namespace SchematicsV1 {
     playbook_names?: string[];
     /** System lock status. */
     sys_lock?: SystemLock;
+    /** secrets manager reference to git token. */
+    git_token_ref?: string;
+    /** Encryption details about the workspace such as scheme (byok/kyok) and key CRN. */
+    encryption?: EncryptionInfo;
   }
   export namespace Action {
     export namespace Constants {
@@ -8669,7 +8700,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** List of Action definition response. */
+  /**
+   * List of Action definition response.
+   */
   export interface ActionList {
     /** Total number of records. */
     total_count?: number;
@@ -8681,7 +8714,9 @@ namespace SchematicsV1 {
     actions?: ActionLite[];
   }
 
-  /** Action summary profile with user inputs and system generated data. */
+  /**
+   * Action summary profile with user inputs and system generated data.
+   */
   export interface ActionLite {
     /** Action name (unique for an account). */
     name?: string;
@@ -8720,6 +8755,8 @@ namespace SchematicsV1 {
     updated_by?: string;
     /** Agent name, Agent id and associated policy ID information. */
     agent?: AgentInfo;
+    /** Encryption details about the workspace such as scheme (byok/kyok) and key CRN. */
+    encryption?: EncryptionInfo;
   }
   export namespace ActionLite {
     export namespace Constants {
@@ -8733,7 +8770,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Computed state of the Action. */
+  /**
+   * Computed state of the Action.
+   */
   export interface ActionLiteState {
     /** Status of automation (workspace or action). */
     status_code?: ActionLiteState.Constants.StatusCode | string;
@@ -8752,7 +8791,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Computed state of the Action. */
+  /**
+   * Computed state of the Action.
+   */
   export interface ActionState {
     /** Status of automation (workspace or action). */
     status_code?: ActionState.Constants.StatusCode | string;
@@ -8773,7 +8814,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The agent registration details, with user inputs and system generated data. */
+  /**
+   * The agent registration details, with user inputs and system generated data.
+   */
   export interface Agent {
     /** The name of the agent (must be unique, for an account). */
     name: string;
@@ -8823,7 +8866,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Parameters for the `agent_assignment_policy`. */
+  /**
+   * Parameters for the `agent_assignment_policy`.
+   */
   export interface AgentAssignmentPolicyParameter {
     /** Types of schematics object selector. */
     selector_kind?: AgentAssignmentPolicyParameter.Constants.SelectorKind | string;
@@ -8842,7 +8887,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The agent details, with user inputs and system generated data. */
+  /**
+   * The agent details, with user inputs and system generated data.
+   */
   export interface AgentData {
     /** The name of the agent (must be unique, for an account). */
     name: string;
@@ -8893,6 +8940,8 @@ namespace SchematicsV1 {
     recent_health_job?: AgentDataRecentHealthJob;
     /** destroy resource provisoned by agent deploy method. */
     recent_destroy_job?: AgentDataRecentDestroyJob;
+    /** Encryption details about the workspace such as scheme (byok/kyok) and key CRN. */
+    encryption?: EncryptionInfo;
   }
   export namespace AgentData {
     export namespace Constants {
@@ -8906,7 +8955,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The list of agents. */
+  /**
+   * The list of agents.
+   */
   export interface AgentDataList {
     /** The total number of records. */
     total_count?: number;
@@ -8918,7 +8969,9 @@ namespace SchematicsV1 {
     agents?: AgentDataLite[];
   }
 
-  /** The agent details for a list view. */
+  /**
+   * The agent details for a list view.
+   */
   export interface AgentDataLite {
     /** The name of the agent (must be unique, for an account). */
     name?: string;
@@ -8970,7 +9023,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Post-installations checks for Agent health. */
+  /**
+   * Post-installations checks for Agent health.
+   */
   export interface AgentDataRecentDeployJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9007,7 +9062,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** destroy resource provisoned by agent deploy method. */
+  /**
+   * destroy resource provisoned by agent deploy method.
+   */
   export interface AgentDataRecentDestroyJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9042,7 +9099,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Agent health check. */
+  /**
+   * Agent health check.
+   */
   export interface AgentDataRecentHealthJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9077,7 +9136,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Run a pre-requisite scanner for deploying agent. */
+  /**
+   * Run a pre-requisite scanner for deploying agent.
+   */
   export interface AgentDataRecentPrsJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9112,7 +9173,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Post-installations checks for Agent health. */
+  /**
+   * Post-installations checks for Agent health.
+   */
   export interface AgentDeployJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9149,7 +9212,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Agent health check. */
+  /**
+   * Agent health check.
+   */
   export interface AgentHealthJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9184,7 +9249,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Agent name, Agent id and associated policy ID information. */
+  /**
+   * Agent name, Agent id and associated policy ID information.
+   */
   export interface AgentInfo {
     /** ID of the Agent bound to the schematics object (workspace, action). */
     id?: string;
@@ -9194,7 +9261,9 @@ namespace SchematicsV1 {
     assignment_policy_id?: string;
   }
 
-  /** The infrastructure parameters used by the agent. */
+  /**
+   * The infrastructure parameters used by the agent.
+   */
   export interface AgentInfrastructure {
     /** Type of target agent infrastructure. */
     infra_type?: AgentInfrastructure.Constants.InfraType | string;
@@ -9220,7 +9289,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Schematics Agent key performance indicators. */
+  /**
+   * Schematics Agent key performance indicators.
+   */
   export interface AgentKPIData {
     /** Overall availability indicator reported by the agent. */
     availability_indicator?: AgentKPIData.Constants.AvailabilityIndicator | string;
@@ -9250,7 +9321,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Schematics Agent key performance indicators' summary. */
+  /**
+   * Schematics Agent key performance indicators' summary.
+   */
   export interface AgentKPIDataLite {
     /** Overall availability indicator reported by the agent. */
     availability_indicator?: AgentKPIDataLite.Constants.AvailabilityIndicator | string;
@@ -9276,7 +9349,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The list of agent details. */
+  /**
+   * The list of agent details.
+   */
   export interface AgentList {
     /** The total number of records. */
     total_count?: number;
@@ -9288,7 +9363,9 @@ namespace SchematicsV1 {
     agents?: Agent[];
   }
 
-  /** AgentMetadataInfo. */
+  /**
+   * AgentMetadataInfo.
+   */
   export interface AgentMetadataInfo {
     /** Name of the metadata. */
     name?: string;
@@ -9296,7 +9373,9 @@ namespace SchematicsV1 {
     value?: string[];
   }
 
-  /** Run a pre-requisite scanner for deploying agent. */
+  /**
+   * Run a pre-requisite scanner for deploying agent.
+   */
   export interface AgentPRSJob {
     /** Id of the agent. */
     agent_id?: string;
@@ -9331,7 +9410,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Computed state of the agent. */
+  /**
+   * Computed state of the agent.
+   */
   export interface AgentSystemStatus {
     /** Agent Status. */
     status_code?: AgentSystemStatus.Constants.StatusCode | string;
@@ -9351,7 +9432,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** User defined status of the agent. */
+  /**
+   * User defined status of the agent.
+   */
   export interface AgentUserState {
     /** User-defined states   * `enable`  Agent is enabled by the user.   * `disable` Agent is disbaled by the user. */
     state?: AgentUserState.Constants.State | string;
@@ -9370,7 +9453,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** An item in list of all the versions available. */
+  /**
+   * An item in list of all the versions available.
+   */
   export interface AgentVersionInfo {
     /** The display name of the agent version. */
     display_name?: string;
@@ -9378,13 +9463,17 @@ namespace SchematicsV1 {
     agent_version?: string;
   }
 
-  /** Agent versions available to be deployed. */
+  /**
+   * Agent versions available to be deployed.
+   */
   export interface AgentVersions {
     /** list of the versions supported. */
     supported_agent_versions?: AgentVersionInfo[];
   }
 
-  /** Computed state of the agent. */
+  /**
+   * Computed state of the agent.
+   */
   export interface AgentSystemState {
     /** Agent Status. */
     state?: AgentSystemState.Constants.State | string;
@@ -9404,7 +9493,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Describes a bastion resource. */
+  /**
+   * Describes a bastion resource.
+   */
   export interface BastionResourceDefinition {
     /** Bastion Name; the name must be unique. */
     name?: string;
@@ -9412,7 +9503,9 @@ namespace SchematicsV1 {
     host?: string;
   }
 
-  /** Schematics Cart Order Data. */
+  /**
+   * Schematics Cart Order Data.
+   */
   export interface CartOrderData {
     /** Name of the property. */
     name?: string;
@@ -9432,7 +9525,10 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Information about the software template that you chose from the IBM Cloud catalog. This information is returned for IBM Cloud catalog offerings only. */
+  /**
+   * Information about the software template that you chose from the IBM Cloud catalog. This information is returned for
+   * IBM Cloud catalog offerings only.
+   */
   export interface CatalogRef {
     /** Dry run. */
     dry_run?: boolean;
@@ -9457,7 +9553,9 @@ namespace SchematicsV1 {
     service_extensions?: ServiceExtensions[];
   }
 
-  /** The connection details to the IBM Cloud Catalog source. */
+  /**
+   * The connection details to the IBM Cloud Catalog source.
+   */
   export interface CatalogSource {
     /** The name of the private catalog. */
     catalog_name?: string;
@@ -9501,7 +9599,9 @@ namespace SchematicsV1 {
     launch_url?: string;
   }
 
-  /** Workspace commands run as part of the job. */
+  /**
+   * Workspace commands run as part of the job.
+   */
   export interface CommandsInfo {
     /** Name of the command. */
     name?: string;
@@ -9509,7 +9609,9 @@ namespace SchematicsV1 {
     outcome?: string;
   }
 
-  /** Connection status of the agent. */
+  /**
+   * Connection status of the agent.
+   */
   export interface ConnectionState {
     /** Agent Connection Status
      *    * `Connected` When Schematics is able to connect to the agent.
@@ -9529,13 +9631,15 @@ namespace SchematicsV1 {
     }
   }
 
-  /** User editable credential variable data and system generated reference to the value. */
+  /**
+   * User editable credential variable data and system generated reference to the value.
+   */
   export interface CredentialVariableData {
     /** The name of the credential variable. */
     name?: string;
-    /** The credential value for the variable or reference to the value. For example, `value = "<provide your
-     *  ssh_key_value with \n>"`. **Note** The SSH key should contain `\n` at the end of the key details in case of
-     *  command line or API calls.
+    /** The credential value for the variable or reference to the value. **Note** The SSH key should contain three
+     *  `\n` in the SSH key value as shown in the example for CLI or API calls. When using Bastion from API you need to
+     *  add SSH key in both `credentials` and `bastion_credentials`.
      */
     value?: string;
     /** True, will ignore the data in the value attribute, instead the data in metadata.default_value will be used. */
@@ -9546,7 +9650,9 @@ namespace SchematicsV1 {
     link?: string;
   }
 
-  /** An user editable metadata for the credential variables. */
+  /**
+   * An user editable metadata for the credential variables.
+   */
   export interface CredentialVariableMetadata {
     /** Type of the variable. */
     type?: CredentialVariableMetadata.Constants.Type | string;
@@ -9588,7 +9694,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Workspace dependencies. */
+  /**
+   * Workspace dependencies.
+   */
   export interface Dependencies {
     /** List of workspace parents CRN identifiers. */
     parents?: string[];
@@ -9596,7 +9704,19 @@ namespace SchematicsV1 {
     children?: string[];
   }
 
-  /** One variable is a map where one entry is there with key as name of the env var and the value as value. */
+  /**
+   * Encryption details about the workspace such as scheme (byok/kyok) and key CRN.
+   */
+  export interface EncryptionInfo {
+    /** Key CRN. */
+    crn?: string;
+    /** Encryption scheme. */
+    scheme?: string;
+  }
+
+  /**
+   * One variable is a map where one entry is there with key as name of the env var and the value as value.
+   */
   export interface EnvVariableRequestMap {
     /** Environment variable is hidden. */
     hidden?: boolean;
@@ -9608,7 +9728,9 @@ namespace SchematicsV1 {
     value?: string;
   }
 
-  /** List of environment values. */
+  /**
+   * List of environment values.
+   */
   export interface EnvVariableResponse {
     /** Environment variable is hidden. */
     hidden?: boolean;
@@ -9620,7 +9742,9 @@ namespace SchematicsV1 {
     value?: string;
   }
 
-  /** Environment variables metadata. */
+  /**
+   * Environment variables metadata.
+   */
   export interface EnvironmentValuesMetadata {
     /** Environment variable is hidden. */
     hidden?: boolean;
@@ -9630,7 +9754,9 @@ namespace SchematicsV1 {
     secure?: boolean;
   }
 
-  /** Source of templates, playbooks, or controls. */
+  /**
+   * Source of templates, playbooks, or controls.
+   */
   export interface ExternalSource {
     /** Type of source for the Template. */
     source_type: ExternalSource.Constants.SourceType | string;
@@ -9653,7 +9779,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The connection details to the Git source repository. */
+  /**
+   * The connection details to the Git source repository.
+   */
   export interface GitSource {
     /** The complete URL which is computed by the **git_repo_url**, **git_repo_folder**, and **branch**. */
     computed_git_repo_url?: string;
@@ -9673,7 +9801,9 @@ namespace SchematicsV1 {
     git_commit_timestamp?: string;
   }
 
-  /** InjectTerraformTemplateInnerTftParametersItem. */
+  /**
+   * InjectTerraformTemplateInnerTftParametersItem.
+   */
   export interface InjectTerraformTemplateInnerTftParametersItem {
     /** Key name to replace. */
     name?: string;
@@ -9681,7 +9811,9 @@ namespace SchematicsV1 {
     value?: string;
   }
 
-  /** InjectTerraformTemplateInner. */
+  /**
+   * InjectTerraformTemplateInner.
+   */
   export interface InjectTerraformTemplateInner {
     /** Git repo url hosting terraform template files. */
     tft_git_url?: string;
@@ -9696,7 +9828,9 @@ namespace SchematicsV1 {
     tft_parameters?: InjectTerraformTemplateInnerTftParametersItem[];
   }
 
-  /** Complete inventory definition details. */
+  /**
+   * Complete inventory definition details.
+   */
   export interface InventoryResourceRecord {
     /** The unique name of your Inventory.  The name can be up to 128 characters long and can include alphanumeric
      *  characters, spaces, dashes, and underscores.
@@ -9742,7 +9876,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** List of Inventory definition records. */
+  /**
+   * List of Inventory definition records.
+   */
   export interface InventoryResourceRecordList {
     /** Total number of records. */
     total_count?: number;
@@ -9754,7 +9890,9 @@ namespace SchematicsV1 {
     inventories?: InventoryResourceRecord[];
   }
 
-  /** Complete Job with user inputs and system generated data. */
+  /**
+   * Complete Job with user inputs and system generated data.
+   */
   export interface Job {
     /** Name of the Schematics automation resource. */
     command_object?: Job.Constants.CommandObject | string;
@@ -9864,7 +10002,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Job data. */
+  /**
+   * Job data.
+   */
   export interface JobData {
     /** Type of Job. */
     job_type: JobData.Constants.JobType | string;
@@ -9890,7 +10030,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Action Job data. */
+  /**
+   * Action Job data.
+   */
   export interface JobDataAction {
     /** Flow name. */
     action_name?: string;
@@ -9908,7 +10050,9 @@ namespace SchematicsV1 {
     materialized_inventory?: string;
   }
 
-  /** Flow Job data. */
+  /**
+   * Flow Job data.
+   */
   export interface JobDataFlow {
     /** Flow ID. */
     flow_id?: string;
@@ -9920,7 +10064,9 @@ namespace SchematicsV1 {
     updated_at?: string;
   }
 
-  /** Controls Job data. */
+  /**
+   * Controls Job data.
+   */
   export interface JobDataSystem {
     /** Key ID for which key event is generated. */
     key_id?: string;
@@ -9930,7 +10076,9 @@ namespace SchematicsV1 {
     updated_at?: string;
   }
 
-  /** Template Job data. */
+  /**
+   * Template Job data.
+   */
   export interface JobDataTemplate {
     /** Template Id. */
     template_id?: string;
@@ -9948,7 +10096,9 @@ namespace SchematicsV1 {
     updated_at?: string;
   }
 
-  /** Environment work items. */
+  /**
+   * Environment work items.
+   */
   export interface JobDataWorkItem {
     /** command object id. */
     command_object_id?: string;
@@ -9985,7 +10135,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Status of the last job executed by the workitem. */
+  /**
+   * Status of the last job executed by the workitem.
+   */
   export interface JobDataWorkItemLastJob {
     /** Name of the Schematics automation resource. */
     command_object?: JobDataWorkItemLastJob.Constants.CommandObject | string;
@@ -10048,7 +10200,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Workspace Job data. */
+  /**
+   * Workspace Job data.
+   */
   export interface JobDataWorkspace {
     /** Workspace name. */
     workspace_name?: string;
@@ -10068,7 +10222,9 @@ namespace SchematicsV1 {
     updated_at?: string;
   }
 
-  /** JobFileContent. */
+  /**
+   * JobFileContent.
+   */
   export interface JobFileContent {
     /** Name of the file. */
     file_name?: string;
@@ -10076,7 +10232,9 @@ namespace SchematicsV1 {
     file_content?: string;
   }
 
-  /** Output files from the Job record. */
+  /**
+   * Output files from the Job record.
+   */
   export interface JobFileData {
     /** Job Id. */
     job_id?: string;
@@ -10108,7 +10266,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** JobFileDataSummary. */
+  /**
+   * JobFileDataSummary.
+   */
   export interface JobFileDataSummary {
     /** Summary feature name. */
     name?: string;
@@ -10127,7 +10287,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** List of Job details. */
+  /**
+   * List of Job details.
+   */
   export interface JobList {
     /** Total number of records. */
     total_count?: number;
@@ -10139,7 +10301,9 @@ namespace SchematicsV1 {
     jobs?: JobLite[];
   }
 
-  /** Job summary profile with system generated data. */
+  /**
+   * Job summary profile with system generated data.
+   */
   export interface JobLite {
     /** Job ID. */
     id?: string;
@@ -10227,7 +10391,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Job Log details. */
+  /**
+   * Job Log details.
+   */
   export interface JobLog {
     /** Job Id. */
     job_id?: string;
@@ -10254,7 +10420,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Job log summary record. */
+  /**
+   * Job log summary record.
+   */
   export interface JobLogSummary {
     /** Workspace Id. */
     job_id?: string;
@@ -10292,7 +10460,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Job log summary of the flow workitem. */
+  /**
+   * Job log summary of the flow workitem.
+   */
   export interface JobLogSummaryWorkitems {
     /** workspace ID. */
     workspace_id?: string;
@@ -10308,7 +10478,9 @@ namespace SchematicsV1 {
     log_url?: string;
   }
 
-  /** Flow Job log summary. */
+  /**
+   * Flow Job log summary.
+   */
   export interface JobLogSummaryActionJob {
     /** number of targets or hosts. */
     target_count?: number;
@@ -10320,7 +10492,9 @@ namespace SchematicsV1 {
     recap?: JobLogSummaryActionJobRecap;
   }
 
-  /** Recap records. */
+  /**
+   * Recap records.
+   */
   export interface JobLogSummaryActionJobRecap {
     /** List of target or host name. */
     target?: string[];
@@ -10336,7 +10510,9 @@ namespace SchematicsV1 {
     unreachable?: number;
   }
 
-  /** Flow Job log summary. */
+  /**
+   * Flow Job log summary.
+   */
   export interface JobLogSummaryFlowJob {
     /** Number of workitems completed successfully. */
     workitems_completed?: number;
@@ -10347,7 +10523,9 @@ namespace SchematicsV1 {
     workitems?: JobLogSummaryWorkitems[];
   }
 
-  /** JobLogSummaryLogErrors. */
+  /**
+   * JobLogSummaryLogErrors.
+   */
   export interface JobLogSummaryLogErrors {
     /** Error code in the Log. */
     error_code?: string;
@@ -10357,7 +10535,9 @@ namespace SchematicsV1 {
     error_count?: number;
   }
 
-  /** Repo download Job log summary. */
+  /**
+   * Repo download Job log summary.
+   */
   export interface JobLogSummaryRepoDownloadJob {
     /** Number of files scanned. */
     scanned_file_count?: number;
@@ -10371,7 +10551,9 @@ namespace SchematicsV1 {
     outputs_count?: string;
   }
 
-  /** System Job log summary. */
+  /**
+   * System Job log summary.
+   */
   export interface JobLogSummarySystemJob {
     /** number of targets or hosts. */
     target_count?: number;
@@ -10381,7 +10563,9 @@ namespace SchematicsV1 {
     failed?: number;
   }
 
-  /** Workspace Job log summary. */
+  /**
+   * Workspace Job log summary.
+   */
   export interface JobLogSummaryWorkspaceJob {
     /** Number of resources add. */
     resources_add?: number;
@@ -10391,7 +10575,9 @@ namespace SchematicsV1 {
     resources_destroy?: number;
   }
 
-  /** Job Status. */
+  /**
+   * Job Status.
+   */
   export interface JobStatus {
     /** Position of job in pending queue. */
     position_in_queue?: number;
@@ -10407,7 +10593,9 @@ namespace SchematicsV1 {
     flow_job_status?: JobStatusFlow;
   }
 
-  /** Action Job Status. */
+  /**
+   * Action Job Status.
+   */
   export interface JobStatusAction {
     /** Action name. */
     action_name?: string;
@@ -10456,7 +10644,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Environment Flow JOB Status. */
+  /**
+   * Environment Flow JOB Status.
+   */
   export interface JobStatusFlow {
     /** flow id. */
     flow_id?: string;
@@ -10487,7 +10677,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** schematics Resources Job Status. */
+  /**
+   * schematics Resources Job Status.
+   */
   export interface JobStatusSchematicsResources {
     /** Status of Jobs. */
     status_code?: JobStatusSchematicsResources.Constants.StatusCode | string;
@@ -10514,7 +10706,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** System Job Status. */
+  /**
+   * System Job Status.
+   */
   export interface JobStatusSystem {
     /** System job message. */
     system_status_message?: string;
@@ -10541,7 +10735,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Template Job Status. */
+  /**
+   * Template Job Status.
+   */
   export interface JobStatusTemplate {
     /** Template Id. */
     template_id?: string;
@@ -10572,7 +10768,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Individual workitem status info. */
+  /**
+   * Individual workitem status info.
+   */
   export interface JobStatusWorkitem {
     /** Workspace id. */
     workspace_id?: string;
@@ -10603,7 +10801,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Workspace Job Status. */
+  /**
+   * Workspace Job Status.
+   */
   export interface JobStatusWorkspace {
     /** Workspace name. */
     workspace_name?: string;
@@ -10636,7 +10836,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Discover kms instances in the account based on location. */
+  /**
+   * Discover kms instances in the account based on location.
+   */
   export interface KMSDiscovery {
     /** The total number of records. */
     total_count?: number;
@@ -10648,7 +10850,9 @@ namespace SchematicsV1 {
     kms_instances?: KMSInstances[];
   }
 
-  /** User defined kms instances. */
+  /**
+   * User defined kms instances.
+   */
   export interface KMSInstances {
     /** The location to integrate kms instance. For example, location can be `US` and `EU`. */
     location?: string;
@@ -10668,7 +10872,9 @@ namespace SchematicsV1 {
     keys?: KMSInstancesKeys[];
   }
 
-  /** KMSInstancesKeys. */
+  /**
+   * KMSInstancesKeys.
+   */
   export interface KMSInstancesKeys {
     /** The name of the root key. */
     name?: string;
@@ -10678,7 +10884,9 @@ namespace SchematicsV1 {
     error?: string;
   }
 
-  /** User defined kms settings information. */
+  /**
+   * User defined kms settings information.
+   */
   export interface KMSSettings {
     /** The location to integrate kms instance. For example, location can be `US` and `EU`. */
     location?: string;
@@ -10692,7 +10900,9 @@ namespace SchematicsV1 {
     secondary_crk?: KMSSettingsSecondaryCrk;
   }
 
-  /** The primary kms instance details. */
+  /**
+   * The primary kms instance details.
+   */
   export interface KMSSettingsPrimaryCrk {
     /** The primary kms instance name. */
     kms_name?: string;
@@ -10702,7 +10912,9 @@ namespace SchematicsV1 {
     key_crn?: string;
   }
 
-  /** The secondary kms instance details. */
+  /**
+   * The secondary kms instance details.
+   */
   export interface KMSSettingsSecondaryCrk {
     /** The secondary kms instance name. */
     kms_name?: string;
@@ -10712,7 +10924,9 @@ namespace SchematicsV1 {
     key_crn?: string;
   }
 
-  /** Last job details. */
+  /**
+   * Last job details.
+   */
   export interface LastJob {
     /** ID of last job. */
     job_id?: string;
@@ -10722,7 +10936,9 @@ namespace SchematicsV1 {
     job_status?: string;
   }
 
-  /** Log file URL for job that ran against your workspace. */
+  /**
+   * Log file URL for job that ran against your workspace.
+   */
   export interface LogStoreResponse {
     /** The provisioning engine that was used for the job. */
     engine_name?: string;
@@ -10734,13 +10950,17 @@ namespace SchematicsV1 {
     log_store_url?: string;
   }
 
-  /** List of log file URL that ran against your workspace. */
+  /**
+   * List of log file URL that ran against your workspace.
+   */
   export interface LogStoreResponseList {
     /** Runtime data. */
     runtime_data?: LogStoreResponse[];
   }
 
-  /** Summary information extracted from the job logs. */
+  /**
+   * Summary information extracted from the job logs.
+   */
   export interface LogSummary {
     /** The status of your activity or job. To retrieve the URL to your job logs, use the GET
      *  /v1/workspaces/{id}/actions/{action_id}/logs API.
@@ -10773,7 +10993,9 @@ namespace SchematicsV1 {
     time_taken?: number;
   }
 
-  /** OutputValuesInner. */
+  /**
+   * OutputValuesInner.
+   */
   export interface OutputValuesInner {
     /** The subfolder in the GitHub or GitLab repository where your Terraform template is stored. If the template is
      *  stored in the root directory, `.` is returned.
@@ -10787,7 +11009,10 @@ namespace SchematicsV1 {
     value_type?: string;
   }
 
-  /** Detailed information about the Schematics customization policy.  This policy can be used to customize the behaviour or the core Schematics service. */
+  /**
+   * Detailed information about the Schematics customization policy.  This policy can be used to customize the behaviour
+   * or the core Schematics service.
+   */
   export interface Policy {
     /** Name of Schematics customization policy. */
     name?: string;
@@ -10843,7 +11068,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The list of Schematics customization policies. */
+  /**
+   * The list of Schematics customization policies.
+   */
   export interface PolicyList {
     /** The total number of policy records. */
     total_count?: number;
@@ -10855,7 +11082,9 @@ namespace SchematicsV1 {
     policies?: PolicyLite[];
   }
 
-  /** The summary of Schematics policy. */
+  /**
+   * The summary of Schematics policy.
+   */
   export interface PolicyLite {
     /** The name of Schematics customization policy. */
     name?: string;
@@ -10907,7 +11136,11 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Selector rule to dynamically select Schematics object based on the following metadata attributes.  The rule can be defined as follows ((tags in ["policy:secured-job", "policy:dept_id:A00132"]) AND (resource_grous in ["default", "sales_rg"])). */
+  /**
+   * Selector rule to dynamically select Schematics object based on the following metadata attributes.  The rule can be
+   * defined as follows ((tags in ["policy:secured-job", "policy:dept_id:A00132"]) AND (resource_grous in ["default",
+   * "sales_rg"])).
+   */
   export interface PolicyObjectSelector {
     /** Name of the Schematics automation resource. */
     kind?: PolicyObjectSelector.Constants.Kind | string;
@@ -10937,7 +11170,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The objects for the Schematics policy. */
+  /**
+   * The objects for the Schematics policy.
+   */
   export interface PolicyObjects {
     /** Types of schematics object selector. */
     selector_kind?: PolicyObjects.Constants.SelectorKind | string;
@@ -10958,13 +11193,17 @@ namespace SchematicsV1 {
     }
   }
 
-  /** The parameter to tune the Schematics policy. */
+  /**
+   * The parameter to tune the Schematics policy.
+   */
   export interface PolicyParameter {
     /** Parameters for the `agent_assignment_policy`. */
     agent_assignment_policy_parameter?: AgentAssignmentPolicyParameter;
   }
 
-  /** A list of resource groups that your account has access to. */
+  /**
+   * A list of resource groups that your account has access to.
+   */
   export interface ResourceGroupResponse {
     /** The ID of the account for which you listed the resource groups. */
     account_id?: string;
@@ -10982,7 +11221,9 @@ namespace SchematicsV1 {
     state?: string;
   }
 
-  /** Describe resource query. */
+  /**
+   * Describe resource query.
+   */
   export interface ResourceQuery {
     /** Type of the query(workspaces). */
     query_type?: ResourceQuery.Constants.QueryType | string;
@@ -10999,7 +11240,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Describe resource query param. */
+  /**
+   * Describe resource query param.
+   */
   export interface ResourceQueryParam {
     /** Name of the resource query param. */
     name?: string;
@@ -11009,7 +11252,9 @@ namespace SchematicsV1 {
     description?: string;
   }
 
-  /** Describe resource query record. */
+  /**
+   * Describe resource query record.
+   */
   export interface ResourceQueryRecord {
     /** Resource type (cluster, vsi, icd, vpc). */
     type?: ResourceQueryRecord.Constants.Type | string;
@@ -11036,7 +11281,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** List of Resource query records. */
+  /**
+   * List of Resource query records.
+   */
   export interface ResourceQueryRecordList {
     /** Total number of records. */
     total_count?: number;
@@ -11048,12 +11295,16 @@ namespace SchematicsV1 {
     resource_queries?: ResourceQueryRecord[];
   }
 
-  /** Describe resource query. */
+  /**
+   * Describe resource query.
+   */
   export interface ResourceQueryResponseRecord {
     response?: ResourceQueryResponseRecordResponse[];
   }
 
-  /** List of query output values. */
+  /**
+   * List of query output values.
+   */
   export interface ResourceQueryResponseRecordQueryOutput {
     /** Name of the output param. */
     name?: string;
@@ -11061,7 +11312,9 @@ namespace SchematicsV1 {
     value?: string;
   }
 
-  /** ResourceQueryResponseRecordResponse. */
+  /**
+   * ResourceQueryResponseRecordResponse.
+   */
   export interface ResourceQueryResponseRecordResponse {
     /** Type of the query(workspaces). */
     query_type?: ResourceQueryResponseRecordResponse.Constants.QueryType | string;
@@ -11079,7 +11332,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Information about the location. */
+  /**
+   * Information about the location.
+   */
   export interface SchematicsLocations {
     /** The name of the location. */
     name?: string;
@@ -11105,13 +11360,17 @@ namespace SchematicsV1 {
     agent_metadata?: AgentMetadataInfo[];
   }
 
-  /** The list of locations details. */
+  /**
+   * The list of locations details.
+   */
   export interface SchematicsLocationsList {
     /** The list of locations. */
     locations?: SchematicsLocationsLite[];
   }
 
-  /** An individual location details. */
+  /**
+   * An individual location details.
+   */
   export interface SchematicsLocationsLite {
     /** The Geographical region code having the data centres of the IBM Cloud Schematics service. */
     region?: string;
@@ -11137,7 +11396,9 @@ namespace SchematicsV1 {
     schematics_regional_private_endpoint?: string;
   }
 
-  /** scoped Schematics resource. */
+  /**
+   * scoped Schematics resource.
+   */
   export interface ScopedResource {
     /** Name of the Schematics automation resource. */
     kind?: ScopedResource.Constants.Kind | string;
@@ -11156,7 +11417,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Service Extensions. */
+  /**
+   * Service Extensions.
+   */
   export interface ServiceExtensions {
     /** Name of the Service Data. */
     name?: string;
@@ -11166,7 +11429,10 @@ namespace SchematicsV1 {
     type?: string;
   }
 
-  /** Information about the Target used by the templates originating from the  IBM Cloud catalog offerings. This information is not relevant for workspace created using your own Terraform template. */
+  /**
+   * Information about the Target used by the templates originating from the  IBM Cloud catalog offerings. This
+   * information is not relevant for workspace created using your own Terraform template.
+   */
   export interface SharedTargetData {
     /** Cluster created on. */
     cluster_created_on?: string;
@@ -11198,7 +11464,10 @@ namespace SchematicsV1 {
     worker_machine_type?: string;
   }
 
-  /** Information about the Target used by the templates originating from IBM Cloud catalog offerings. This information is not relevant when you create a workspace from your own Terraform template. */
+  /**
+   * Information about the Target used by the templates originating from IBM Cloud catalog offerings. This information
+   * is not relevant when you create a workspace from your own Terraform template.
+   */
   export interface SharedTargetDataResponse {
     /** The ID of the cluster where you want to provision the resources of all IBM Cloud catalog templates that are
      *  included in the catalog offering.
@@ -11222,7 +11491,9 @@ namespace SchematicsV1 {
     resource_group_id?: string;
   }
 
-  /** Information about workspace runtime data. */
+  /**
+   * Information about workspace runtime data.
+   */
   export interface StateStoreResponse {
     /** The provisioning engine that was used to apply the Terraform template or IBM Cloud catalog software
      *  template.
@@ -11239,13 +11510,17 @@ namespace SchematicsV1 {
     state_store_url?: string;
   }
 
-  /** Information about the Terraform statefile URL. */
+  /**
+   * Information about the Terraform statefile URL.
+   */
   export interface StateStoreResponseList {
     /** Information about workspace runtime data. */
     runtime_data?: StateStoreResponse[];
   }
 
-  /** System lock status. */
+  /**
+   * System lock status.
+   */
   export interface SystemLock {
     /** Is the automation locked by a Schematic job ?. */
     sys_locked?: boolean;
@@ -11255,7 +11530,9 @@ namespace SchematicsV1 {
     sys_locked_at?: string;
   }
 
-  /** Template metadata response. */
+  /**
+   * Template metadata response.
+   */
   export interface TemplateMetaDataResponse {
     /** The template type such as **terraform**, **ansible**, **helm**, **cloudpak**, or **bash script**. */
     type?: string;
@@ -11263,13 +11540,17 @@ namespace SchematicsV1 {
     variables: VariableData[];
   }
 
-  /** The `README.md` file for the template used by the workspace. */
+  /**
+   * The `README.md` file for the template used by the workspace.
+   */
   export interface TemplateReadme {
     /** The `README.md` file for the template used by the workspace. */
     readme?: string;
   }
 
-  /** Input variables for the Template repoository, while creating a workspace. */
+  /**
+   * Input variables for the Template repoository, while creating a workspace.
+   */
   export interface TemplateRepoRequest {
     /** The repository branch. */
     branch?: string;
@@ -11281,9 +11562,13 @@ namespace SchematicsV1 {
     repo_url?: string;
     /** The source URL. */
     url?: string;
+    /** Set this variable to checkout git sub-modules. */
+    skip_submodules_checkout?: boolean;
   }
 
-  /** Information about the Template repository used by the workspace. */
+  /**
+   * Information about the Template repository used by the workspace.
+   */
   export interface TemplateRepoResponse {
     /** The repository branch. */
     branch?: string;
@@ -11301,9 +11586,13 @@ namespace SchematicsV1 {
     repo_url?: string;
     /** The source URL. */
     url?: string;
+    /** Set this variable to checkout git sub-modules. */
+    skip_submodules_checkout?: boolean;
   }
 
-  /** Response after uploading Template in tar file format. */
+  /**
+   * Response after uploading Template in tar file format.
+   */
   export interface TemplateRepoTarUploadResponse {
     /** Tar file value. */
     file_value?: string;
@@ -11313,7 +11602,9 @@ namespace SchematicsV1 {
     id?: string;
   }
 
-  /** Input to update the template repository data. */
+  /**
+   * Input to update the template repository data.
+   */
   export interface TemplateRepoUpdateRequest {
     /** The repository branch. */
     branch?: string;
@@ -11325,9 +11616,13 @@ namespace SchematicsV1 {
     repo_url?: string;
     /** The source URL. */
     url?: string;
+    /** Set this variable to checkout git sub-modules. */
+    skip_submodules_checkout?: boolean;
   }
 
-  /** Information about the resources provisioned by the Terraform template. */
+  /**
+   * Information about the resources provisioned by the Terraform template.
+   */
   export interface TemplateResources {
     /** The subfolder in GitHub or GitLab where your Terraform templates are stored.  If your template is stored in
      *  the root directory, `.` is returned.
@@ -11353,7 +11648,9 @@ namespace SchematicsV1 {
     type?: string;
   }
 
-  /** Information about the provisioning engine, state file, and runtime logs. */
+  /**
+   * Information about the provisioning engine, state file, and runtime logs.
+   */
   export interface TemplateRunTimeDataResponse {
     /** The command that was used to apply the Terraform template or IBM Cloud catalog software template. */
     engine_cmd?: string;
@@ -11380,7 +11677,9 @@ namespace SchematicsV1 {
     state_store_url?: string;
   }
 
-  /** Input parameters to define input variables for your Terraform template. */
+  /**
+   * Input parameters to define input variables for your Terraform template.
+   */
   export interface TemplateSourceDataRequest {
     /** A list of environment variables that you want to apply during the execution of a bash script or Terraform
      *  job. This field must be provided as a list of key-value pairs, for example, **TF_LOG=debug**. Each entry will be
@@ -11428,7 +11727,9 @@ namespace SchematicsV1 {
     variablestore?: WorkspaceVariableRequest[];
   }
 
-  /** Information about the input variables that are used in the template. */
+  /**
+   * Information about the input variables that are used in the template.
+   */
   export interface TemplateSourceDataResponse {
     /** List of environment values. */
     env_values?: EnvVariableResponse[];
@@ -11462,7 +11763,9 @@ namespace SchematicsV1 {
     variablestore?: WorkspaceVariableResponse[];
   }
 
-  /** The content of the Terraform statefile (`terraform.tfstate`). */
+  /**
+   * The content of the Terraform statefile (`terraform.tfstate`).
+   */
   export interface TemplateStateStore {
     version?: number;
     terraform_version?: string;
@@ -11471,13 +11774,17 @@ namespace SchematicsV1 {
     modules?: JsonObject[];
   }
 
-  /** Information about the input variables that are declared in the template that your workspace points to. */
+  /**
+   * Information about the input variables that are declared in the template that your workspace points to.
+   */
   export interface TemplateValues {
     /** Information about workspace variable metadata. */
     values_metadata?: JsonObject[];
   }
 
-  /** Inputs for running a Terraform command on the workspace. */
+  /**
+   * Inputs for running a Terraform command on the workspace.
+   */
   export interface TerraformCommand {
     /** You must provide the command to execute. Supported commands are `show`,`taint`, `untaint`, `state`,
      *  `import`, `output`, `drift`.
@@ -11500,7 +11807,9 @@ namespace SchematicsV1 {
     command_status?: string;
   }
 
-  /** User defined status of the Schematics object. */
+  /**
+   * User defined status of the Schematics object.
+   */
   export interface UserState {
     /** User-defined states
      *    * `draft` Object can be modified; can be used by Jobs run by the author, during execution
@@ -11526,7 +11835,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** UserValues -. */
+  /**
+   * UserValues -.
+   */
   export interface UserValues {
     /** A list of environment variables that you want to apply during the execution of a bash script or Terraform
      *  job. This field must be provided as a list of key-value pairs, for example, **TF_LOG=debug**. Each entry will be
@@ -11552,13 +11863,14 @@ namespace SchematicsV1 {
     variablestore?: WorkspaceVariableResponse[];
   }
 
-  /** User editable variable data and system generated reference to the value. */
+  /**
+   * User editable variable data and system generated reference to the value.
+   */
   export interface VariableData {
     /** The name of the variable. For example, `name = "inventory username"`. */
     name?: string;
     /** The value for the variable or reference to the value. For example, `value = "<provide your ssh_key_value
-     *  with \n>"`. **Note** The SSH key should contain `\n` at the end of the key details in case of command line or
-     *  API calls.
+     *  with \n>"`.
      */
     value?: string;
     /** True, will ignore the data in the value attribute, instead the data in metadata.default_value will be used. */
@@ -11569,7 +11881,9 @@ namespace SchematicsV1 {
     link?: string;
   }
 
-  /** An user editable metadata for the variables. */
+  /**
+   * An user editable metadata for the variables.
+   */
   export interface VariableMetadata {
     /** Type of the variable. */
     type?: VariableMetadata.Constants.Type | string;
@@ -11634,7 +11948,9 @@ namespace SchematicsV1 {
     }
   }
 
-  /** Successful response when you retrieve detailed information about the IBM Cloud Schematics API. */
+  /**
+   * Successful response when you retrieve detailed information about the IBM Cloud Schematics API.
+   */
   export interface VersionResponse {
     /** The date when the API version was built. */
     builddate?: string;
@@ -11656,7 +11972,9 @@ namespace SchematicsV1 {
     terraform_version?: string;
   }
 
-  /** List of workspace jobs. */
+  /**
+   * List of workspace jobs.
+   */
   export interface WorkspaceActivities {
     /** List of workspace jobs. */
     actions?: WorkspaceActivity[];
@@ -11666,7 +11984,9 @@ namespace SchematicsV1 {
     workspace_name?: string;
   }
 
-  /** Information about the workspace jobs. */
+  /**
+   * Information about the workspace jobs.
+   */
   export interface WorkspaceActivity {
     /** The ID of the activity or job.  You can use the ID to retrieve the logs for that job by using the `GET
      *  /v1/workspaces/{id}/actions/{action_id}/logs` API.
@@ -11705,7 +12025,9 @@ namespace SchematicsV1 {
     templates?: WorkspaceActivityTemplate[];
   }
 
-  /** Response after successfully initiating a request to `apply` the Terraform template in IBM Cloud. */
+  /**
+   * Response after successfully initiating a request to `apply` the Terraform template in IBM Cloud.
+   */
   export interface WorkspaceActivityApplyResult {
     /** The ID of the activity or job that was created when you initiated a request to `apply` a Terraform template.
      *   You can use the ID to retrieve log file by using the `GET /v1/workspaces/{id}/actions/{action_id}/logs` API.
@@ -11713,7 +12035,10 @@ namespace SchematicsV1 {
     activityid?: string;
   }
 
-  /** Response after successfully initiating a request to run a workspace command on the stack of resources provisioned using Terraform. */
+  /**
+   * Response after successfully initiating a request to run a workspace command on the stack of resources provisioned
+   * using Terraform.
+   */
   export interface WorkspaceActivityCommandResult {
     /** The ID of the job that was created when you initiated a request to `apply` a Terraform template.  You can
      *  use the ID to retrieve log file by using the `GET /v1/workspaces/{id}/actions/{action_id}/logs` API.
@@ -11721,7 +12046,9 @@ namespace SchematicsV1 {
     activityid?: string;
   }
 
-  /** Response after successfully initiating a request to `destroy` the stack of resources provisioned using Terraform. */
+  /**
+   * Response after successfully initiating a request to `destroy` the stack of resources provisioned using Terraform.
+   */
   export interface WorkspaceActivityDestroyResult {
     /** The ID of the activity or job that was created when you initiated a request to `destroy` a Terraform
      *  template.  You can use the ID to retrieve log file by using the `GET
@@ -11730,7 +12057,9 @@ namespace SchematicsV1 {
     activityid?: string;
   }
 
-  /** Workspace job logs for all the templates in the workspace. */
+  /**
+   * Workspace job logs for all the templates in the workspace.
+   */
   export interface WorkspaceActivityLogs {
     /** The ID of the activity or job that ran against your workspace. */
     action_id?: string;
@@ -11748,7 +12077,9 @@ namespace SchematicsV1 {
     templates?: WorkspaceActivityTemplateLogs[];
   }
 
-  /** Workspace job options template. */
+  /**
+   * Workspace job options template.
+   */
   export interface WorkspaceActivityOptionsTemplate {
     /** A list of Terraform resources to target. */
     target?: string[];
@@ -11756,7 +12087,9 @@ namespace SchematicsV1 {
     tf_vars?: string[];
   }
 
-  /** Response after successfully initiating a request to `plan` the Terraform template in IBM Cloud. */
+  /**
+   * Response after successfully initiating a request to `plan` the Terraform template in IBM Cloud.
+   */
   export interface WorkspaceActivityPlanResult {
     /** The ID of the activity or job that was created when you initiated a request to `plan` a Terraform template.
      *  You can use the ID to retrieve log file by using the `GET /v1/workspaces/{id}/actions/{action_id}/logs` API.
@@ -11764,7 +12097,9 @@ namespace SchematicsV1 {
     activityid?: string;
   }
 
-  /** Response after successfully initiating a request to `refresh` the Terraform template in IBM Cloud. */
+  /**
+   * Response after successfully initiating a request to `refresh` the Terraform template in IBM Cloud.
+   */
   export interface WorkspaceActivityRefreshResult {
     /** The ID of the activity or job that was created for your workspace `refresh` activity or job.  You can use
      *  the ID to retrieve the log file by using the `GET /v1/workspaces/{id}/actions/{action_id}/logs` API.
@@ -11772,7 +12107,9 @@ namespace SchematicsV1 {
     activityid?: string;
   }
 
-  /** Information about the template in the workspace. */
+  /**
+   * Information about the template in the workspace.
+   */
   export interface WorkspaceActivityTemplate {
     /** End time for the job. */
     end_time?: string;
@@ -11801,7 +12138,9 @@ namespace SchematicsV1 {
     template_type?: string;
   }
 
-  /** Information about the log URL for a job that ran for a template against your workspace. */
+  /**
+   * Information about the log URL for a job that ran for a template against your workspace.
+   */
   export interface WorkspaceActivityTemplateLogs {
     /** The URL to access the logs that were created during the plan, apply, or destroy job. */
     log_url?: string;
@@ -11811,7 +12150,9 @@ namespace SchematicsV1 {
     template_type?: string;
   }
 
-  /** The response after successfully initiating the bulk job to delete multiple workspaces. */
+  /**
+   * The response after successfully initiating the bulk job to delete multiple workspaces.
+   */
   export interface WorkspaceBulkDeleteResponse {
     /** The workspace deletion job name. */
     job?: string;
@@ -11819,13 +12160,17 @@ namespace SchematicsV1 {
     job_id?: string;
   }
 
-  /** The response from the workspace bulk job status. */
+  /**
+   * The response from the workspace bulk job status.
+   */
   export interface WorkspaceJobResponse {
     /** Status of the workspace bulk job. */
     job_status?: WorkspaceJobStatusType;
   }
 
-  /** Status of the workspace bulk job. */
+  /**
+   * Status of the workspace bulk job.
+   */
   export interface WorkspaceJobStatusType {
     /** List of failed workspace jobs. */
     failed?: string[];
@@ -11837,7 +12182,9 @@ namespace SchematicsV1 {
     last_updated_on?: string;
   }
 
-  /** Workspace details. */
+  /**
+   * Workspace details.
+   */
   export interface WorkspaceResponse {
     /** Deprecated: List of applied shared dataset ID. */
     applied_shareddata_ids?: string[];
@@ -11932,9 +12279,17 @@ namespace SchematicsV1 {
     workspace_status_msg?: WorkspaceStatusMessage;
     /** Agent name, Agent id and associated policy ID information. */
     agent?: AgentInfo;
+    /** Input settings to be applied to the workspace, for example, `job_timeout_override`. */
+    settings?: VariableData[];
+    /** secrets manager reference to git token. */
+    git_token_ref?: string;
+    /** Encryption details about the workspace such as scheme (byok/kyok) and key CRN. */
+    encryption?: EncryptionInfo;
   }
 
-  /** List of workspaces. */
+  /**
+   * List of workspaces.
+   */
   export interface WorkspaceResponseList {
     /** The number of workspaces in the IBM Cloud account that you have access to and that matched your search
      *  criteria.
@@ -11952,7 +12307,9 @@ namespace SchematicsV1 {
     workspaces?: WorkspaceResponse[];
   }
 
-  /** Information about the last job that ran against the workspace. -. */
+  /**
+   * Information about the last job that ran against the workspace. -.
+   */
   export interface WorkspaceStatusMessage {
     /** The success or error code that was returned for the last plan, apply, or destroy job that ran against your
      *  workspace.
@@ -11964,7 +12321,9 @@ namespace SchematicsV1 {
     status_msg?: string;
   }
 
-  /** WorkspaceStatusRequest -. */
+  /**
+   * WorkspaceStatusRequest -.
+   */
   export interface WorkspaceStatusRequest {
     /** If set to true, the workspace is frozen and changes to the workspace are disabled. */
     frozen?: boolean;
@@ -11982,7 +12341,9 @@ namespace SchematicsV1 {
     locked_time?: string;
   }
 
-  /** Response that indicate the status of the workspace as either frozen or locked. */
+  /**
+   * Response that indicate the status of the workspace as either frozen or locked.
+   */
   export interface WorkspaceStatusResponse {
     /** If set to true, the workspace is frozen and changes to the workspace are disabled. */
     frozen?: boolean;
@@ -12000,7 +12361,9 @@ namespace SchematicsV1 {
     locked_time?: string;
   }
 
-  /** Input to update the workspace status. */
+  /**
+   * Input to update the workspace status.
+   */
   export interface WorkspaceStatusUpdateRequest {
     /** If set to true, the workspace is frozen and changes to the workspace are disabled. */
     frozen?: boolean;
@@ -12016,7 +12379,9 @@ namespace SchematicsV1 {
     locked_time?: string;
   }
 
-  /** Response with the template details in your workspace. */
+  /**
+   * Response with the template details in your workspace.
+   */
   export interface WorkspaceTemplateValuesResponse {
     /** Information about the provisioning engine, state file, and runtime logs. */
     runtime_data?: TemplateRunTimeDataResponse[];
@@ -12028,7 +12393,9 @@ namespace SchematicsV1 {
     template_data?: TemplateSourceDataResponse[];
   }
 
-  /** Input variables for your workspace. */
+  /**
+   * Input variables for your workspace.
+   */
   export interface WorkspaceVariableRequest {
     /** The description of your input variable. */
     description?: string;
@@ -12056,7 +12423,9 @@ namespace SchematicsV1 {
     value?: string;
   }
 
-  /** The description of your input variable. */
+  /**
+   * The description of your input variable.
+   */
   export interface WorkspaceVariableResponse {
     /** The description of your input variable. */
     description?: string;

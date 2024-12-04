@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Pre-rqeuisites 1) Re-generate the node SDK 2) Copy the v1.js file under schematics directory under root folder 3) Copy schematics.v1.test.js under examples directory from generated examples directory 4) Copy schematics.v1.test.js under test/unit from generated test/unit directory.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

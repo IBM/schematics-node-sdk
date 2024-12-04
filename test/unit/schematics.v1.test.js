@@ -17,9 +17,7 @@
 // need to import the whole package to mock getAuthenticatorFromEnvironment
 const sdkCorePackage = require('ibm-cloud-sdk-core');
 
-const { NoAuthAuthenticator, unitTestUtils } = sdkCorePackage;
-const SchematicsV1 = require('../../dist/schematics/v1');
-
+const { NoAuthAuthenticator } = sdkCorePackage;
 const {
   getOptions,
   checkUrlAndMethod,
@@ -27,7 +25,8 @@ const {
   expectToBePromise,
   checkUserHeader,
   checkForSuccessfulExecution,
-} = unitTestUtils;
+} = require('@ibm-cloud/sdk-test-utilities');
+const SchematicsV1 = require('../../dist/schematics/v1');
 
 const schematicsServiceOptions = {
   authenticator: new NoAuthAuthenticator(),
@@ -671,6 +670,7 @@ describe('SchematicsV1', () => {
         repo_sha_value: 'testString',
         repo_url: 'testString',
         url: 'testString',
+        skip_submodules_checkout: true,
       };
 
       // WorkspaceStatusRequest
@@ -681,6 +681,37 @@ describe('SchematicsV1', () => {
         locked: true,
         locked_by: 'testString',
         locked_time: '2019-01-01T12:00:00.000Z',
+      };
+
+      // VariableMetadata
+      const variableMetadataModel = {
+        type: 'boolean',
+        aliases: ['testString'],
+        description: 'testString',
+        cloud_data_type: 'testString',
+        default_value: 'testString',
+        link_status: 'normal',
+        secure: true,
+        immutable: true,
+        hidden: true,
+        required: true,
+        options: ['testString'],
+        min_value: 38,
+        max_value: 38,
+        min_length: 38,
+        max_length: 38,
+        matches: 'testString',
+        position: 38,
+        group_by: 'testString',
+        source: 'testString',
+      };
+
+      // VariableData
+      const variableDataModel = {
+        name: 'testString',
+        value: 'testString',
+        use_default: true,
+        metadata: variableMetadataModel,
       };
 
       function __createWorkspaceTest() {
@@ -700,6 +731,7 @@ describe('SchematicsV1', () => {
         const type = ['testString'];
         const workspaceStatus = workspaceStatusRequestModel;
         const agentId = 'testString';
+        const settings = [variableDataModel];
         const xGithubToken = 'testString';
         const createWorkspaceParams = {
           appliedShareddataIds,
@@ -717,6 +749,7 @@ describe('SchematicsV1', () => {
           type,
           workspaceStatus,
           agentId,
+          settings,
           xGithubToken,
         };
 
@@ -750,6 +783,7 @@ describe('SchematicsV1', () => {
         expect(mockRequestOptions.body.type).toEqual(type);
         expect(mockRequestOptions.body.workspace_status).toEqual(workspaceStatus);
         expect(mockRequestOptions.body.agent_id).toEqual(agentId);
+        expect(mockRequestOptions.body.settings).toEqual(settings);
       }
 
       test('should pass the right params to createRequest with enable and disable retries', () => {
@@ -974,6 +1008,7 @@ describe('SchematicsV1', () => {
         repo_sha_value: 'testString',
         repo_url: 'testString',
         url: 'testString',
+        skip_submodules_checkout: true,
       };
 
       // WorkspaceStatusUpdateRequest
@@ -992,6 +1027,37 @@ describe('SchematicsV1', () => {
         status_msg: 'testString',
       };
 
+      // VariableMetadata
+      const variableMetadataModel = {
+        type: 'boolean',
+        aliases: ['testString'],
+        description: 'testString',
+        cloud_data_type: 'testString',
+        default_value: 'testString',
+        link_status: 'normal',
+        secure: true,
+        immutable: true,
+        hidden: true,
+        required: true,
+        options: ['testString'],
+        min_value: 38,
+        max_value: 38,
+        min_length: 38,
+        max_length: 38,
+        matches: 'testString',
+        position: 38,
+        group_by: 'testString',
+        source: 'testString',
+      };
+
+      // VariableData
+      const variableDataModel = {
+        name: 'testString',
+        value: 'testString',
+        use_default: true,
+        metadata: variableMetadataModel,
+      };
+
       function __replaceWorkspaceTest() {
         // Construct the params object for operation replaceWorkspace
         const wId = 'testString';
@@ -1007,6 +1073,7 @@ describe('SchematicsV1', () => {
         const workspaceStatus = workspaceStatusUpdateRequestModel;
         const workspaceStatusMsg = workspaceStatusMessageModel;
         const agentId = 'testString';
+        const settings = [variableDataModel];
         const xGithubToken = 'testString';
         const replaceWorkspaceParams = {
           wId,
@@ -1022,6 +1089,7 @@ describe('SchematicsV1', () => {
           workspaceStatus,
           workspaceStatusMsg,
           agentId,
+          settings,
           xGithubToken,
         };
 
@@ -1052,6 +1120,7 @@ describe('SchematicsV1', () => {
         expect(mockRequestOptions.body.workspace_status).toEqual(workspaceStatus);
         expect(mockRequestOptions.body.workspace_status_msg).toEqual(workspaceStatusMsg);
         expect(mockRequestOptions.body.agent_id).toEqual(agentId);
+        expect(mockRequestOptions.body.settings).toEqual(settings);
         expect(mockRequestOptions.path.w_id).toEqual(wId);
       }
 
@@ -1305,6 +1374,7 @@ describe('SchematicsV1', () => {
         repo_sha_value: 'testString',
         repo_url: 'testString',
         url: 'testString',
+        skip_submodules_checkout: true,
       };
 
       // WorkspaceStatusUpdateRequest
@@ -1323,6 +1393,37 @@ describe('SchematicsV1', () => {
         status_msg: 'testString',
       };
 
+      // VariableMetadata
+      const variableMetadataModel = {
+        type: 'boolean',
+        aliases: ['testString'],
+        description: 'testString',
+        cloud_data_type: 'testString',
+        default_value: 'testString',
+        link_status: 'normal',
+        secure: true,
+        immutable: true,
+        hidden: true,
+        required: true,
+        options: ['testString'],
+        min_value: 38,
+        max_value: 38,
+        min_length: 38,
+        max_length: 38,
+        matches: 'testString',
+        position: 38,
+        group_by: 'testString',
+        source: 'testString',
+      };
+
+      // VariableData
+      const variableDataModel = {
+        name: 'testString',
+        value: 'testString',
+        use_default: true,
+        metadata: variableMetadataModel,
+      };
+
       function __updateWorkspaceTest() {
         // Construct the params object for operation updateWorkspace
         const wId = 'testString';
@@ -1338,6 +1439,7 @@ describe('SchematicsV1', () => {
         const workspaceStatus = workspaceStatusUpdateRequestModel;
         const workspaceStatusMsg = workspaceStatusMessageModel;
         const agentId = 'testString';
+        const settings = [variableDataModel];
         const updateWorkspaceParams = {
           wId,
           catalogRef,
@@ -1352,6 +1454,7 @@ describe('SchematicsV1', () => {
           workspaceStatus,
           workspaceStatusMsg,
           agentId,
+          settings,
         };
 
         const updateWorkspaceResult = schematicsService.updateWorkspace(updateWorkspaceParams);
@@ -1380,6 +1483,7 @@ describe('SchematicsV1', () => {
         expect(mockRequestOptions.body.workspace_status).toEqual(workspaceStatus);
         expect(mockRequestOptions.body.workspace_status_msg).toEqual(workspaceStatusMsg);
         expect(mockRequestOptions.body.agent_id).toEqual(agentId);
+        expect(mockRequestOptions.body.settings).toEqual(settings);
         expect(mockRequestOptions.path.w_id).toEqual(wId);
       }
 
@@ -2914,7 +3018,7 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: 'testString',
+        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY',
         use_default: true,
         metadata: credentialVariableMetadataModel,
       };
@@ -2959,8 +3063,7 @@ describe('SchematicsV1', () => {
       function __createActionTest() {
         // Construct the params object for operation createAction
         const name = 'Stop Action';
-        const description =
-          'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
+        const description = 'The description of your action';
         const location = 'us-south';
         const resourceGroup = 'testString';
         const bastionConnectionType = 'ssh';
@@ -3326,7 +3429,7 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: 'testString',
+        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY',
         use_default: true,
         metadata: credentialVariableMetadataModel,
       };
@@ -3372,8 +3475,7 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation updateAction
         const actionId = 'testString';
         const name = 'Stop Action';
-        const description =
-          'The description of your action. The description can be up to 2048 characters long in size. **Example** you can use the description to stop the targets.';
+        const description = 'The description of your action';
         const location = 'us-south';
         const resourceGroup = 'testString';
         const bastionConnectionType = 'ssh';
@@ -7929,8 +8031,10 @@ describe('SchematicsV1', () => {
       function __deleteAgentDataTest() {
         // Construct the params object for operation deleteAgentData
         const agentId = 'testString';
+        const force = true;
         const deleteAgentDataParams = {
           agentId,
+          force,
         };
 
         const deleteAgentDataResult = schematicsService.deleteAgentData(deleteAgentDataParams);
@@ -7947,6 +8051,7 @@ describe('SchematicsV1', () => {
         const expectedAccept = undefined;
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
+        expect(mockRequestOptions.qs.force).toEqual(force);
         expect(mockRequestOptions.path.agent_id).toEqual(agentId);
       }
 
