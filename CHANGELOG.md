@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/IBM/schematics-node-sdk/compare/v1.0.0...v1.1.0) (2024-12-20)
+
+
+### Features
+
+* **build:** re-generated the node sdk with latest schematics swagger ([0ab1fb6](https://github.com/IBM/schematics-node-sdk/commit/0ab1fb6a97459a3564a6afb2aab8a69cfb9c6117))
+
 # 1.0.0 (2024-05-08)
 
 
