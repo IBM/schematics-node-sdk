@@ -10,7 +10,7 @@ Node.js client library to interact with various [“Schematics APIs](https://clo
 Disclaimer: this SDK is being released initially as a **pre-release** version.
 Changes might occur which impact applications that use this SDK.
 
-## Table of Contents
+## Table of Contents 
 
 <!--
   The TOC below is generated using the `markdown-toc` node package.
