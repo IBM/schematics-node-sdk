@@ -1,3 +1,16 @@
+# [1.1.0](https://github.com/IBM/schematics-node-sdk/compare/v1.0.0...v1.1.0) (2025-01-21)
+
+
+### Bug Fixes
+
+* Make new release of SDK ([0ea2a6c](https://github.com/IBM/schematics-node-sdk/commit/0ea2a6cfd5bdad4be8a086e76eb11755b029278c))
+
+
+### Features
+
+* **build:** making release ([c2d0758](https://github.com/IBM/schematics-node-sdk/commit/c2d07588b3367cc6308e28849aa1fa5b2abc2944))
+* **build:** re-generated the node sdk with latest schematics swagger ([0ab1fb6](https://github.com/IBM/schematics-node-sdk/commit/0ab1fb6a97459a3564a6afb2aab8a69cfb9c6117))
+
 # [1.1.0](https://github.com/IBM/schematics-node-sdk/compare/v1.0.0...v1.1.0) (2024-12-20)
 
 
