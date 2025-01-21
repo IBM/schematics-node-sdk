@@ -4,11 +4,11 @@
 [![npm-version](https://img.shields.io/npm/v/IBM/schematics-node-sdk.svg)](https://www.npmjs.com/package/@ibm-cloud/ibm-schematics)
 [![codecov](https://codecov.io/gh/IBM/schematics-node-sdk/branch/master/graph/badge.svg)](https://codecov.io/gh/IBM/schematics-node-sdk)
 -->
-# IBM Cloud Schematics Node.js SDK
+# IBM Cloud Schematics Node.js SDK 
 Node.js client library to interact with various [“Schematics APIs](https://cloud.ibm.com/apidocs?category=schematics).
 
 Disclaimer: this SDK is being released initially as a **pre-release** version.
-Changes might occur which impact applications that use this SDK.
+Changes might occur which impact applications that use this SDK. 
 
 ## Table of Contents 
 
