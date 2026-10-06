@@ -18,8 +18,6 @@
 const sdkCorePackage = require('ibm-cloud-sdk-core');
 
 const { NoAuthAuthenticator } = sdkCorePackage;
-const SchematicsV1 = require('../../dist/schematics/v1');
-
 const {
   getOptions,
   checkUrlAndMethod,
@@ -28,6 +26,7 @@ const {
   checkUserHeader,
   checkForSuccessfulExecution,
 } = require('@ibm-cloud/sdk-test-utilities');
+const SchematicsV1 = require('../../dist/schematics/v1');
 
 const schematicsServiceOptions = {
   authenticator: new NoAuthAuthenticator(),
@@ -177,7 +176,8 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation listResourceGroup
         const listResourceGroupParams = {};
 
-        const listResourceGroupResult = schematicsService.listResourceGroup(listResourceGroupParams);
+        const listResourceGroupResult =
+          schematicsService.listResourceGroup(listResourceGroupParams);
 
         // all methods should return a Promise
         expectToBePromise(listResourceGroupResult);
@@ -237,7 +237,9 @@ describe('SchematicsV1', () => {
         // Construct the params object for operation getSchematicsVersion
         const getSchematicsVersionParams = {};
 
-        const getSchematicsVersionResult = schematicsService.getSchematicsVersion(getSchematicsVersionParams);
+        const getSchematicsVersionResult = schematicsService.getSchematicsVersion(
+          getSchematicsVersionParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getSchematicsVersionResult);
@@ -297,7 +299,8 @@ describe('SchematicsV1', () => {
 
       // GitSource
       const gitSourceModel = {
-        computed_git_repo_url: 'https://github.com/IBM-Cloud/terraform-provider-ibm/tree/master/examples/ibm-vsi',
+        computed_git_repo_url:
+          'https://github.com/IBM-Cloud/terraform-provider-ibm/tree/master/examples/ibm-vsi',
         git_repo_url: 'https://github.com/IBM-Cloud/terraform-provider-ibm',
         git_token: 'testString',
         git_repo_folder: 'examples/ibm-vsi',
@@ -350,7 +353,9 @@ describe('SchematicsV1', () => {
           xGithubToken,
         };
 
-        const processTemplateMetaDataResult = schematicsService.processTemplateMetaData(processTemplateMetaDataParams);
+        const processTemplateMetaDataResult = schematicsService.processTemplateMetaData(
+          processTemplateMetaDataParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(processTemplateMetaDataResult);
@@ -1492,7 +1497,8 @@ describe('SchematicsV1', () => {
           formatted,
         };
 
-        const getWorkspaceReadmeResult = schematicsService.getWorkspaceReadme(getWorkspaceReadmeParams);
+        const getWorkspaceReadmeResult =
+          schematicsService.getWorkspaceReadme(getWorkspaceReadmeParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceReadmeResult);
@@ -1584,7 +1590,8 @@ describe('SchematicsV1', () => {
           fileContentType,
         };
 
-        const templateRepoUploadResult = schematicsService.templateRepoUpload(templateRepoUploadParams);
+        const templateRepoUploadResult =
+          schematicsService.templateRepoUpload(templateRepoUploadParams);
 
         // all methods should return a Promise
         expectToBePromise(templateRepoUploadResult);
@@ -1594,7 +1601,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload', 'PUT');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/template_data/{t_id}/template_repo_upload',
+          'PUT'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = 'multipart/form-data';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1675,7 +1686,8 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceInputsResult = schematicsService.getWorkspaceInputs(getWorkspaceInputsParams);
+        const getWorkspaceInputsResult =
+          schematicsService.getWorkspaceInputs(getWorkspaceInputsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceInputsResult);
@@ -1685,7 +1697,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/values', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/template_data/{t_id}/values',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1782,7 +1798,9 @@ describe('SchematicsV1', () => {
           variablestore,
         };
 
-        const replaceWorkspaceInputsResult = schematicsService.replaceWorkspaceInputs(replaceWorkspaceInputsParams);
+        const replaceWorkspaceInputsResult = schematicsService.replaceWorkspaceInputs(
+          replaceWorkspaceInputsParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(replaceWorkspaceInputsResult);
@@ -1792,7 +1810,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/values', 'PUT');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/template_data/{t_id}/values',
+          'PUT'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = 'application/json';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -1872,7 +1894,9 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getAllWorkspaceInputsResult = schematicsService.getAllWorkspaceInputs(getAllWorkspaceInputsParams);
+        const getAllWorkspaceInputsResult = schematicsService.getAllWorkspaceInputs(
+          getAllWorkspaceInputsParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getAllWorkspaceInputsResult);
@@ -1958,7 +1982,9 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceInputMetadataV2Result = schematicsService.getWorkspaceInputMetadataV2(getWorkspaceInputMetadataV2Params);
+        const getWorkspaceInputMetadataV2Result = schematicsService.getWorkspaceInputMetadataV2(
+          getWorkspaceInputMetadataV2Params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceInputMetadataV2Result);
@@ -1968,7 +1994,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v2/workspaces/{w_id}/template_data/{t_id}/values_metadata', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v2/workspaces/{w_id}/template_data/{t_id}/values_metadata',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2047,7 +2077,9 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceInputMetadataResult = schematicsService.getWorkspaceInputMetadata(getWorkspaceInputMetadataParams);
+        const getWorkspaceInputMetadataResult = schematicsService.getWorkspaceInputMetadata(
+          getWorkspaceInputMetadataParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceInputMetadataResult);
@@ -2057,7 +2089,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/template_data/{t_id}/values_metadata',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2134,7 +2170,9 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceOutputsV2Result = schematicsService.getWorkspaceOutputsV2(getWorkspaceOutputsV2Params);
+        const getWorkspaceOutputsV2Result = schematicsService.getWorkspaceOutputsV2(
+          getWorkspaceOutputsV2Params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceOutputsV2Result);
@@ -2218,7 +2256,8 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceOutputsResult = schematicsService.getWorkspaceOutputs(getWorkspaceOutputsParams);
+        const getWorkspaceOutputsResult =
+          schematicsService.getWorkspaceOutputs(getWorkspaceOutputsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceOutputsResult);
@@ -2302,7 +2341,9 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceResourcesV2Result = schematicsService.getWorkspaceResourcesV2(getWorkspaceResourcesV2Params);
+        const getWorkspaceResourcesV2Result = schematicsService.getWorkspaceResourcesV2(
+          getWorkspaceResourcesV2Params
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceResourcesV2Result);
@@ -2386,7 +2427,9 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceResourcesResult = schematicsService.getWorkspaceResources(getWorkspaceResourcesParams);
+        const getWorkspaceResourcesResult = schematicsService.getWorkspaceResources(
+          getWorkspaceResourcesParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceResourcesResult);
@@ -2470,7 +2513,8 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceStateResult = schematicsService.getWorkspaceState(getWorkspaceStateParams);
+        const getWorkspaceStateResult =
+          schematicsService.getWorkspaceState(getWorkspaceStateParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceStateResult);
@@ -2556,7 +2600,9 @@ describe('SchematicsV1', () => {
           tId,
         };
 
-        const getWorkspaceTemplateStateResult = schematicsService.getWorkspaceTemplateState(getWorkspaceTemplateStateParams);
+        const getWorkspaceTemplateStateResult = schematicsService.getWorkspaceTemplateState(
+          getWorkspaceTemplateStateParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceTemplateStateResult);
@@ -2566,7 +2612,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/runtime_data/{t_id}/state_store', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/runtime_data/{t_id}/state_store',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2645,7 +2695,9 @@ describe('SchematicsV1', () => {
           activityId,
         };
 
-        const getWorkspaceActivityLogsResult = schematicsService.getWorkspaceActivityLogs(getWorkspaceActivityLogsParams);
+        const getWorkspaceActivityLogsResult = schematicsService.getWorkspaceActivityLogs(
+          getWorkspaceActivityLogsParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceActivityLogsResult);
@@ -2655,7 +2707,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/actions/{activity_id}/logs', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/actions/{activity_id}/logs',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2732,7 +2788,8 @@ describe('SchematicsV1', () => {
           wId,
         };
 
-        const getWorkspaceLogUrlsResult = schematicsService.getWorkspaceLogUrls(getWorkspaceLogUrlsParams);
+        const getWorkspaceLogUrlsResult =
+          schematicsService.getWorkspaceLogUrls(getWorkspaceLogUrlsParams);
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceLogUrlsResult);
@@ -2836,7 +2893,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -2929,7 +2990,9 @@ describe('SchematicsV1', () => {
           logTfAnsible,
         };
 
-        const getTemplateActivityLogResult = schematicsService.getTemplateActivityLog(getTemplateActivityLogParams);
+        const getTemplateActivityLogResult = schematicsService.getTemplateActivityLog(
+          getTemplateActivityLogParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getTemplateActivityLogResult);
@@ -2939,7 +3002,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}', 'GET');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/runtime_data/{t_id}/log_store/actions/{activity_id}',
+          'GET'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -3157,7 +3224,8 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
+        value:
+          '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
         redacted: 'testString',
         use_default: true,
         metadata: credentialVariableMetadataModel,
@@ -3208,7 +3276,13 @@ describe('SchematicsV1', () => {
         const resourceGroup = 'test';
         const bastionConnectionType = 'ssh';
         const inventoryConnectionType = 'ssh';
-        const tags = ['department:HR', 'application:compensation', 'environment:staging', 'env:dev', 'k8s'];
+        const tags = [
+          'department:HR',
+          'application:compensation',
+          'environment:staging',
+          'env:dev',
+          'k8s',
+        ];
         const userState = userStateModel;
         const sourceReadmeUrl = 'testString';
         const source = externalSourceModel;
@@ -3569,7 +3643,8 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
+        value:
+          '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
         redacted: 'testString',
         use_default: true,
         metadata: credentialVariableMetadataModel,
@@ -3770,7 +3845,9 @@ describe('SchematicsV1', () => {
           fileContentType,
         };
 
-        const uploadTemplateTarActionResult = schematicsService.uploadTemplateTarAction(uploadTemplateTarActionParams);
+        const uploadTemplateTarActionResult = schematicsService.uploadTemplateTarAction(
+          uploadTemplateTarActionParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(uploadTemplateTarActionResult);
@@ -3780,7 +3857,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v2/actions/{action_id}/template_repo_upload', 'PUT');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v2/actions/{action_id}/template_repo_upload',
+          'PUT'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = 'multipart/form-data';
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -3860,7 +3941,9 @@ describe('SchematicsV1', () => {
           limit,
         };
 
-        const listWorkspaceActivitiesResult = schematicsService.listWorkspaceActivities(listWorkspaceActivitiesParams);
+        const listWorkspaceActivitiesResult = schematicsService.listWorkspaceActivities(
+          listWorkspaceActivitiesParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(listWorkspaceActivitiesResult);
@@ -3948,7 +4031,9 @@ describe('SchematicsV1', () => {
           activityId,
         };
 
-        const deleteWorkspaceActivityResult = schematicsService.deleteWorkspaceActivity(deleteWorkspaceActivityParams);
+        const deleteWorkspaceActivityResult = schematicsService.deleteWorkspaceActivity(
+          deleteWorkspaceActivityParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(deleteWorkspaceActivityResult);
@@ -3958,7 +4043,11 @@ describe('SchematicsV1', () => {
 
         const mockRequestOptions = getOptions(createRequestMock);
 
-        checkUrlAndMethod(mockRequestOptions, '/v1/workspaces/{w_id}/actions/{activity_id}', 'DELETE');
+        checkUrlAndMethod(
+          mockRequestOptions,
+          '/v1/workspaces/{w_id}/actions/{activity_id}',
+          'DELETE'
+        );
         const expectedAccept = 'application/json';
         const expectedContentType = undefined;
         checkMediaHeaders(createRequestMock, expectedAccept, expectedContentType);
@@ -4037,7 +4126,9 @@ describe('SchematicsV1', () => {
           activityId,
         };
 
-        const getWorkspaceActivityResult = schematicsService.getWorkspaceActivity(getWorkspaceActivityParams);
+        const getWorkspaceActivityResult = schematicsService.getWorkspaceActivity(
+          getWorkspaceActivityParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceActivityResult);
@@ -4145,7 +4236,9 @@ describe('SchematicsV1', () => {
           description,
         };
 
-        const runWorkspaceCommandsResult = schematicsService.runWorkspaceCommands(runWorkspaceCommandsParams);
+        const runWorkspaceCommandsResult = schematicsService.runWorkspaceCommands(
+          runWorkspaceCommandsParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(runWorkspaceCommandsResult);
@@ -4249,7 +4342,9 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const applyWorkspaceCommandResult = schematicsService.applyWorkspaceCommand(applyWorkspaceCommandParams);
+        const applyWorkspaceCommandResult = schematicsService.applyWorkspaceCommand(
+          applyWorkspaceCommandParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(applyWorkspaceCommandResult);
@@ -4352,7 +4447,9 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const destroyWorkspaceCommandResult = schematicsService.destroyWorkspaceCommand(destroyWorkspaceCommandParams);
+        const destroyWorkspaceCommandResult = schematicsService.destroyWorkspaceCommand(
+          destroyWorkspaceCommandParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(destroyWorkspaceCommandResult);
@@ -4455,7 +4552,9 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const planWorkspaceCommandResult = schematicsService.planWorkspaceCommand(planWorkspaceCommandParams);
+        const planWorkspaceCommandResult = schematicsService.planWorkspaceCommand(
+          planWorkspaceCommandParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(planWorkspaceCommandResult);
@@ -4548,7 +4647,9 @@ describe('SchematicsV1', () => {
           delegatedToken,
         };
 
-        const refreshWorkspaceCommandResult = schematicsService.refreshWorkspaceCommand(refreshWorkspaceCommandParams);
+        const refreshWorkspaceCommandResult = schematicsService.refreshWorkspaceCommand(
+          refreshWorkspaceCommandParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(refreshWorkspaceCommandResult);
@@ -4878,7 +4979,8 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
+        value:
+          '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
         redacted: 'testString',
         use_default: true,
         metadata: credentialVariableMetadataModel,
@@ -5027,12 +5129,10 @@ describe('SchematicsV1', () => {
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {
-      };
+      const jobLogSummaryRepoDownloadJobModel = {};
 
       // JobLogSummaryWorkspaceJob
-      const jobLogSummaryWorkspaceJobModel = {
-      };
+      const jobLogSummaryWorkspaceJobModel = {};
 
       // JobLogSummaryWorkitems
       const jobLogSummaryWorkitemsModel = {
@@ -5556,7 +5656,8 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
+        value:
+          '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
         redacted: 'testString',
         use_default: true,
         metadata: credentialVariableMetadataModel,
@@ -5705,12 +5806,10 @@ describe('SchematicsV1', () => {
       };
 
       // JobLogSummaryRepoDownloadJob
-      const jobLogSummaryRepoDownloadJobModel = {
-      };
+      const jobLogSummaryRepoDownloadJobModel = {};
 
       // JobLogSummaryWorkspaceJob
-      const jobLogSummaryWorkspaceJobModel = {
-      };
+      const jobLogSummaryWorkspaceJobModel = {};
 
       // JobLogSummaryWorkitems
       const jobLogSummaryWorkitemsModel = {
@@ -6074,7 +6173,14 @@ describe('SchematicsV1', () => {
         const refreshToken = 'testString';
         const job = 'delete';
         const version = 'testString';
-        const workspaces = ['us-south.workspace.testWorkspace.a6010c37', 'us-south.workspace.teraformNewupdatedone.72011986', 'us-south.workspace.readterraform.400b427c', 'us-south.workspace.myworkspacesink.49745827', 'us-south.workspace.ReadTerraformTemp.c98c9774', 'us-south.workspace.SampleTest1.2a51c3a1'];
+        const workspaces = [
+          'us-south.workspace.testWorkspace.a6010c37',
+          'us-south.workspace.teraformNewupdatedone.72011986',
+          'us-south.workspace.readterraform.400b427c',
+          'us-south.workspace.myworkspacesink.49745827',
+          'us-south.workspace.ReadTerraformTemp.c98c9774',
+          'us-south.workspace.SampleTest1.2a51c3a1',
+        ];
         const createWorkspaceDeletionJobParams = {
           refreshToken,
           job,
@@ -6082,7 +6188,9 @@ describe('SchematicsV1', () => {
           workspaces,
         };
 
-        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(createWorkspaceDeletionJobParams);
+        const createWorkspaceDeletionJobResult = schematicsService.createWorkspaceDeletionJob(
+          createWorkspaceDeletionJobParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(createWorkspaceDeletionJobResult);
@@ -6169,7 +6277,9 @@ describe('SchematicsV1', () => {
           wjId,
         };
 
-        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(getWorkspaceDeletionJobStatusParams);
+        const getWorkspaceDeletionJobStatusResult = schematicsService.getWorkspaceDeletionJobStatus(
+          getWorkspaceDeletionJobStatusParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(getWorkspaceDeletionJobStatusResult);
@@ -6340,7 +6450,8 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
+        value:
+          '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
         redacted: 'testString',
         use_default: true,
         metadata: credentialVariableMetadataModel,
@@ -6699,7 +6810,8 @@ describe('SchematicsV1', () => {
       // CredentialVariableData
       const credentialVariableDataModel = {
         name: 'testString',
-        value: '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
+        value:
+          '-----BEGIN OPENSSH PRIVATE KEY-----\\nXXXXXXXXXXXXX\\n-----END OPENSSH PRIVATE KEY-----\\n',
         redacted: 'testString',
         use_default: true,
         metadata: credentialVariableMetadataModel,
@@ -6896,7 +7008,8 @@ describe('SchematicsV1', () => {
           profile,
         };
 
-        const listResourceQueryResult = schematicsService.listResourceQuery(listResourceQueryParams);
+        const listResourceQueryResult =
+          schematicsService.listResourceQuery(listResourceQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(listResourceQueryResult);
@@ -6983,7 +7096,8 @@ describe('SchematicsV1', () => {
           queries,
         };
 
-        const createResourceQueryResult = schematicsService.createResourceQuery(createResourceQueryParams);
+        const createResourceQueryResult =
+          schematicsService.createResourceQuery(createResourceQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(createResourceQueryResult);
@@ -7053,7 +7167,9 @@ describe('SchematicsV1', () => {
           propagate,
         };
 
-        const deleteResourcesQueryResult = schematicsService.deleteResourcesQuery(deleteResourcesQueryParams);
+        const deleteResourcesQueryResult = schematicsService.deleteResourcesQuery(
+          deleteResourcesQueryParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(deleteResourcesQueryResult);
@@ -7139,7 +7255,8 @@ describe('SchematicsV1', () => {
           queryId,
         };
 
-        const getResourcesQueryResult = schematicsService.getResourcesQuery(getResourcesQueryParams);
+        const getResourcesQueryResult =
+          schematicsService.getResourcesQuery(getResourcesQueryParams);
 
         // all methods should return a Promise
         expectToBePromise(getResourcesQueryResult);
@@ -7223,7 +7340,9 @@ describe('SchematicsV1', () => {
           queryId,
         };
 
-        const executeResourceQueryResult = schematicsService.executeResourceQuery(executeResourceQueryParams);
+        const executeResourceQueryResult = schematicsService.executeResourceQuery(
+          executeResourceQueryParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(executeResourceQueryResult);
@@ -7329,7 +7448,9 @@ describe('SchematicsV1', () => {
           queries,
         };
 
-        const replaceResourcesQueryResult = schematicsService.replaceResourcesQuery(replaceResourcesQueryParams);
+        const replaceResourcesQueryResult = schematicsService.replaceResourcesQuery(
+          replaceResourcesQueryParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(replaceResourcesQueryResult);
@@ -8200,7 +8321,8 @@ describe('SchematicsV1', () => {
           force,
         };
 
-        const healthCheckAgentJobResult = schematicsService.healthCheckAgentJob(healthCheckAgentJobParams);
+        const healthCheckAgentJobResult =
+          schematicsService.healthCheckAgentJob(healthCheckAgentJobParams);
 
         // all methods should return a Promise
         expectToBePromise(healthCheckAgentJobResult);
@@ -8374,7 +8496,9 @@ describe('SchematicsV1', () => {
           refreshToken,
         };
 
-        const deleteAgentResourcesResult = schematicsService.deleteAgentResources(deleteAgentResourcesParams);
+        const deleteAgentResourcesResult = schematicsService.deleteAgentResources(
+          deleteAgentResourcesParams
+        );
 
         // all methods should return a Promise
         expectToBePromise(deleteAgentResourcesResult);
@@ -8569,7 +8693,8 @@ describe('SchematicsV1', () => {
           secondaryCrk,
         };
 
-        const updateKmsSettingsResult = schematicsService.updateKmsSettings(updateKmsSettingsParams);
+        const updateKmsSettingsResult =
+          schematicsService.updateKmsSettings(updateKmsSettingsParams);
 
         // all methods should return a Promise
         expectToBePromise(updateKmsSettingsResult);

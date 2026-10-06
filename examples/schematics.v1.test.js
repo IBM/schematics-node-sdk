@@ -154,7 +154,8 @@ describe('SchematicsV1', () => {
 
     // GitSource
     const gitSourceModel = {
-      computed_git_repo_url: 'https://github.com/IBM-Cloud/terraform-provider-ibm/tree/master/examples/ibm-vsi',
+      computed_git_repo_url:
+        'https://github.com/IBM-Cloud/terraform-provider-ibm/tree/master/examples/ibm-vsi',
       git_repo_url: 'https://github.com/IBM-Cloud/terraform-provider-ibm',
       git_repo_folder: 'examples/ibm-vsi',
       git_release: 'v1.0.0',
@@ -1470,7 +1471,14 @@ describe('SchematicsV1', () => {
     const params = {
       refreshToken: 'testString',
       job: 'delete',
-      workspaces: ['us-south.workspace.testWorkspace.a6010c37', 'us-south.workspace.teraformNewupdatedone.72011986', 'us-south.workspace.readterraform.400b427c', 'us-south.workspace.myworkspacesink.49745827', 'us-south.workspace.ReadTerraformTemp.c98c9774', 'us-south.workspace.SampleTest1.2a51c3a1'],
+      workspaces: [
+        'us-south.workspace.testWorkspace.a6010c37',
+        'us-south.workspace.teraformNewupdatedone.72011986',
+        'us-south.workspace.readterraform.400b427c',
+        'us-south.workspace.myworkspacesink.49745827',
+        'us-south.workspace.ReadTerraformTemp.c98c9774',
+        'us-south.workspace.SampleTest1.2a51c3a1',
+      ],
     };
 
     let res;
@@ -1612,8 +1620,7 @@ describe('SchematicsV1', () => {
     // Request models needed by this operation.
 
     // CredentialVariableMetadata
-    const credentialVariableMetadataModel = {
-    };
+    const credentialVariableMetadataModel = {};
 
     // CredentialVariableData
     const credentialVariableDataModel = {
