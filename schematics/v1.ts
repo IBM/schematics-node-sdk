@@ -233,7 +233,11 @@ class SchematicsV1 extends BaseService {
       return Promise.reject(_validationErrors);
     }
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getSchematicsVersion');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getSchematicsVersion'
+    );
 
     const parameters = {
       options: {
@@ -288,7 +292,15 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.TemplateMetaDataResponse>> {
     const _params = { ...params };
     const _requiredParams = ['templateType', 'source'];
-    const _validParams = ['templateType', 'source', 'region', 'sourceType', 'xGithubToken', 'signal', 'headers'];
+    const _validParams = [
+      'templateType',
+      'source',
+      'region',
+      'sourceType',
+      'xGithubToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -301,7 +313,11 @@ class SchematicsV1 extends BaseService {
       'source_type': _params.sourceType,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'processTemplateMetaData');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'processTemplateMetaData'
+    );
 
     const parameters = {
       options: {
@@ -488,7 +504,27 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceResponse>> {
     const _params = { ...params };
     const _requiredParams = [];
-    const _validParams = ['appliedShareddataIds', 'catalogRef', 'dependencies', 'description', 'location', 'name', 'resourceGroup', 'sharedData', 'tags', 'templateData', 'templateRef', 'templateRepo', 'type', 'workspaceStatus', 'agentId', 'settings', 'xGithubToken', 'signal', 'headers'];
+    const _validParams = [
+      'appliedShareddataIds',
+      'catalogRef',
+      'dependencies',
+      'description',
+      'location',
+      'name',
+      'resourceGroup',
+      'sharedData',
+      'tags',
+      'templateData',
+      'templateRef',
+      'templateRepo',
+      'type',
+      'workspaceStatus',
+      'agentId',
+      'settings',
+      'xGithubToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -742,7 +778,24 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceResponse>> {
     const _params = { ...params };
     const _requiredParams = ['wId'];
-    const _validParams = ['wId', 'catalogRef', 'description', 'dependencies', 'name', 'sharedData', 'tags', 'templateData', 'templateRepo', 'type', 'workspaceStatus', 'workspaceStatusMsg', 'agentId', 'settings', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'catalogRef',
+      'description',
+      'dependencies',
+      'name',
+      'sharedData',
+      'tags',
+      'templateData',
+      'templateRepo',
+      'type',
+      'workspaceStatus',
+      'workspaceStatusMsg',
+      'agentId',
+      'settings',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -843,7 +896,25 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceResponse>> {
     const _params = { ...params };
     const _requiredParams = ['wId'];
-    const _validParams = ['wId', 'catalogRef', 'description', 'dependencies', 'name', 'sharedData', 'tags', 'templateData', 'templateRepo', 'type', 'workspaceStatus', 'workspaceStatusMsg', 'agentId', 'settings', 'xGithubToken', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'catalogRef',
+      'description',
+      'dependencies',
+      'name',
+      'sharedData',
+      'tags',
+      'templateData',
+      'templateRepo',
+      'type',
+      'workspaceStatus',
+      'workspaceStatusMsg',
+      'agentId',
+      'settings',
+      'xGithubToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -1130,7 +1201,15 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.UserValues>> {
     const _params = { ...params };
     const _requiredParams = ['wId', 'tId'];
-    const _validParams = ['wId', 'tId', 'envValues', 'values', 'variablestore', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'tId',
+      'envValues',
+      'values',
+      'variablestore',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -1147,7 +1226,11 @@ class SchematicsV1 extends BaseService {
       't_id': _params.tId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'replaceWorkspaceInputs');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'replaceWorkspaceInputs'
+    );
 
     const parameters = {
       options: {
@@ -1209,7 +1292,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getAllWorkspaceInputs');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getAllWorkspaceInputs'
+    );
 
     const parameters = {
       options: {
@@ -1267,7 +1354,11 @@ class SchematicsV1 extends BaseService {
       't_id': _params.tId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceInputMetadataV2');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceInputMetadataV2'
+    );
 
     const parameters = {
       options: {
@@ -1328,7 +1419,11 @@ class SchematicsV1 extends BaseService {
       't_id': _params.tId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceInputMetadata');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceInputMetadata'
+    );
 
     const parameters = {
       options: {
@@ -1382,7 +1477,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceOutputsV2');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceOutputsV2'
+    );
 
     const parameters = {
       options: {
@@ -1439,7 +1538,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceOutputs');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceOutputs'
+    );
 
     const parameters = {
       options: {
@@ -1491,7 +1594,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceResourcesV2');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceResourcesV2'
+    );
 
     const parameters = {
       options: {
@@ -1546,7 +1653,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceResources');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceResources'
+    );
 
     const parameters = {
       options: {
@@ -1676,7 +1787,11 @@ class SchematicsV1 extends BaseService {
       't_id': _params.tId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceTemplateState');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceTemplateState'
+    );
 
     const parameters = {
       options: {
@@ -1742,7 +1857,11 @@ class SchematicsV1 extends BaseService {
       'activity_id': _params.activityId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceActivityLogs');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceActivityLogs'
+    );
 
     const parameters = {
       options: {
@@ -1797,7 +1916,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceLogUrls');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceLogUrls'
+    );
 
     const parameters = {
       options: {
@@ -1857,7 +1980,16 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<string>> {
     const _params = { ...params };
     const _requiredParams = ['wId', 'tId'];
-    const _validParams = ['wId', 'tId', 'logTfCmd', 'logTfPrefix', 'logTfNullResource', 'logTfAnsible', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'tId',
+      'logTfCmd',
+      'logTfPrefix',
+      'logTfNullResource',
+      'logTfAnsible',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -1931,7 +2063,17 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<string>> {
     const _params = { ...params };
     const _requiredParams = ['wId', 'tId', 'activityId'];
-    const _validParams = ['wId', 'tId', 'activityId', 'logTfCmd', 'logTfPrefix', 'logTfNullResource', 'logTfAnsible', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'tId',
+      'activityId',
+      'logTfCmd',
+      'logTfPrefix',
+      'logTfNullResource',
+      'logTfAnsible',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -1950,7 +2092,11 @@ class SchematicsV1 extends BaseService {
       'activity_id': _params.activityId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getTemplateActivityLog');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getTemplateActivityLog'
+    );
 
     const parameters = {
       options: {
@@ -2131,7 +2277,31 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.Action>> {
     const _params = { ...params };
     const _requiredParams = [];
-    const _validParams = ['name', 'description', 'location', 'resourceGroup', 'bastionConnectionType', 'inventoryConnectionType', 'tags', 'userState', 'sourceReadmeUrl', 'source', 'sourceType', 'commandParameter', 'inventory', 'credentials', 'bastion', 'bastionCredential', 'targetsIni', 'inputs', 'outputs', 'settings', 'xGithubToken', 'signal', 'headers'];
+    const _validParams = [
+      'name',
+      'description',
+      'location',
+      'resourceGroup',
+      'bastionConnectionType',
+      'inventoryConnectionType',
+      'tags',
+      'userState',
+      'sourceReadmeUrl',
+      'source',
+      'sourceType',
+      'commandParameter',
+      'inventory',
+      'credentials',
+      'bastion',
+      'bastionCredential',
+      'targetsIni',
+      'inputs',
+      'outputs',
+      'settings',
+      'xGithubToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -2392,7 +2562,32 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.Action>> {
     const _params = { ...params };
     const _requiredParams = ['actionId'];
-    const _validParams = ['actionId', 'name', 'description', 'location', 'resourceGroup', 'bastionConnectionType', 'inventoryConnectionType', 'tags', 'userState', 'sourceReadmeUrl', 'source', 'sourceType', 'commandParameter', 'inventory', 'credentials', 'bastion', 'bastionCredential', 'targetsIni', 'inputs', 'outputs', 'settings', 'xGithubToken', 'signal', 'headers'];
+    const _validParams = [
+      'actionId',
+      'name',
+      'description',
+      'location',
+      'resourceGroup',
+      'bastionConnectionType',
+      'inventoryConnectionType',
+      'tags',
+      'userState',
+      'sourceReadmeUrl',
+      'source',
+      'sourceType',
+      'commandParameter',
+      'inventory',
+      'credentials',
+      'bastion',
+      'bastionCredential',
+      'targetsIni',
+      'inputs',
+      'outputs',
+      'settings',
+      'xGithubToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -2498,7 +2693,11 @@ class SchematicsV1 extends BaseService {
       'action_id': _params.actionId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'uploadTemplateTarAction');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'uploadTemplateTarAction'
+    );
 
     const parameters = {
       options: {
@@ -2568,7 +2767,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'listWorkspaceActivities');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'listWorkspaceActivities'
+    );
 
     const parameters = {
       options: {
@@ -2634,7 +2837,11 @@ class SchematicsV1 extends BaseService {
       'activity_id': _params.activityId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteWorkspaceActivity');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'deleteWorkspaceActivity'
+    );
 
     const parameters = {
       options: {
@@ -2690,7 +2897,11 @@ class SchematicsV1 extends BaseService {
       'activity_id': _params.activityId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceActivity');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceActivity'
+    );
 
     const parameters = {
       options: {
@@ -2758,7 +2969,15 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceActivityCommandResult>> {
     const _params = { ...params };
     const _requiredParams = ['wId', 'refreshToken'];
-    const _validParams = ['wId', 'refreshToken', 'commands', 'operationName', 'description', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'refreshToken',
+      'commands',
+      'operationName',
+      'description',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -2774,7 +2993,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'runWorkspaceCommands');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'runWorkspaceCommands'
+    );
 
     const parameters = {
       options: {
@@ -2868,7 +3091,14 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceActivityApplyResult>> {
     const _params = { ...params };
     const _requiredParams = ['refreshToken', 'wId'];
-    const _validParams = ['refreshToken', 'wId', 'actionOptions', 'delegatedToken', 'signal', 'headers'];
+    const _validParams = [
+      'refreshToken',
+      'wId',
+      'actionOptions',
+      'delegatedToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -2882,7 +3112,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'applyWorkspaceCommand');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'applyWorkspaceCommand'
+    );
 
     const parameters = {
       options: {
@@ -2964,7 +3198,14 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceActivityDestroyResult>> {
     const _params = { ...params };
     const _requiredParams = ['refreshToken', 'wId'];
-    const _validParams = ['refreshToken', 'wId', 'actionOptions', 'delegatedToken', 'signal', 'headers'];
+    const _validParams = [
+      'refreshToken',
+      'wId',
+      'actionOptions',
+      'delegatedToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -2978,7 +3219,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'destroyWorkspaceCommand');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'destroyWorkspaceCommand'
+    );
 
     const parameters = {
       options: {
@@ -3060,7 +3305,14 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.WorkspaceActivityPlanResult>> {
     const _params = { ...params };
     const _requiredParams = ['wId', 'refreshToken'];
-    const _validParams = ['wId', 'refreshToken', 'actionOptions', 'delegatedToken', 'signal', 'headers'];
+    const _validParams = [
+      'wId',
+      'refreshToken',
+      'actionOptions',
+      'delegatedToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -3074,7 +3326,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'planWorkspaceCommand');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'planWorkspaceCommand'
+    );
 
     const parameters = {
       options: {
@@ -3157,7 +3413,11 @@ class SchematicsV1 extends BaseService {
       'w_id': _params.wId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'refreshWorkspaceCommand');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'refreshWorkspaceCommand'
+    );
 
     const parameters = {
       options: {
@@ -3225,7 +3485,19 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.JobList>> {
     const _params = { ...params };
     const _requiredParams = [];
-    const _validParams = ['offset', 'limit', 'sort', 'profile', 'resource', 'resourceId', 'actionId', 'workspaceId', 'list', 'signal', 'headers'];
+    const _validParams = [
+      'offset',
+      'limit',
+      'sort',
+      'profile',
+      'resource',
+      'resourceId',
+      'actionId',
+      'workspaceId',
+      'list',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -3318,7 +3590,26 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.Job>> {
     const _params = { ...params };
     const _requiredParams = ['refreshToken'];
-    const _validParams = ['refreshToken', 'commandObject', 'commandObjectId', 'commandName', 'commandParameter', 'commandOptions', 'inputs', 'settings', 'tags', 'location', 'status', 'cartOrderData', 'data', 'bastion', 'logSummary', 'agent', 'signal', 'headers'];
+    const _validParams = [
+      'refreshToken',
+      'commandObject',
+      'commandObjectId',
+      'commandName',
+      'commandParameter',
+      'commandOptions',
+      'inputs',
+      'settings',
+      'tags',
+      'location',
+      'status',
+      'cartOrderData',
+      'data',
+      'bastion',
+      'logSummary',
+      'agent',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -3572,7 +3863,27 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.Job>> {
     const _params = { ...params };
     const _requiredParams = ['jobId', 'refreshToken'];
-    const _validParams = ['jobId', 'refreshToken', 'commandObject', 'commandObjectId', 'commandName', 'commandParameter', 'commandOptions', 'inputs', 'settings', 'tags', 'location', 'status', 'cartOrderData', 'data', 'bastion', 'logSummary', 'agent', 'signal', 'headers'];
+    const _validParams = [
+      'jobId',
+      'refreshToken',
+      'commandObject',
+      'commandObjectId',
+      'commandName',
+      'commandParameter',
+      'commandOptions',
+      'inputs',
+      'settings',
+      'tags',
+      'location',
+      'status',
+      'cartOrderData',
+      'data',
+      'bastion',
+      'logSummary',
+      'agent',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -3688,7 +3999,7 @@ class SchematicsV1 extends BaseService {
    * Get output files from the Job record.
    *
    * Get output files from the Job record. For more information, about the Schematics job status, download job logs, and
-   * download the output files, see [Download Schematics
+   * download the output files, see [Download Schematics
    * Job](https://cloud.ibm.com/docs/schematics?topic=schematics-job-download).
    *
    * @param {Object} params - The parameters to send to the service.
@@ -3798,7 +4109,11 @@ class SchematicsV1 extends BaseService {
       'workspaces': _params.workspaces,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'createWorkspaceDeletionJob');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'createWorkspaceDeletionJob'
+    );
 
     const parameters = {
       options: {
@@ -3859,7 +4174,11 @@ class SchematicsV1 extends BaseService {
       'wj_id': _params.wjId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'getWorkspaceDeletionJobStatus');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'getWorkspaceDeletionJobStatus'
+    );
 
     const parameters = {
       options: {
@@ -4013,7 +4332,22 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.InventoryResourceRecord>> {
     const _params = { ...params };
     const _requiredParams = [];
-    const _validParams = ['name', 'description', 'location', 'resourceGroup', 'connectionType', 'credentials', 'commonCredentials', 'inventoriesIni', 'resourceQueries', 'bastion', 'bastionCredential', 'inventoryView', 'signal', 'headers'];
+    const _validParams = [
+      'name',
+      'description',
+      'location',
+      'resourceGroup',
+      'connectionType',
+      'credentials',
+      'commonCredentials',
+      'inventoriesIni',
+      'resourceQueries',
+      'bastion',
+      'bastionCredential',
+      'inventoryView',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -4256,7 +4590,23 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.InventoryResourceRecord>> {
     const _params = { ...params };
     const _requiredParams = ['inventoryId'];
-    const _validParams = ['inventoryId', 'name', 'description', 'location', 'resourceGroup', 'connectionType', 'credentials', 'commonCredentials', 'inventoriesIni', 'resourceQueries', 'bastion', 'bastionCredential', 'inventoryView', 'signal', 'headers'];
+    const _validParams = [
+      'inventoryId',
+      'name',
+      'description',
+      'location',
+      'resourceGroup',
+      'connectionType',
+      'credentials',
+      'commonCredentials',
+      'inventoriesIni',
+      'resourceQueries',
+      'bastion',
+      'bastionCredential',
+      'inventoryView',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -4428,7 +4778,11 @@ class SchematicsV1 extends BaseService {
       'queries': _params.queries,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'createResourceQuery');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'createResourceQuery'
+    );
 
     const parameters = {
       options: {
@@ -4493,7 +4847,11 @@ class SchematicsV1 extends BaseService {
       'query_id': _params.queryId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteResourcesQuery');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'deleteResourcesQuery'
+    );
 
     const parameters = {
       options: {
@@ -4609,7 +4967,11 @@ class SchematicsV1 extends BaseService {
       'query_id': _params.queryId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'executeResourceQuery');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'executeResourceQuery'
+    );
 
     const parameters = {
       options: {
@@ -4684,7 +5046,11 @@ class SchematicsV1 extends BaseService {
       'query_id': _params.queryId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'replaceResourcesQuery');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'replaceResourcesQuery'
+    );
 
     const parameters = {
       options: {
@@ -4799,7 +5165,7 @@ class SchematicsV1 extends BaseService {
    * used to deploy your agent to its target location.
    * **Getting API endpoint**:-
    * * The Schematics API endpoint that you use to create the agent determines where your Schematics agent run and your
-   * data is stored. For more information about supported API endpoints, see [API
+   * data is stored. For more information about supported API endpoints, see [API
    * endpoints](https://cloud.ibm.com/apidocs/schematics/schematics#api-endpoints). * If you use the API endpoint for a
    * geography and not a specific location, such as North America, you can specify the location in your API request
    * body. * If you do not specify the location in the request body, Schematics determines your agent location based on
@@ -4840,8 +5206,30 @@ class SchematicsV1 extends BaseService {
     params: SchematicsV1.CreateAgentDataParams
   ): Promise<SchematicsV1.Response<SchematicsV1.AgentData>> {
     const _params = { ...params };
-    const _requiredParams = ['name', 'resourceGroup', 'version', 'schematicsLocation', 'agentLocation', 'agentInfrastructure'];
-    const _validParams = ['name', 'resourceGroup', 'version', 'schematicsLocation', 'agentLocation', 'agentInfrastructure', 'description', 'tags', 'agentMetadata', 'agentInputs', 'userState', 'agentKpi', 'signal', 'headers'];
+    const _requiredParams = [
+      'name',
+      'resourceGroup',
+      'version',
+      'schematicsLocation',
+      'agentLocation',
+      'agentInfrastructure',
+    ];
+    const _validParams = [
+      'name',
+      'resourceGroup',
+      'version',
+      'schematicsLocation',
+      'agentLocation',
+      'agentInfrastructure',
+      'description',
+      'tags',
+      'agentMetadata',
+      'agentInputs',
+      'userState',
+      'agentKpi',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -5081,8 +5469,33 @@ class SchematicsV1 extends BaseService {
     params: SchematicsV1.UpdateAgentDataParams
   ): Promise<SchematicsV1.Response<SchematicsV1.AgentData>> {
     const _params = { ...params };
-    const _requiredParams = ['agentId', 'name', 'resourceGroup', 'version', 'schematicsLocation', 'agentLocation', 'agentInfrastructure'];
-    const _validParams = ['agentId', 'name', 'resourceGroup', 'version', 'schematicsLocation', 'agentLocation', 'agentInfrastructure', 'description', 'tags', 'agentMetadata', 'agentInputs', 'userState', 'agentKpi', 'refreshToken', 'signal', 'headers'];
+    const _requiredParams = [
+      'agentId',
+      'name',
+      'resourceGroup',
+      'version',
+      'schematicsLocation',
+      'agentLocation',
+      'agentInfrastructure',
+    ];
+    const _validParams = [
+      'agentId',
+      'name',
+      'resourceGroup',
+      'version',
+      'schematicsLocation',
+      'agentLocation',
+      'agentInfrastructure',
+      'description',
+      'tags',
+      'agentMetadata',
+      'agentInputs',
+      'userState',
+      'agentKpi',
+      'refreshToken',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -5288,7 +5701,11 @@ class SchematicsV1 extends BaseService {
       'agent_id': _params.agentId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'healthCheckAgentJob');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'healthCheckAgentJob'
+    );
 
     const parameters = {
       options: {
@@ -5418,7 +5835,11 @@ class SchematicsV1 extends BaseService {
       'agent_id': _params.agentId,
     };
 
-    const sdkHeaders = getSdkHeaders(SchematicsV1.DEFAULT_SERVICE_NAME, 'v1', 'deleteAgentResources');
+    const sdkHeaders = getSdkHeaders(
+      SchematicsV1.DEFAULT_SERVICE_NAME,
+      'v1',
+      'deleteAgentResources'
+    );
 
     const parameters = {
       options: {
@@ -5537,7 +5958,15 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.KMSSettings>> {
     const _params = { ...params };
     const _requiredParams = [];
-    const _validParams = ['location', 'encryptionScheme', 'resourceGroup', 'primaryCrk', 'secondaryCrk', 'signal', 'headers'];
+    const _validParams = [
+      'location',
+      'encryptionScheme',
+      'resourceGroup',
+      'primaryCrk',
+      'secondaryCrk',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -5610,7 +6039,15 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.KMSDiscovery>> {
     const _params = { ...params };
     const _requiredParams = ['encryptionScheme', 'location'];
-    const _validParams = ['encryptionScheme', 'location', 'resourceGroup', 'limit', 'sort', 'signal', 'headers'];
+    const _validParams = [
+      'encryptionScheme',
+      'location',
+      'resourceGroup',
+      'limit',
+      'sort',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -5762,7 +6199,20 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.Policy>> {
     const _params = { ...params };
     const _requiredParams = ['kind'];
-    const _validParams = ['kind', 'name', 'description', 'resourceGroup', 'tags', 'location', 'state', 'target', 'parameter', 'scopedResources', 'signal', 'headers'];
+    const _validParams = [
+      'kind',
+      'name',
+      'description',
+      'resourceGroup',
+      'tags',
+      'location',
+      'state',
+      'target',
+      'parameter',
+      'scopedResources',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -5853,14 +6303,7 @@ class SchematicsV1 extends BaseService {
         path,
       },
       defaultOptions: extend(true, {}, this.baseOptions, {
-        headers: extend(
-          true,
-          sdkHeaders,
-          this.baseOptions.headers,
-          {
-          },
-          _params.headers
-        ),
+        headers: extend(true, sdkHeaders, this.baseOptions.headers, {}, _params.headers),
         axiosOptions: {
           signal: _params.signal,
         },
@@ -5979,7 +6422,21 @@ class SchematicsV1 extends BaseService {
   ): Promise<SchematicsV1.Response<SchematicsV1.Policy>> {
     const _params = { ...params };
     const _requiredParams = ['policyId', 'kind'];
-    const _validParams = ['policyId', 'kind', 'name', 'description', 'resourceGroup', 'tags', 'location', 'state', 'target', 'parameter', 'scopedResources', 'signal', 'headers'];
+    const _validParams = [
+      'policyId',
+      'kind',
+      'name',
+      'description',
+      'resourceGroup',
+      'tags',
+      'location',
+      'state',
+      'target',
+      'parameter',
+      'scopedResources',
+      'signal',
+      'headers',
+    ];
     const _validationErrors = validateParams(_params, _requiredParams, _validParams);
     if (_validationErrors) {
       return Promise.reject(_validationErrors);
@@ -6060,22 +6517,19 @@ namespace SchematicsV1 {
    * request interfaces
    ************************/
 
-   interface DefaultParams {
-     headers?: OutgoingHttpHeaders;
-     signal?: AbortSignal;
-   }
+  interface DefaultParams {
+    headers?: OutgoingHttpHeaders;
+    signal?: AbortSignal;
+  }
 
   /** Parameters for the `listLocations` operation. */
-  export interface ListLocationsParams extends DefaultParams {
-  }
+  export interface ListLocationsParams extends DefaultParams {}
 
   /** Parameters for the `listResourceGroup` operation. */
-  export interface ListResourceGroupParams extends DefaultParams {
-  }
+  export interface ListResourceGroupParams extends DefaultParams {}
 
   /** Parameters for the `getSchematicsVersion` operation. */
-  export interface GetSchematicsVersionParams extends DefaultParams {
-  }
+  export interface GetSchematicsVersionParams extends DefaultParams {}
 
   /** Parameters for the `processTemplateMetaData` operation. */
   export interface ProcessTemplateMetaDataParams extends DefaultParams {
@@ -7733,8 +8187,7 @@ namespace SchematicsV1 {
   }
 
   /** Parameters for the `getAgentVersions` operation. */
-  export interface GetAgentVersionsParams extends DefaultParams {
-  }
+  export interface GetAgentVersionsParams extends DefaultParams {}
 
   /** Parameters for the `prsAgentJob` operation. */
   export interface PrsAgentJobParams extends DefaultParams {
