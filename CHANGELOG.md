@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/IBM/schematics-node-sdk/compare/v1.1.0...v1.1.1) (2026-11-16)
+
+
+### Bug Fixes
+
+* **api:** added workflow repo ([8c341a6](https://github.com/IBM/schematics-node-sdk/commit/8c341a6d4138c76e0764300ec7a633ff58e0f78e))
+* **api:** fixed build file ([c704e98](https://github.com/IBM/schematics-node-sdk/commit/c704e98486802d0ee59344ed0585b7a5fe438f8e))
+* **api:** readme file modified - [#31](https://github.com/IBM/schematics-node-sdk/issues/31) ([033a851](https://github.com/IBM/schematics-node-sdk/commit/033a8512744a4a82d043c46f7b6a1848642c2d88))
+
 # [1.1.0](https://github.com/IBM/schematics-node-sdk/compare/v1.0.0...v1.1.0) (2025-01-21)
 
 
